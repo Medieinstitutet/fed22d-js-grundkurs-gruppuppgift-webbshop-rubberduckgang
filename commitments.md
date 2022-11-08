@@ -41,4 +41,5 @@ Vecka 4
 
 ## Underskrivet av
 @hannaforssell
+@Joel del Pilar
 @davidstalgren
