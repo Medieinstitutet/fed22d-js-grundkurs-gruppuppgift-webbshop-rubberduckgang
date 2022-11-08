@@ -1,0 +1,13 @@
+*{
+	box-sizing: border-box;
+}
+
+.clearfix::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+html{
+    scroll-behavior: smooth;
+}
