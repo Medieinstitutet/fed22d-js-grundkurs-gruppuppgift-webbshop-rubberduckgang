@@ -56,3 +56,40 @@
 		cursor: pointer;
 	}
 }
+
+.checkout__cart--summa {
+	text-align: right;
+	margin-block-end: 2rem;
+}
+
+.checkout__cart--confirm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+
+	& button:first-child {
+		background-color: hsl(120, 90%, 67%);
+	}
+
+	& button:first-child:hover {
+		background-color: hsl(120, 46%, 50%);
+		cursor: pointer;
+	}
+
+	& button:last-of-type {
+		background-color: hsl(0, 92%, 66%);
+	}
+
+	& button:last-of-type:hover {
+		background-color: hsl(0, 47%, 48%);
+	}
+}
+
+.btn {
+	border: none;
+	padding-inline: 3rem;
+	padding-block: 1rem;
+	border-radius: 0.625rem;
+}
