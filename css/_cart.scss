@@ -1,0 +1,58 @@
+/*--------------------------- Styling för varu/kundkorg ---------------------------*/
+
+.checkout__cart {
+	width: 90vw;
+	max-width: 50rem;
+	margin-inline: auto;
+}
+
+.checkout__cart--header {
+	display: flex;
+	justify-content: space-between;
+	background-color: hsl(0, 86%, 61%);
+	color: hsl(0, 71%, 97%);
+	padding-inline: 0.5rem;
+	margin-block-end: 1rem;
+}
+
+.checkout__cart--row {
+	display: grid;
+	grid-template-columns: 3fr 1fr 2fr;
+
+	// &:last-child {
+	align-items: center;
+
+	& .checkout__cart--produkt {
+		// display: flex;
+		text-align: left;
+	}
+
+	& .checkout__cart--pris {
+		text-align: left;
+	}
+
+	& .checkout__cart--antal {
+		text-align: right;
+	}
+
+	& article > input {
+		width: 2.5rem;
+		margin-inline-end: 0.1rem;
+		height: 1.55rem;
+		background-color: hsla(0, 0%, 31%, 0.432);
+		border: 2px solid grey;
+	}
+
+	& .btn-danger {
+		padding: 0.2rem;
+		border: none;
+		background-color: hsl(0, 86%, 61%);
+		color: hsl(0, 71%, 97%);
+		border-radius: 0.325rem;
+	}
+
+	& .btn-danger:hover {
+		background-color: hsl(0, 60%, 48%);
+		cursor: pointer;
+	}
+}

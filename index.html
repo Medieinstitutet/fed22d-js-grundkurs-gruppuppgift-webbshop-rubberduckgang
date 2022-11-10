@@ -6,9 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=firefox,chrome">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gottfrids Ankor</title>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
 </head>
 
 <body>
+
+
+
+
+
+
+
+
+    <section class="checkout__cart">
+        <h2>Varukorg</h2>
+
+        <header class="checkout__cart--header">
+            <h3>Produkt</h3>
+            <h3>Pris</h3>
+            <h3>Antal</h3>
+        </header>
+
+        <div class="checkout__cart--row">
+            <article class="checkout__cart--produkt">
+                <img src="assets/img/produkt_1/produkt_1_a.webp" alt="yellow rubber duck" width="100">
+                <p>Gul badanka - klassisk</p>
+            </article>
+
+            <article class="checkout__cart--pris">
+                <span>150:- /sek</span>
+            </article>
+
+            <article class="checkout__cart--antal">
+                <label class="visually-hidden" for="antal">antal</label>
+                <!------------------------------------- Denna ska göras visually-hidden i css/sass -->
+                <input type="number" id="antal" name="antal" min="1" value="1">
+                <button role="button" class="btn btn-danger">Rensa</button>
+            </article>
+
+        </div>
+    </section>
+
+
 
 </body>
 
