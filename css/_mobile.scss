@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
 .clearfix::after {
@@ -13,12 +12,70 @@ html {
     scroll-behavior: smooth;
 }
 
+/*--------------Sass rules-----------------*/
+$primary-color: #556edf;
+$secondary-color: #fdbc91;
+
+/*--------------Header & Intro, by Hanna-----------------*/
+header {
+    font-family: 'Playfair Display', serif;
+
+    nav {
+        background-color: $primary-color;
+        opacity: 90%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        h1 {
+            font-weight: 600;
+        }
+
+        .material-symbols-outlined {
+            position: relative;
+            top: 25px;
+            font-size: 2rem;
+        }
+    }
+
+    .intro {
+        padding-top: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+
+        h2 {
+            width: 250px;
+            height: 250px;
+            text-align: center;
+            background-color: $secondary-color;
+            border-radius: 100%;
+            font-weight: 400;
+        }
+
+        .intro-img-rubberduck {
+            width: 300px;
+            height: 300px;
+            border-radius: 100%;
+        }
+    }
+}
+/*--------------End of 'Header & Intro'-----------------*/
+
 /*--------------Checkout Form, by Hanna-----------------*/
 .checkoutContainer {
     min-height: 100vh;
     display: grid;
     place-content: center;
     margin: 5px;
+    font-family: sans-serif;
 
     h3 {
         margin-left: 20px;
