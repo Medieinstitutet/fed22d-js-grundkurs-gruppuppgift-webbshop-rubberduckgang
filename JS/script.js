@@ -7,6 +7,9 @@
  *  4. Kassa knapp???
  */
 
+
+
+
 // Ta bort vara ur kundkorgen.
 
 const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
@@ -20,7 +23,24 @@ for (let i = 0; i < removeProductBtn.length; i++) {
 
 }
 
-//Uppdatera totalpriset.
+const quantityInput = document.getElementsByClassName('cart__product--amount');
+    for (let i = 0; i < quantityInput.length; i++) {
+        const input = quantityInput[i];
+        input.addEventListener('change', quantityInputChanged); 
+}
+
+
+function quantityInputChanged(event) {
+    const input = event.target;
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+    }
+    
+    updateTotalPrice()
+}
+
+
+//Uppdatera totalpriset när en vara tas bort.
 
 
 function updateTotalPrice() {
@@ -44,3 +64,15 @@ function updateTotalPrice() {
 
     document.getElementById('cart__total__price').innerText = total + ':-';
 }
+
+
+// function totalPrice() {
+//     const partPrice = document.getElementsByClassName('cart__product--price');
+//     for (let i = 0; i < partPrice.length; i++) {
+
+//         const add =
+//     }
+// }
+
+
+
