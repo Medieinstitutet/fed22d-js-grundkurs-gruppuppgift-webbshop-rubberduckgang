@@ -2,6 +2,7 @@
 <html lang="sv">
 
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet"> 
+    
 </head>
 
 <body>
+
 
   <!--Header, first part, by Hanna-->
   <header>
@@ -29,6 +32,48 @@
   </header>
 
   <main>
+  
+   <section class="checkout__cart">
+        <h2>Varukorg</h2>
+
+        <header class="checkout__cart--header">
+            <h3>Produkt</h3>
+            <h3>Pris</h3>
+            <h3>Antal</h3>
+        </header>
+
+        <div class="checkout__cart--row">
+            <article class="checkout__cart--produkt">
+                <img src="assets/img/produkt_1/produkt_1_a.webp" alt="yellow rubber duck" width="100">
+                <p>Gul badanka - klassisk</p>
+            </article>
+
+            <article class="checkout__cart--pris">
+                <span>150:- /sek</span>
+            </article>
+
+            <article class="checkout__cart--antal">
+                <!--- Denna label ska göras visually-hidden i css/sass -->
+                <label class="visually-hidden" for="antal">antal</label>
+                <input type="number" id="antal" name="antal" min="1" value="1">
+
+                <button role="button" class="btn-danger">Rensa</button>
+            </article>
+        </div>
+
+        <hr>
+
+        <div class="checkout__cart--summa">
+            <span>Totalt</span>
+            <span>150:- /sek</span>
+        </div>
+
+        <div class="checkout__cart--confirm">
+            <button role="button" class="btn btn-order">Beställ</button>
+            <button role="button" class="btn btn-cancel">Avbryt</button>
+        </div>
+    </section>
+
 
     <!--Form, last page, by Hanna-->
     <section class="checkoutContainer">
@@ -123,5 +168,10 @@
   <script src="script.js"></script>
 
 </body>
-
 </html>
+
+
+
+
+
+   
