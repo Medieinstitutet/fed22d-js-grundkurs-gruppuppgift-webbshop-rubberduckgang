@@ -115,24 +115,22 @@
           <span>E-postadress:</span>
         </label>
 
-        <div>
           <p>Välj betalsätt:</p>
           <label class="paymentMethodLabel" for="paymentCard">
-            <input type="radio" checked="checked" name="radio">
+            <input id="paymentCard" type="radio" name="radio">
             Kort
             <span class="checkmark"></span>
           </label>
 
           <label class="paymentMethodLabel" for="paymentInvoice">
-            <input type="radio" name="radio">
+            <input id="paymentInvoice" type="radio" name="radio">
             Faktura
             <span class="checkmark"></span>
           </label>
-        </div>
 
         <!--Card & invoice-form is hidden, shown when chosen in scroll menu. Should be shown with display:flex, otherwise they'll be on top of each other-->
 
-        <div id="hiddenPaymentCard">
+        <div class="hiddenPaymentCard">
           <label for="cardNumber">
             <input type="number" id="cardNumber">
             <span>Kortnummer:</span>
@@ -147,7 +145,7 @@
           </label>
         </div>
 
-        <div id="hiddenPaymentInvoice">
+        <div class="hiddenPaymentInvoice">
           <label for="socialSecurityNumber">
             <input type="number" id="socialSecurityNumber">
             <span>Svenskt personnummer:</span>
@@ -171,7 +169,7 @@
 
   </main>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 

@@ -94,11 +94,13 @@ header {
 
         .paymentMethodLabel{
             border-bottom: none;
-            display: flex;
         }
 
-        #hiddenPaymentCard,
-        #hiddenPaymentInvoice {
+        .hiddenPaymentCard, .hiddenPaymentInvoice {
+            display: none;
+        }
+
+        .showPaymentCard, .showPaymentInvoice {
             display: flex;
         }
 
@@ -114,6 +116,10 @@ header {
                 border: none;
                 outline: none;
             }
+        }
+
+        .checkBoxes {
+            border-bottom: none;
         }
 
         span {
