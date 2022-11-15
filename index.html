@@ -8,11 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gottfrids ankor</title>
   <link rel="stylesheet" href="css/style.css" type="text/css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet"> 
-    
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -27,51 +28,52 @@
 
     <section class="intro">
       <h2><br><br>Välkommen till Gottfrids! Här finner du alla ankor du någonsin drömt om.. plus fler!</h2>
-      <img class="intro-img-rubberduck" src="assets/img/header-purple-duck.png" alt="A drawn purple duck" width="400" height="400" loading="lazy">
+      <img class="intro-img-rubberduck" src="assets/img/header-purple-duck.png" alt="A drawn purple duck" width="400"
+        height="400" loading="lazy">
     </section>
   </header>
 
   <main>
-  
-   <section class="checkout__cart">
-        <h2>Varukorg</h2>
 
-        <header class="checkout__cart--header">
-            <h3>Produkt</h3>
-            <h3>Pris</h3>
-            <h3>Antal</h3>
-        </header>
+    <section class="checkout__cart">
+      <h2>Varukorg</h2>
 
-        <div class="checkout__cart--row">
-            <article class="checkout__cart--produkt">
-                <img src="assets/img/produkt_1/produkt_1_a.webp" alt="yellow rubber duck" width="100">
-                <p>Gul badanka - klassisk</p>
-            </article>
+      <header class="checkout__cart--header">
+        <h3>Produkt</h3>
+        <h3>Pris</h3>
+        <h3>Antal</h3>
+      </header>
 
-            <article class="checkout__cart--pris">
-                <span>150:- /sek</span>
-            </article>
+      <div class="checkout__cart--row">
+        <article class="checkout__cart--produkt">
+          <img src="assets/img/produkt_1/produkt_1_a.webp" alt="yellow rubber duck" width="100">
+          <p>Gul badanka - klassisk</p>
+        </article>
 
-            <article class="checkout__cart--antal">
-                <!--- Denna label ska göras visually-hidden i css/sass -->
-                <label class="visually-hidden" for="antal">antal</label>
-                <input type="number" id="antal" name="antal" min="1" value="1">
+        <article class="checkout__cart--pris">
+          <span>150:- /sek</span>
+        </article>
 
-                <button role="button" class="btn-danger">Rensa</button>
-            </article>
-        </div>
+        <article class="checkout__cart--antal">
+          <!--- Denna label ska göras visually-hidden i css/sass -->
+          <label class="visually-hidden" for="antal">antal</label>
+          <input type="number" id="antal" name="antal" min="1" value="1">
 
-        <hr>
+          <button role="button" class="btn-danger">Rensa</button>
+        </article>
+      </div>
 
-        <div class="checkout__cart--summa">
-            <span>Totalt</span>
-            <span>150:- /sek</span>
-        </div>
+      <hr>
 
-        <div class="checkout__cart--confirm">
-            <button role="button" class="btn btn-order">Beställ</button>
-            <button role="button" class="btn btn-cancel">Avbryt</button>
-        </div>
+      <div class="checkout__cart--summa">
+        <span>Totalt</span>
+        <span>150:- /sek</span>
+      </div>
+
+      <div class="checkout__cart--confirm">
+        <button role="button" class="btn btn-order">Beställ</button>
+        <button role="button" class="btn btn-cancel">Avbryt</button>
+      </div>
     </section>
 
 
@@ -113,14 +115,20 @@
           <span>E-postadress:</span>
         </label>
 
-        <label for="paymentMethod" class="paymentMethodLabel">
-          <select id="paymentMethod">
-            <option selected disabled>Välj betalsätt:</option>
-            <option value="card">Kort</option>
-            <option value="invoice">Faktura (endast för svenskt personnummer)</option>
-          </select>
-        </label>
+        <div>
+          <p>Välj betalsätt:</p>
+          <label class="paymentMethodLabel" for="paymentCard">
+            <input type="radio" checked="checked" name="radio">
+            Kort
+            <span class="checkmark"></span>
+          </label>
 
+          <label class="paymentMethodLabel" for="paymentInvoice">
+            <input type="radio" name="radio">
+            Faktura
+            <span class="checkmark"></span>
+          </label>
+        </div>
 
         <!--Card & invoice-form is hidden, shown when chosen in scroll menu. Should be shown with display:flex, otherwise they'll be on top of each other-->
 
@@ -140,22 +148,20 @@
         </div>
 
         <div id="hiddenPaymentInvoice">
-        <label for="socialSecurityNumber">
-          <input type="number" id="socialSecurityNumber">
-          <span>Personnummer:</span>
-        </label>
+          <label for="socialSecurityNumber">
+            <input type="number" id="socialSecurityNumber">
+            <span>Svenskt personnummer:</span>
+          </label>
         </div>
 
-        <div class="checkBoxesParent">
           <label for="storageData" class="checkBoxes">
             <input type="checkbox" id="storageData">
             Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
           </label>
           <label for="newsLetter" class="checkBoxes">
-            <input type="checkbox" id="newsLetter"checked>
+            <input type="checkbox" id="newsLetter" checked>
             Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
           </label>
-        </div>
 
         <button type="submit" id="orderButton" disabled>Skicka beställning</button>
         <p id="orderMessage"></p>
@@ -168,10 +174,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
-
-
-
-
-
-   
