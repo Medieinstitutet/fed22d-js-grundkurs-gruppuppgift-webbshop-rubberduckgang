@@ -1,13 +1,13 @@
 /*--------------------------- Styling för varu/kundkorg ---------------------------*/
 
-.checkout__cart {
+.checkout {
 	width: 90vw;
 	max-width: 50rem;
 	margin-inline: auto;
 	margin-block-end: 4rem;
 }
 
-.checkout__cart--header {
+.checkout__header {
 	display: flex;
 	justify-content: space-between;
 	background-color: $primary-color;
