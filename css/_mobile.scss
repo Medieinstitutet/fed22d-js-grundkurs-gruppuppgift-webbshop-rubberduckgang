@@ -178,3 +178,116 @@ input::-webkit-inner-spin-button {
     transition: all .4s ease;
 }
 /*--------------End Of Checkout Form-----------------*/
+
+/*-------------- Main Donut page -----------------*/
+
+.donut__wrapper{  
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 40% 40%;
+    grid-template-rows: auto;
+    gap: 10px;
+    width: 100vw;
+    padding: 10px;
+    margin: 10px;
+    grid-template-areas:
+      "donut__1 donut__2"
+      "donut__3 donut__4"
+      "donut__5 donut__6"
+      "donut__7 donut__8"
+      "donut__9 donut__10";
+}
+
+.donut__1{ 
+    outline: 1px solid black;
+    grid-area: donut__1; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.donut__2{ 
+    outline: 1px solid black;
+    grid-area: donut__2; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__3{ 
+    outline: 1px solid black;
+    grid-area: donut__3; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__4{ 
+    outline: 1px solid black;
+    grid-area: donut__4; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__5{ 
+    outline: 1px solid black;
+    grid-area: donut__5; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__6{ 
+    outline: 1px solid black;
+    grid-area: donut__6; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__7{ 
+    outline: 1px solid black;
+    grid-area: donut__7; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__8{ 
+    outline: 1px solid black;
+    grid-area: donut__8; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__9{ 
+    outline: 1px solid black;
+    grid-area: donut__9; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.donut__10{ 
+    outline: 1px solid black;
+    grid-area: donut__10; 
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+/*-------------- End of Main Donut page -----------------*/
