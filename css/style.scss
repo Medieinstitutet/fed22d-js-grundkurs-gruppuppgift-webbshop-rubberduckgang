@@ -6,6 +6,10 @@
 // Detta är en klass för att göra något visuellt osynligt men ändå tillgänglit för screenreaders etc.
 // - Joel
 
+body {
+	font-family: "Open Sans", sans-serif;
+}
+
 .visually-hidden {
 	position: absolute;
 	position: absolute !important;
