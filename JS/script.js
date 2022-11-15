@@ -8,7 +8,7 @@
  */
 
 
-
+updateTotalPrice();
 
 // Ta bort vara ur kundkorgen.
 
