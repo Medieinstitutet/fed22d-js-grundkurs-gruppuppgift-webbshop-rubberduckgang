@@ -92,24 +92,16 @@ header {
         border-radius: 5px;
         margin: 20px;
 
-        .paymentMethodLabel {
+        .paymentMethodLabel{
             border-bottom: none;
-            margin-top: 10px;
-            margin-bottom: 20px;
         }
 
-        #hiddenPaymentCard,
-        #hiddenPaymentInvoice {
+        .hiddenPaymentCard, .hiddenPaymentInvoice {
             display: none;
         }
 
-        .checkBoxesParent {
+        .showPaymentCard, .showPaymentInvoice {
             display: flex;
-
-            .checkBoxes {
-                display: flex;
-                border-bottom: none;
-            }
         }
 
         label {
@@ -117,15 +109,19 @@ header {
             position: relative;
             border-bottom: 1px solid #ddd;
 
-            input {
+            input[type=text], input[type=number], input[type=email] {
                 width: 100%;
                 padding: 10px 0px;
                 margin-top: 20px;
                 border: none;
                 outline: none;
-
             }
         }
+
+        .checkBoxes {
+            border-bottom: none;
+        }
+
         span {
             position: absolute;
             top: 0;
