@@ -28,4 +28,14 @@ function switchPayment(e) {
     }
 }
 
+/* Order button */
+/* Order button unlocks when the form is filled */
+/**
+ * Make the button disabled
+ * When pressed, validate form (not buzzCode, cardNumber, expiryDate, cvc) (invoice only if chosen)
+ * Looks through all inputs (except some)
+ * Doesn't need to be correct right?
+ */
+
+
 /* The end of form*/
