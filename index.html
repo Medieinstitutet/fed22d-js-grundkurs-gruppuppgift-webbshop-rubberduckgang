@@ -82,37 +82,36 @@
       <h3>Dina uppgifter:</h3>
       <form class="checkoutForm">
         <label for="firstName">
-          <input type="text" id="firstName">
-          <span>Förnamn:</span>
+          <input type="text" id="firstName" required>
+          <span>Förnamn</span>
         </label>
         <label for="surName">
-          <input type="text" id="surName">
-          <span>Efternamn:</span>
+          <input type="text" id="surName" required>
+          <span>Efternamn</span>
         </label>
-        <label for="adress">
-          <input type="text" id="adress">
-          <span>Adress (gata):</span>
+        <label for="address">
+          <input type="text" id="address" required>
+          <span>Adress (gata)</span>
         </label>
         <label for="zipCode">
-          <input type="number" id="zipCode">
-          <span>Postnummer:</span>
+          <input type="number" id="zipCode" required>
+          <span id="zipCodeSpan">Postnummer</span>
         </label>
         <label for="cityName">
-          <input type="text" id="cityName">
-          <span>Postort:</span>
+          <input type="text" id="cityName" required>
+          <span>Postort</span>
         </label>
         <label for="buzzCode">
-          <!--buzzCode doesn't need to be validated-->
           <input type="number" id="buzzCode">
-          <span>Eventuell portkod:</span>
+          <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
-          <input type="text" id="phoneNumber">
-          <span>Telefonnummer:</span>
+          <input type="number" id="phoneNumber" required>
+          <span id="phoneNumberSpan">Telefonnummer</span>
         </label>
         <label for="email">
-          <input type="email" id="email">
-          <span>E-postadress:</span>
+          <input type="email" id="email" required>
+          <span>E-postadress</span>
         </label>
 
           <p>Välj betalsätt:</p>
@@ -133,27 +132,27 @@
         <div class="hiddenPaymentCard">
           <label for="cardNumber">
             <input type="number" id="cardNumber">
-            <span>Kortnummer:</span>
+            <span>Kortnummer</span>
           </label>
           <label for="expiryDate">
             <input type="number" id="expiryDate">
-            <span>Utgångsdatum:</span>
+            <span>Utgångsdatum</span>
           </label>
           <label for="cvc">
             <input type="number" id="cvc">
-            <span>CVC-kod:</span>
+            <span>CVC-kod</span>
           </label>
         </div>
 
         <div class="hiddenPaymentInvoice">
           <label for="socialSecurityNumber">
-            <input type="number" id="socialSecurityNumber">
-            <span>Svenskt personnummer:</span>
+            <input type="number" id="socialSecurityNumber" required>
+            <span>Personnummer</span>
           </label>
         </div>
 
           <label for="storageData" class="checkBoxes">
-            <input type="checkbox" id="storageData">
+            <input type="checkbox" id="storageData"  required>
             Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
           </label>
           <label for="newsLetter" class="checkBoxes">
