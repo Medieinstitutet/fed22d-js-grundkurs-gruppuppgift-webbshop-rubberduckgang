@@ -28,4 +28,21 @@ function switchPayment(e) {
     }
 }
 
+/* Rules for delivery: (usually 30 min) */
+
+/* If the customer orders on a weekend: 1,5 h */
+
+/* If the custonmer orders in the middle of the night: 45 min */
+
+/* If the customer orders on a friday between 11 & 13 (weekly meeting): delivery at 15:00 */
+
+/* If 15 minutes pass, clear form. Alert("Too slow!") */
+
+/**
+ * setTimeout(function, 1000 * 1500)
+ * börja med alert
+ */
+
+/* If cart exceeds 800kr, invoice can't be chosen */
+
 /* The end of form*/
