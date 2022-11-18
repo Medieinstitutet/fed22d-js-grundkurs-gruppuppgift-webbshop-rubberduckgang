@@ -76,21 +76,3 @@ function updateTotalPrice() {
 
 
 
-function switchPayment(e) {
-
-    if(e.target.id == 'paymentCard') {
-        paymentInvoiceBox.classList.remove('showPaymentInvoice');
-        paymentInvoiceBox.classList.add('hiddenPaymentInvoice');
-
-        paymentCardBox.classList.remove('hiddenPaymentCard');
-        paymentCardBox.classList.add('showPaymentCard');
-    } else {
-        paymentCardBox.classList.remove('showPaymentCard');
-        paymentCardBox.classList.add('hiddenPaymentCard');
-
-        paymentInvoiceBox.classList.remove('hiddenPaymentInvoice');
-        paymentInvoiceBox.classList.add('showPaymentInvoice');
-    }
-}
-
-/* The end of form*/
