@@ -1,15 +1,15 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 /*--------------Sass rules-----------------*/
@@ -18,54 +18,54 @@ $secondary-color: #fdbc91;
 
 /*--------------Header & Intro, by Hanna-----------------*/
 header {
-    font-family: 'Playfair Display', serif;
+	// font-family: "Playfair Display", serif;
 
-    nav {
-        background-color: $primary-color;
-        opacity: 90%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        padding-left: 20px;
-        padding-right: 20px;
+	nav {
+		background-color: $primary-color;
+		opacity: 90%;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding-left: 20px;
+		padding-right: 20px;
 
-        h1 {
-            font-weight: 600;
-        }
+		h1 {
+			font-weight: 600;
+		}
 
-        .material-symbols-outlined {
-            position: relative;
-            top: 25px;
-            font-size: 2rem;
-        }
-    }
+		.material-symbols-outlined {
+			position: relative;
+			top: 25px;
+			font-size: 2rem;
+		}
+	}
 
-    .intro {
-        padding-top: 100px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        margin: 20px;
+	.intro {
+		padding-top: 100px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		margin: 20px;
 
-        h2 {
-            width: 250px;
-            height: 250px;
-            text-align: center;
-            background-color: $secondary-color;
-            border-radius: 100%;
-            font-weight: 400;
-        }
+		h2 {
+			width: 250px;
+			height: 250px;
+			text-align: center;
+			background-color: $secondary-color;
+			border-radius: 100%;
+			font-weight: 400;
+		}
 
-        .intro-img-rubberduck {
-            width: 300px;
-            height: 300px;
-            border-radius: 100%;
-        }
-    }
+		.intro-img-rubberduck {
+			width: 300px;
+			height: 300px;
+			border-radius: 100%;
+		}
+	}
 }
 /*--------------End of 'Header & Intro'-----------------*/
 
@@ -130,48 +130,49 @@ header {
             color: #6b6b6b;
         }
     }
-
 }
 
 /*-----The two following code snippets remove the input number arrows-----*/
-input[type=number] {
-    -moz-appearance: textfield;
+input[type="number"] {
+	-moz-appearance: textfield;
+	appearance: textfield;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
 }
 
 #orderButton {
-    padding: 15px 0px;
-    margin-top: 20px;
-    color: white;
-    background: rgb(86, 171, 82);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+	padding: 15px 0px;
+	margin-top: 20px;
+	color: white;
+	background: rgb(86, 171, 82);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 #orderButton:hover {
-    background-color: rgba(86, 171, 82, 70%);
-    transition: all .4s ease;
+	background-color: rgba(86, 171, 82, 70%);
+	transition: all 0.4s ease;
 }
 
 #clearOrder {
-    width: 150px;
-    padding: 15px 0px;
-    margin-left: 20px;
-    color: white;
-    background: rgb(196, 63, 65);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+	width: 150px;
+	padding: 15px 0px;
+	margin-left: 20px;
+	color: white;
+	background: rgb(196, 63, 65);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 #clearOrder:hover {
-    background-color: rgba(196, 63, 65, 70%);
-    transition: all .4s ease;
+	background-color: rgba(196, 63, 65, 70%);
+	transition: all 0.4s ease;
 }
 /*--------------End Of Checkout Form-----------------*/
 
