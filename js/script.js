@@ -66,14 +66,6 @@ function updateTotalPrice() {
 }
 
 
-// function totalPrice() {
-//     const partPrice = document.getElementsByClassName('cart__product--price');
-//     for (let i = 0; i < partPrice.length; i++) {
-
-//         const add =
-//     }
-// }
-
 /* This is the code for the form, by Hanna*/
 
 /* Toggle between card & invoice*/
