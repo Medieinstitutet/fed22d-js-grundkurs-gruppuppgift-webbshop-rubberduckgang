@@ -97,4 +97,3 @@ function switchPayment(e) {
 }
 
 /* The end of form*/
-
