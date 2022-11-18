@@ -35,7 +35,7 @@ function quantityInputChanged(event) {
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
-
+    
     updateTotalPrice()
 }
 
@@ -53,8 +53,8 @@ function updateTotalPrice() {
         const productPrice = row.getElementsByClassName('cart__product--price')[0];
         const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
 
-
-
+        
+       
         const price = Number(productPrice.innerText);
         const quantity = productQuantity.value;
 
