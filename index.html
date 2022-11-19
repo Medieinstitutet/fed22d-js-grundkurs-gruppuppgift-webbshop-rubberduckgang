@@ -331,23 +331,23 @@
       <h3>Dina uppgifter:</h3>
       <form class="checkoutForm">
         <label for="firstName">
-          <input type="text" id="firstName" required>
+          <input type="text" id="firstName" class="validateInput" required>
           <span>Förnamn</span>
         </label>
         <label for="surName">
-          <input type="text" id="surName" required>
+          <input type="text" id="surName" class="validateInput" required>
           <span>Efternamn</span>
         </label>
         <label for="address">
-          <input type="text" id="address" required>
+          <input type="text" id="address" class="validateInput" required>
           <span>Adress (gata)</span>
         </label>
         <label for="zipCode">
-          <input type="number" id="zipCode" required>
+          <input type="number" id="zipCode" class="validateInput" required>
           <span id="zipCodeSpan">Postnummer</span>
         </label>
         <label for="cityName">
-          <input type="text" id="cityName" required>
+          <input type="text" id="cityName" class="validateInput" required>
           <span>Postort</span>
         </label>
         <label for="buzzCode">
@@ -355,11 +355,11 @@
           <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
-          <input type="number" id="phoneNumber" required>
+          <input type="number" id="phoneNumber" class="validateInput" required>
           <span id="phoneNumberSpan">Telefonnummer</span>
         </label>
         <label for="email">
-          <input type="email" id="email" required>
+          <input type="email" id="email" class="validateInput" required>
           <span>E-postadress</span>
         </label>
 
@@ -400,7 +400,7 @@
         </div>
 
           <label for="storageData" class="checkBoxes">
-            <input type="checkbox" id="storageData"  required>
+            <input type="checkbox" id="storageData" required>
             Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
           </label>
           <label for="newsLetter" class="checkBoxes">
@@ -408,7 +408,7 @@
             Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
           </label>
 
-        <button type="submit" id="orderButton" disabled>Skicka beställning</button>
+        <button type="submit" id="orderButton">Skicka beställning</button>
         <p id="orderMessage"></p>
       </form>
       <button id="clearOrder">Rensa beställning</button>

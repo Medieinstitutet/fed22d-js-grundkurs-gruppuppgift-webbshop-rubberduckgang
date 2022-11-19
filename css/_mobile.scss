@@ -166,6 +166,11 @@ input::-webkit-inner-spin-button {
 	transition: all 0.4s ease;
 }
 
+#orderButton:disabled {
+  background-color: rgb(158, 158, 158);
+  color: black;
+}
+
 #clearOrder {
 	width: 150px;
 	padding: 15px 0px;
