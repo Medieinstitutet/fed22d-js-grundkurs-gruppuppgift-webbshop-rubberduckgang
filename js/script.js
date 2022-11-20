@@ -62,18 +62,18 @@ function updateTotalPrice() {
 
 /* Toggle between card & invoice*/
 
-const paymentCardInput = document.querySelector("#paymentCard");
-const paymentCardBox = document.querySelector(".hiddenPaymentCard");
+const paymentCardInput = document.querySelector('#paymentCard');
+const paymentCardBox = document.querySelector('.hiddenPaymentCard');
 
-const paymentInvoiceInput = document.querySelector("#paymentInvoice");
-const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
+const paymentInvoiceInput = document.querySelector('#paymentInvoice');
+const paymentInvoiceBox = document.querySelector('.hiddenPaymentInvoice');
 
-paymentCardInput.addEventListener("click", switchPayment);
-paymentInvoiceInput.addEventListener("click", switchPayment);
+paymentCardInput.addEventListener('click', switchPayment);
+paymentInvoiceInput.addEventListener('click', switchPayment);
 
 function switchPayment(e) {
-  if (e.target.id == "paymentCard") {
-    paymentInvoiceBox.classList.remove("showPaymentInvoice");
+  if (e.target.id == 'paymentCard') {
+    paymentInvoiceBox.classList.remove('showPaymentInvoice');
     paymentInvoiceBox.classList.add("hiddenPaymentInvoice");
 
     paymentCardBox.classList.remove("hiddenPaymentCard");
@@ -104,7 +104,7 @@ function switchPayment(e) {
 
 /* Validates the form when pressing the order button */
 
-const orderBtn = document.querySelector("#orderButton");
+const orderBtn = document.querySelector('#orderButton');
 orderBtn.disabled = true;
 
 const validatedTexts = document.querySelectorAll('.validatedText');
@@ -152,33 +152,33 @@ checkoutForm.addEventListener('submit', order);
 function order(e) {
     e.preventDefault();
 
-    const zipCode = document.querySelector("#zipCode").value;
-    const zipCodeSpan = document.querySelector("#zipCodeSpan");
-    const phoneNumber = document.querySelector("#phoneNumber").value;
-    const phoneNumberSpan = document.querySelector("#phoneNumberSpan");
+    const zipCode = document.querySelector('#zipCode').value;
+    const zipCodeSpan = document.querySelector('#zipCodeSpan');
+    const phoneNumber = document.querySelector('#phoneNumber').value;
+    const phoneNumberSpan = document.querySelector('#phoneNumberSpan');
 
-    const orderMessage = document.querySelector("#orderMessage");
+    const orderMessage = document.querySelector('#orderMessage');
 
-    orderMessage.innerHTML = "";
-    zipCodeSpan.innerHTML = "Postnummer";
+    orderMessage.innerHTML = '';
+    zipCodeSpan.innerHTML = 'Postnummer';
     zipCodeSpan.classList.remove('errorMessage');
-    phoneNumberSpan.innerHTML = "Telefonnummer";
-    phoneNumberSpan.classList.remove("errorMessage");
+    phoneNumberSpan.innerHTML = 'Telefonnummer';
+    phoneNumberSpan.classList.remove('errorMessage');
 
     let hasErrors = false;
     let errors = [];
 
     if (zipCode < 10000 || zipCode > 99999) {
         zipCodeSpan.innerHTML = 'Postnummer *';
-        zipCodeSpan.classList.add("errorMessage");
+        zipCodeSpan.classList.add('errorMessage');
 
         hasErrors = true;
         errors.push('Fyll i ett giltligt postnummer!');
     }
 
     if (phoneNumber.length != 10) {
-        phoneNumberSpan.innerHTML = "Telefonnummer *";
-        phoneNumberSpan.classList.add("errorMessage");
+        phoneNumberSpan.innerHTML = 'Telefonnummer *';
+        phoneNumberSpan.classList.add('errorMessage');
 
         hasErrors = true;
         errors.push('Fyll i ett giltligt telefonnummer!');
