@@ -90,41 +90,67 @@ function switchPayment(e) {
 /* Order button */
 /**
  * [x] Make the button disabled from start
- * [] Button opens up when everything is filled out
- * [x] When pressed, validate form (not buzzCode, cardNumber, expiryDate, cvc)
- * [x] Validate zipCode & phoneNumber in js
- * [] When press button, info box(?) about delivery & order in
- * [] Invoice or card needs to be chosen
- * [] maybe use change instead of input on radio & checkbox
+ * [x] Go through all inputs and check if someone is empty
+ * [] Also check if they are filled out correctly (zipCode & phoneNumber done)
+ * [x] Personuppgifter checkbox needs to be checked (maybe use change if input doesnt work)
+ * [x] More boxes for errormessage
+ * [x] Either card or invoice needs to be chosen
+ * [x] If invoice is chosen, validate socialSecurityNumber
+ * [] If everything is correct, able orderBtn
+ * 
+ * [] When ordered, display message about delivery & order
+ * [] Also grey out & lock form
 */
 
 /* Validates the form when pressing the order button */
 
 const orderBtn = document.querySelector("#orderButton");
 orderBtn.disabled = true;
-orderBtn.addEventListener('click', order);
-const validateInput = document.querySelectorAll('.validateInput');
 
-/* Goes through the input fields, and says that everytime they change to go through form
-and check if it can be validated */
-for (i = 0; i < validateInput.length; i++) {
-    validateInput[i].addEventListener('input', validateForm);
+const validatedTexts = document.querySelectorAll('.validatedText');
+const validatedCheckboxes = document.querySelectorAll('.validatedCheckbox');
+const paymentCardRadio = document.querySelector('#paymentCard');
+const paymentInvoiceRadio = document.querySelector('#paymentInvoice');
+const socialSecurityNumber = document.querySelector('#socialSecurityNumber');
+
+for (text of validatedTexts) {
+    text.addEventListener('input', validate);
 }
 
-//Goes through the input fields and checks if they are empty
-function validateForm() {
-    let shouldEnable = true;
-    for(i = 0; i < validateInput.length; i++) {
-        if (validateInput[i].value == '') {
-            shouldEnable = false;
-        }
+for (box of validatedCheckboxes) {
+  box.addEventListener('change', validate);
+}
+
+paymentCardRadio.addEventListener('change', validate);
+paymentInvoiceRadio.addEventListener('change', validate);
+
+function validate() {
+  let shouldEnable = true;
+
+  for(text of validatedTexts) {
+    if (text.value == '' && window.getComputedStyle(text.parentElement.parentElement, null).display !== 'none') {
+      shouldEnable = false;
     }
+  }
+
+  for(box of validatedCheckboxes) {
+    if (!box.checked) {
+      shouldEnable = false;
+    }
+  }
+
+  if (!paymentCardRadio.checked && !paymentInvoiceRadio.checked) {
+    shouldEnable = false;
+  }
     
-    orderBtn.disabled = !shouldEnable;
+  orderBtn.disabled = !shouldEnable;
 }
 
-function order() {
-    console.log('klick');
+const checkoutForm = document.querySelector('.checkoutForm');
+checkoutForm.addEventListener('submit', order);
+
+function order(e) {
+    e.preventDefault();
 
     const zipCode = document.querySelector("#zipCode").value;
     const zipCodeSpan = document.querySelector("#zipCodeSpan");
@@ -135,21 +161,42 @@ function order() {
 
     orderMessage.innerHTML = "";
     zipCodeSpan.innerHTML = "Postnummer";
-    zipCodeSpan.classList.remove("errorMessage");
+    zipCodeSpan.classList.remove('errorMessage');
     phoneNumberSpan.innerHTML = "Telefonnummer";
     phoneNumberSpan.classList.remove("errorMessage");
 
+    let hasErrors = false;
+    let errors = [];
+
     if (zipCode < 10000 || zipCode > 99999) {
-        orderMessage.innerHTML = "Fyll i ett giltligt postnummer!";
-        zipCodeSpan.innerHTML = "Postnummer *";
+        zipCodeSpan.innerHTML = 'Postnummer *';
         zipCodeSpan.classList.add("errorMessage");
+
+        hasErrors = true;
+        errors.push('Fyll i ett giltligt postnummer!');
     }
 
     if (phoneNumber.length != 10) {
-        orderMessage.innerHTML = "Fyll i ett giltligt telefonnummer!";
         phoneNumberSpan.innerHTML = "Telefonnummer *";
         phoneNumberSpan.classList.add("errorMessage");
+
+        hasErrors = true;
+        errors.push('Fyll i ett giltligt telefonnummer!');
     }
+
+    if (hasErrors) {
+      for(i = 0; i < errors.length; i++) {
+        if (i > 0) {
+          orderMessage.innerHTML += '<br>';
+        }
+        orderMessage.innerHTML += errors[i];
+      }
+    }
+
+    if (!hasErrors) {
+      alert('Nu har du beställt');
+    }
+
 }
 
 /* The end of the code for form */

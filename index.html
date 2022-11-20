@@ -331,23 +331,23 @@
       <h3>Dina uppgifter:</h3>
       <form class="checkoutForm">
         <label for="firstName">
-          <input type="text" id="firstName" class="validateInput" required>
+          <input type="text" id="firstName" class="validatedText" value="Hanna">
           <span>Förnamn</span>
         </label>
         <label for="surName">
-          <input type="text" id="surName" class="validateInput" required>
+          <input type="text" id="surName" class="validatedText" value="Forssell">
           <span>Efternamn</span>
         </label>
         <label for="address">
-          <input type="text" id="address" class="validateInput" required>
+          <input type="text" id="address" class="validatedText" value="Stagneliusgatan 13">
           <span>Adress (gata)</span>
         </label>
         <label for="zipCode">
-          <input type="number" id="zipCode" class="validateInput" required>
+          <input type="number" id="zipCode" class="validatedText" value="75427">
           <span id="zipCodeSpan">Postnummer</span>
         </label>
         <label for="cityName">
-          <input type="text" id="cityName" class="validateInput" required>
+          <input type="text" id="cityName" class="validatedText" value="Uppsala">
           <span>Postort</span>
         </label>
         <label for="buzzCode">
@@ -355,11 +355,11 @@
           <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
-          <input type="number" id="phoneNumber" class="validateInput" required>
+          <input type="number" id="phoneNumber" class="validatedText" value="1234567890">
           <span id="phoneNumberSpan">Telefonnummer</span>
         </label>
         <label for="email">
-          <input type="email" id="email" class="validateInput" required>
+          <input type="email" id="email" class="validatedText" value="bus@bus.com">
           <span>E-postadress</span>
         </label>
 
@@ -380,27 +380,27 @@
 
         <div class="hiddenPaymentCard">
           <label for="cardNumber">
-            <input type="number" id="cardNumber">
+            <input type="number" id="cardNumber" class="validatedText">
             <span>Kortnummer</span>
           </label>
           <label for="expiryDate">
-            <input type="number" id="expiryDate">
+            <input type="number" id="expiryDate" class="validatedText">
             <span>Utgångsdatum</span>
           </label>
           <label for="cvc">
-            <input type="number" id="cvc">
+            <input type="number" id="cvc" class="validatedText">
             <span>CVC-kod</span>
           </label>
         </div>
         <div class="hiddenPaymentInvoice">
           <label for="socialSecurityNumber">
-            <input type="number" id="socialSecurityNumber" required>
+            <input type="number" id="socialSecurityNumber" class="validatedText">
             <span>Personnummer</span>
           </label>
         </div>
 
           <label for="storageData" class="checkBoxes">
-            <input type="checkbox" id="storageData" required>
+            <input type="checkbox" id="storageData" class="validatedCheckbox">
             Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
           </label>
           <label for="newsLetter" class="checkBoxes">
