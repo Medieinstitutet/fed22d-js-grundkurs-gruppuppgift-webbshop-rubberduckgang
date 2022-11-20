@@ -87,7 +87,6 @@ function switchPayment(e) {
   }
 }
 
-/* Order button */
 /**
  * [x] Make the button disabled from start
  * [x] Go through all inputs and check if someone is empty
@@ -102,7 +101,7 @@ function switchPayment(e) {
  * [] Also grey out & lock form
 */
 
-/* Validates the form when pressing the order button */
+/* Validates the form */
 
 const orderBtn = document.querySelector('#orderButton');
 orderBtn.disabled = true;
@@ -112,6 +111,8 @@ const validatedCheckboxes = document.querySelectorAll('.validatedCheckbox');
 const paymentCardRadio = document.querySelector('#paymentCard');
 const paymentInvoiceRadio = document.querySelector('#paymentInvoice');
 const socialSecurityNumber = document.querySelector('#socialSecurityNumber');
+
+const formInputs = document.querySelectorAll('.lock')
 
 for (text of validatedTexts) {
     text.addEventListener('input', validate);
@@ -194,7 +195,13 @@ function order(e) {
     }
 
     if (!hasErrors) {
-      alert('Nu har du beställt');
+      const firstName = document.querySelector('#firstName');
+      alert('Tack för din beställning ' + firstName.value + '!' + ' Leverans sker om 30 min.');
+
+      for(i = 0; i < formInputs.length; i++) {
+        console.log(formInputs[i]);
+        formInputs[i].disabled = true;
+      }
     }
 
 }

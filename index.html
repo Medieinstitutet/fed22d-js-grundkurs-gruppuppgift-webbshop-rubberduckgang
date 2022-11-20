@@ -331,47 +331,47 @@
       <h3>Dina uppgifter:</h3>
       <form class="checkoutForm">
         <label for="firstName">
-          <input type="text" id="firstName" class="validatedText" value="Hanna">
+          <input type="text" id="firstName" class="validatedText lock" value="Hanna">
           <span>Förnamn</span>
         </label>
         <label for="surName">
-          <input type="text" id="surName" class="validatedText" value="Forssell">
+          <input type="text" id="surName" class="validatedText lock" value="Forssell">
           <span>Efternamn</span>
         </label>
         <label for="address">
-          <input type="text" id="address" class="validatedText" value="Stagneliusgatan 13">
+          <input type="text" id="address" class="validatedText lock" value="Stagneliusgatan 13">
           <span>Adress (gata)</span>
         </label>
         <label for="zipCode">
-          <input type="number" id="zipCode" class="validatedText" value="75427">
+          <input type="number" id="zipCode" class="validatedText lock" value="75427">
           <span id="zipCodeSpan">Postnummer</span>
         </label>
         <label for="cityName">
-          <input type="text" id="cityName" class="validatedText" value="Uppsala">
+          <input type="text" id="cityName" class="validatedText lock" value="Uppsala">
           <span>Postort</span>
         </label>
         <label for="buzzCode">
-          <input type="number" id="buzzCode">
+          <input type="number" id="buzzCode" class="lock">
           <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
-          <input type="number" id="phoneNumber" class="validatedText" value="1234567890">
+          <input type="number" id="phoneNumber" class="validatedText lock" value="1234567890">
           <span id="phoneNumberSpan">Telefonnummer</span>
         </label>
         <label for="email">
-          <input type="email" id="email" class="validatedText" value="bus@bus.com">
+          <input type="email" id="email" class="validatedText lock" value="bus@bus.com">
           <span>E-postadress</span>
         </label>
 
           <p>Välj betalsätt:</p>
           <label class="paymentMethodLabel" for="paymentCard">
-            <input id="paymentCard" type="radio" name="radio">
+            <input id="paymentCard" class="lock" type="radio" name="radio">
             Kort
             <span class="checkmark"></span>
           </label>
 
           <label class="paymentMethodLabel" for="paymentInvoice">
-            <input id="paymentInvoice" type="radio" name="radio">
+            <input id="paymentInvoice" class="lock" type="radio" name="radio">
             Faktura
             <span class="checkmark"></span>
           </label>
@@ -380,35 +380,35 @@
 
         <div class="hiddenPaymentCard">
           <label for="cardNumber">
-            <input type="number" id="cardNumber" class="validatedText">
+            <input type="number" id="cardNumber" class="validatedText lock">
             <span>Kortnummer</span>
           </label>
           <label for="expiryDate">
-            <input type="number" id="expiryDate" class="validatedText">
+            <input type="number" id="expiryDate" class="validatedText lock">
             <span>Utgångsdatum</span>
           </label>
           <label for="cvc">
-            <input type="number" id="cvc" class="validatedText">
+            <input type="number" id="cvc" class="validatedText lock">
             <span>CVC-kod</span>
           </label>
         </div>
         <div class="hiddenPaymentInvoice">
           <label for="socialSecurityNumber">
-            <input type="number" id="socialSecurityNumber" class="validatedText">
+            <input type="number" id="socialSecurityNumber" class="validatedText lock">
             <span>Personnummer</span>
           </label>
         </div>
 
           <label for="storageData" class="checkBoxes">
-            <input type="checkbox" id="storageData" class="validatedCheckbox">
+            <input type="checkbox" id="storageData" class="validatedCheckbox lock">
             Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
           </label>
           <label for="newsLetter" class="checkBoxes">
-            <input type="checkbox" id="newsLetter" checked>
+            <input type="checkbox" id="newsLetter"  class="lock" checked>
             Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
           </label>
 
-        <button type="submit" id="orderButton">Skicka beställning</button>
+        <button type="submit" id="orderButton" class="lock">Skicka beställning</button>
         <p id="orderMessage"></p>
       </form>
       <button id="clearOrder">Rensa beställning</button>
