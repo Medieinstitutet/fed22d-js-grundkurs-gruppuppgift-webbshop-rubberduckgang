@@ -13,33 +13,31 @@ updateTotalPrice();
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-
-
 const removeProductBtn = document.getElementsByClassName("btn-danger"); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
 for (let i = 0; i < removeProductBtn.length; i++) {
-    let removeBtn = removeProductBtn[i];
-    removeBtn.addEventListener('click', removeCartRow); 
+  let removeBtn = removeProductBtn[i];
+  removeBtn.addEventListener("click", removeCartRow);
 }
 
 function removeCartRow(event) {
-    let removeBtnClicked = event.target
-    removeBtnClicked.parentElement.parentElement.remove();
-    updateTotalPrice();
+  let removeBtnClicked = event.target;
+  removeBtnClicked.parentElement.parentElement.remove();
+  updateTotalPrice();
 }
 
-const quantityInput = document.getElementsByClassName('cart__product--amount');
-    for (let i = 0; i < quantityInput.length; i++) {
-      const input = quantityInput[i];
-        input.addEventListener('change', quantityInputChanged); 
+const quantityInput = document.getElementsByClassName("cart__product--amount");
+for (let i = 0; i < quantityInput.length; i++) {
+  const input = quantityInput[i];
+  input.addEventListener("change", quantityInputChanged);
 }
 
 function quantityInputChanged(event) {
-    const input = event.target;
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
-    }
-    
-    updateTotalPrice();
+  const input = event.target;
+  if (isNaN(input.value) || input.value <= 0) {
+    input.value = 1;
+  }
+
+  updateTotalPrice();
 }
 
 //*****************************************************************************************
@@ -51,13 +49,15 @@ function updateTotalPrice() {
   const cartRows = checkoutCart.getElementsByClassName("checkout__cart--row");
   let total = 0;
 
-    for (let i = 0; i < cartRows.length; i++) {
-        const row = cartRows[i];
-        const productPrice = row.getElementsByClassName('cart__product--price')[0];
-        const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
-       
-        const price = Number(productPrice.innerText);
-        const quantity = productQuantity.value;
+  for (let i = 0; i < cartRows.length; i++) {
+    const row = cartRows[i];
+    const productPrice = row.getElementsByClassName("cart__product--price")[0];
+    const productQuantity = row.getElementsByClassName(
+      "cart__product--amount"
+    )[0];
+
+    const price = Number(productPrice.innerText);
+    const quantity = productQuantity.value;
 
     total = total + price * quantity;
     // console.log(price);
@@ -71,58 +71,67 @@ function updateTotalPrice() {
 //*****************************************************************************************
 
 const mondayDiscount = new Date();
-if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() < 10) { // söndag = 0, måndag = 1 osv
-    const messageToUser = 'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
-    document.getElementById('msg__to__user').innerText = messageToUser;
+if (mondayDiscount.getDay() === 1 && mondayDiscount.getHours() < 10) {
+  // söndag = 0, måndag = 1 osv
+  const messageToUser =
+    "Måndag morgon, varsågod du får 10 % rabatt på din beställning";
+  document.getElementById("msg__to__user").innerText = messageToUser;
 
-    let reducedPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
-  
-    reducedPrice = Number(reducedPrice * 0.9);
-    document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-'
+  let reducedPrice = document
+    .getElementById("cart__total__price")
+    .innerHTML.replace(":-", "");
 
-    console.log (reducedPrice);
-    console.log(messageToUser);
+  reducedPrice = Number(reducedPrice * 0.9);
+  document.getElementById("cart__total__price").innerHTML = reducedPrice + ":-";
+
+  console.log(reducedPrice);
+  console.log(messageToUser);
 } else {
-    document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt'
+  document.getElementById("msg__to__user").innerText =
+    "Måndagar före kl 10.00 gäller 10% rabatt";
 }
 
 //*****************************************************************************************
 //--------------------------- Manuell rabattkod ------------------------------------------- By J. del Pilar
 //*****************************************************************************************
 
-const discountInput = document.getElementById('discount');
+const discountInput = document.getElementById("discount");
 
-discountInput.addEventListener('change', giveDiscount);
+discountInput.addEventListener("change", giveDiscount);
 console.log(discountInput);
 
 function giveDiscount() {
-    if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
-        let newPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
-        newPrice = Number(newPrice * 0);
-        document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
-    } else {
-        updateTotalPrice();
-    }
+  if (discountInput.value == "a_damn_fine-cup_of_coffee") {
+    let newPrice = document
+      .getElementById("cart__total__price")
+      .innerHTML.replace(":-", "");
+    newPrice = Number(newPrice * 0);
+    document.getElementById("cart__total__price").innerHTML = newPrice + ":-";
+  } else {
+    updateTotalPrice();
+  }
 }
-
 
 /* This is the code for the form, by Hanna*/
 
 /* Toggle between card & invoice*/
 
-const paymentCardInput = document.querySelector('#paymentCard');
-const paymentCardBox = document.querySelector('.hiddenPaymentCard');
+//*****************************************************************************************
+//--------------------------- Toggle mellan kort & faktura -------------------------------- By Hanna
+//*****************************************************************************************
 
-const paymentInvoiceInput = document.querySelector('#paymentInvoice');
-const paymentInvoiceBox = document.querySelector('.hiddenPaymentInvoice');
+const paymentCardInput = document.querySelector("#paymentCard");
+const paymentCardBox = document.querySelector(".hiddenPaymentCard");
 
-paymentCardInput.addEventListener('click', switchPayment);
-paymentInvoiceInput.addEventListener('click', switchPayment);
+const paymentInvoiceInput = document.querySelector("#paymentInvoice");
+const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
 
-//When you switch between card/invoice, the other one gets a class with display:none
+paymentCardInput.addEventListener("click", switchPayment);
+paymentInvoiceInput.addEventListener("click", switchPayment);
+
 function switchPayment(e) {
-  if (e.target.id == 'paymentCard') {
-    paymentInvoiceBox.classList.remove('showPaymentInvoice');
+  if (e.target.id == "paymentCard") {
+    paymentInvoiceBox.classList.remove("showPaymentInvoice");
     paymentInvoiceBox.classList.add("hiddenPaymentInvoice");
 
     paymentCardBox.classList.remove("hiddenPaymentCard");
@@ -136,43 +145,48 @@ function switchPayment(e) {
   }
 }
 
+//*****************************************************************************************
+//-------------------- Validering av formuläret (enablar beställ-knapp) ------------------- By Hanna
+//*****************************************************************************************
+
 /**
  * [] Add validation rules to more boxes (done: zipCode, phoneNumber)
-*/
+ */
 
-/* Validates the form */
-
-const orderBtn = document.querySelector('#orderButton');
+const orderBtn = document.querySelector("#orderButton");
 orderBtn.disabled = true;
 
-const validatedTexts = document.querySelectorAll('.validatedText');
-const validatedCheckboxes = document.querySelectorAll('.validatedCheckbox');
-const paymentCardRadio = document.querySelector('#paymentCard');
-const paymentInvoiceRadio = document.querySelector('#paymentInvoice');
-const socialSecurityNumber = document.querySelector('#socialSecurityNumber');
+const validatedTexts = document.querySelectorAll(".validatedText");
+const validatedCheckboxes = document.querySelectorAll(".validatedCheckbox");
+const paymentCardRadio = document.querySelector("#paymentCard");
+const paymentInvoiceRadio = document.querySelector("#paymentInvoice");
+const socialSecurityNumber = document.querySelector("#socialSecurityNumber");
 
 for (text of validatedTexts) {
-    text.addEventListener('input', validate);
+  text.addEventListener("input", validate);
 }
 
 for (box of validatedCheckboxes) {
-  box.addEventListener('change', validate);
+  box.addEventListener("change", validate);
 }
 
-paymentCardRadio.addEventListener('change', validate);
-paymentInvoiceRadio.addEventListener('change', validate);
+paymentCardRadio.addEventListener("change", validate);
+paymentInvoiceRadio.addEventListener("change", validate);
 
-//This function checks so no box is empty, if not: order button goes green
 function validate() {
   let shouldEnable = true;
 
-  for(text of validatedTexts) {
-    if (text.value == '' && window.getComputedStyle(text.parentElement.parentElement, null).display !== 'none') {
+  for (text of validatedTexts) {
+    if (
+      text.value == "" &&
+      window.getComputedStyle(text.parentElement.parentElement, null)
+        .display !== "none"
+    ) {
       shouldEnable = false;
     }
   }
 
-  for(box of validatedCheckboxes) {
+  for (box of validatedCheckboxes) {
     if (!box.checked) {
       shouldEnable = false;
     }
@@ -181,69 +195,74 @@ function validate() {
   if (!paymentCardRadio.checked && !paymentInvoiceRadio.checked) {
     shouldEnable = false;
   }
-    
+
   orderBtn.disabled = !shouldEnable;
 }
 
-const checkoutForm = document.querySelector('.checkoutForm');
-checkoutForm.addEventListener('submit', order);
+const checkoutForm = document.querySelector(".checkoutForm");
+checkoutForm.addEventListener("submit", order);
 
-const formInputs = document.querySelectorAll('.lock')
+const formInputs = document.querySelectorAll(".lock");
 
-//This function validates the code and orders if all is OK
+//*****************************************************************************************
+//-------------- Validering av formuläret (vid klick på beställ-knapp) -------------------- By Hanna
+//*****************************************************************************************
+
 function order(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const zipCode = document.querySelector('#zipCode').value;
-    const zipCodeSpan = document.querySelector('#zipCodeSpan');
-    const phoneNumber = document.querySelector('#phoneNumber').value;
-    const phoneNumberSpan = document.querySelector('#phoneNumberSpan');
+  const zipCode = document.querySelector("#zipCode").value;
+  const zipCodeSpan = document.querySelector("#zipCodeSpan");
+  const phoneNumber = document.querySelector("#phoneNumber").value;
+  const phoneNumberSpan = document.querySelector("#phoneNumberSpan");
 
-    const orderMessage = document.querySelector('#orderMessage');
+  const orderMessage = document.querySelector("#orderMessage");
 
-    orderMessage.innerHTML = '';
-    zipCodeSpan.innerHTML = 'Postnummer';
-    zipCodeSpan.classList.remove('errorMessage');
-    phoneNumberSpan.innerHTML = 'Telefonnummer';
-    phoneNumberSpan.classList.remove('errorMessage');
+  orderMessage.innerHTML = "";
+  zipCodeSpan.innerHTML = "Postnummer";
+  zipCodeSpan.classList.remove("errorMessage");
+  phoneNumberSpan.innerHTML = "Telefonnummer";
+  phoneNumberSpan.classList.remove("errorMessage");
 
-    let hasErrors = false;
-    let errors = [];
+  let hasErrors = false;
+  let errors = [];
 
-    if (zipCode < 10000 || zipCode > 99999) {
-        zipCodeSpan.innerHTML = 'Postnummer *';
-        zipCodeSpan.classList.add('errorMessage');
+  if (zipCode < 10000 || zipCode > 99999) {
+    zipCodeSpan.innerHTML = "Postnummer *";
+    zipCodeSpan.classList.add("errorMessage");
 
-        hasErrors = true;
-        errors.push('Fyll i ett giltligt postnummer!');
-    }
+    hasErrors = true;
+    errors.push("Fyll i ett giltligt postnummer!");
+  }
 
-    if (phoneNumber.length != 10) {
-        phoneNumberSpan.innerHTML = 'Telefonnummer *';
-        phoneNumberSpan.classList.add('errorMessage');
+  if (phoneNumber.length != 10) {
+    phoneNumberSpan.innerHTML = "Telefonnummer *";
+    phoneNumberSpan.classList.add("errorMessage");
 
-        hasErrors = true;
-        errors.push('Fyll i ett giltligt telefonnummer!');
-    }
+    hasErrors = true;
+    errors.push("Fyll i ett giltligt telefonnummer!");
+  }
 
-    if (hasErrors) {
-      for(i = 0; i < errors.length; i++) {
-        if (i > 0) {
-          orderMessage.innerHTML += '<br>';
-        }
-        orderMessage.innerHTML += errors[i];
+  if (hasErrors) {
+    for (i = 0; i < errors.length; i++) {
+      if (i > 0) {
+        orderMessage.innerHTML += "<br>";
       }
+      orderMessage.innerHTML += errors[i];
     }
+  }
 
-    if (!hasErrors) {
-      const firstName = document.querySelector('#firstName');
-      alert('Tack för din beställning ' + firstName.value + '!' + ' Leverans sker om 30 min.');
+  if (!hasErrors) {
+    const firstName = document.querySelector("#firstName");
+    alert(
+      "Tack för din beställning " +
+        firstName.value +
+        "!" +
+        " Leverans sker om 30 min."
+    );
 
-      for(i = 0; i < formInputs.length; i++) {
-        formInputs[i].disabled = true;
-      }
+    for (i = 0; i < formInputs.length; i++) {
+      formInputs[i].disabled = true;
     }
-
+  }
 }
-
-/* The end of the code for form */
