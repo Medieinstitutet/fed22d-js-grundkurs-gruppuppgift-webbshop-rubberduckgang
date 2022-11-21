@@ -71,6 +71,7 @@ const paymentInvoiceBox = document.querySelector('.hiddenPaymentInvoice');
 paymentCardInput.addEventListener('click', switchPayment);
 paymentInvoiceInput.addEventListener('click', switchPayment);
 
+//When you switch between card/invoice, the other one gets a class with display:none
 function switchPayment(e) {
   if (e.target.id == 'paymentCard') {
     paymentInvoiceBox.classList.remove('showPaymentInvoice');
@@ -88,17 +89,7 @@ function switchPayment(e) {
 }
 
 /**
- * [x] Make the button disabled from start
- * [x] Go through all inputs and check if someone is empty
- * [] Also check if they are filled out correctly (zipCode & phoneNumber done)
- * [x] Personuppgifter checkbox needs to be checked (maybe use change if input doesnt work)
- * [x] More boxes for errormessage
- * [x] Either card or invoice needs to be chosen
- * [x] If invoice is chosen, validate socialSecurityNumber
- * [] If everything is correct, able orderBtn
- * 
- * [] When ordered, display message about delivery & order
- * [] Also grey out & lock form
+ * [] Add validation rules to more boxes (done: zipCode, phoneNumber)
 */
 
 /* Validates the form */
@@ -112,8 +103,6 @@ const paymentCardRadio = document.querySelector('#paymentCard');
 const paymentInvoiceRadio = document.querySelector('#paymentInvoice');
 const socialSecurityNumber = document.querySelector('#socialSecurityNumber');
 
-const formInputs = document.querySelectorAll('.lock')
-
 for (text of validatedTexts) {
     text.addEventListener('input', validate);
 }
@@ -125,6 +114,7 @@ for (box of validatedCheckboxes) {
 paymentCardRadio.addEventListener('change', validate);
 paymentInvoiceRadio.addEventListener('change', validate);
 
+//This function checks so no box is empty, if not: order button goes green
 function validate() {
   let shouldEnable = true;
 
@@ -150,6 +140,9 @@ function validate() {
 const checkoutForm = document.querySelector('.checkoutForm');
 checkoutForm.addEventListener('submit', order);
 
+const formInputs = document.querySelectorAll('.lock')
+
+//This function validates the code and orders if all is OK
 function order(e) {
     e.preventDefault();
 
@@ -199,7 +192,6 @@ function order(e) {
       alert('Tack för din beställning ' + firstName.value + '!' + ' Leverans sker om 30 min.');
 
       for(i = 0; i < formInputs.length; i++) {
-        console.log(formInputs[i]);
         formInputs[i].disabled = true;
       }
     }
