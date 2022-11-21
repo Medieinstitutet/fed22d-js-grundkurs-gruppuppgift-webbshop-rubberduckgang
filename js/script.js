@@ -81,7 +81,7 @@ function updateTotalPrice() {
 
 function giveMondayDiscount() {
 const mondayDiscount = new Date();
-if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() > 10) { // söndag = 0, måndag = 1 osv
+if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() < 10) { // söndag = 0, måndag = 1 osv
     const messageToUser = 'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
     document.getElementById('msg__to__user').innerText = messageToUser;
 
