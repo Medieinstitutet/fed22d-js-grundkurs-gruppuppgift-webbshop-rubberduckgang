@@ -10,6 +10,7 @@
 
 updateTotalPrice();
 giveMondayDiscount();
+giveDiscount();
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
@@ -26,7 +27,10 @@ for (let i = 0; i < removeProductBtn.length; i++) {
 function removeCartRow(event) {
     let removeBtnClicked = event.target
     removeBtnClicked.parentElement.parentElement.remove();
+
     updateTotalPrice();
+    giveDiscount();
+    giveMondayDiscount();
 }
 
 //*****************************************************************************************
@@ -99,9 +103,7 @@ function giveMondayDiscount() {
 //*****************************************************************************************
 
 const discountInput = document.getElementById('discount');
-
 discountInput.addEventListener('change', giveDiscount);
-console.log(discountInput);
 
 function giveDiscount() {
     if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
