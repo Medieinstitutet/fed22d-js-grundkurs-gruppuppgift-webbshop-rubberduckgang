@@ -10,23 +10,28 @@
 
 updateTotalPrice();
 
-// Ta bort vara ur kundkorgen.
+//***************************************************************************************************************************************************
+//---------------------------------------------------- Ta bort vara ur kundkorgen - "Btn Danger" ---------------------------------------------------- By J. del Pilar
+//***************************************************************************************************************************************************
+
+
 
 const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
 for (let i = 0; i < removeProductBtn.length; i++) {
     let removeBtn = removeProductBtn[i];
-    removeBtn.addEventListener('click', function(e) {
-        let removeBtnClicked = e.target
-        removeBtnClicked.parentElement.parentElement.remove();
-        updateTotalPrice();
-    })
+    removeBtn.addEventListener('click', removeCartRow); 
+}
 
+function removeCartRow(event) {
+    let removeBtnClicked = event.target
+    removeBtnClicked.parentElement.parentElement.remove();
+    updateTotalPrice();
 }
 
 const quantityInput = document.getElementsByClassName('cart__product--amount');
     for (let i = 0; i < quantityInput.length; i++) {
-        const input = quantityInput[i];
-        input.addEventListener('change', quantityInputChanged); 
+    const input = quantityInput[i];
+    input.addEventListener('change', quantityInputChanged); 
 }
 
 
@@ -36,12 +41,12 @@ function quantityInputChanged(event) {
         input.value = 1
     }
     
-    updateTotalPrice()
+    updateTotalPrice();
 }
 
-
-//Uppdatera totalpriset när en vara tas bort.
-
+//***************************************************************************************************************************************************
+//---------------------------------------------------- Uppdatera totalpriset när en vara tas bort --------------------------------------------------- By J. del Pilar
+//***************************************************************************************************************************************************
 
 function updateTotalPrice() {
     const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
@@ -52,8 +57,6 @@ function updateTotalPrice() {
         const row = cartRows[i];
         const productPrice = row.getElementsByClassName('cart__product--price')[0];
         const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
-
-        
        
         const price = Number(productPrice.innerText);
         const quantity = productQuantity.value;
@@ -64,7 +67,6 @@ function updateTotalPrice() {
 
     document.getElementById('cart__total__price').innerText = total + ':-';
 }
-
 
 /* This is the code for the form, by Hanna*/
 
