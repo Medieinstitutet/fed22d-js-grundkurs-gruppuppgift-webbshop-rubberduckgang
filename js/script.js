@@ -102,6 +102,8 @@ function giveDiscount() {
         let newPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
         newPrice = Number(newPrice * 0);
         document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
+    } else {
+        updateTotalPrice();
     }
 }
 
