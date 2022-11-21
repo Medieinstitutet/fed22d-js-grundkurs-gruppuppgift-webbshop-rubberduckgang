@@ -344,23 +344,23 @@
       <h3>Dina uppgifter:</h3>
       <form class="checkoutForm">
         <label for="firstName">
-          <input type="text" id="firstName" class="validatedText lock" value="Hanna">
+          <input type="text" id="firstName" class="validatedText lock">
           <span>Förnamn</span>
         </label>
         <label for="surName">
-          <input type="text" id="surName" class="validatedText lock" value="Forssell">
+          <input type="text" id="surName" class="validatedText lock">
           <span>Efternamn</span>
         </label>
         <label for="address">
-          <input type="text" id="address" class="validatedText lock" value="Stagneliusgatan 13">
+          <input type="text" id="address" class="validatedText lock">
           <span>Adress (gata)</span>
         </label>
         <label for="zipCode">
-          <input type="number" id="zipCode" class="validatedText lock" value="75427">
+          <input type="number" id="zipCode" class="validatedText lock">
           <span id="zipCodeSpan">Postnummer</span>
         </label>
         <label for="cityName">
-          <input type="text" id="cityName" class="validatedText lock" value="Uppsala">
+          <input type="text" id="cityName" class="validatedText lock">
           <span>Postort</span>
         </label>
         <label for="buzzCode">
@@ -368,26 +368,24 @@
           <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
-          <input type="number" id="phoneNumber" class="validatedText lock" value="1234567890">
+          <input type="number" id="phoneNumber" class="validatedText lock">
           <span id="phoneNumberSpan">Telefonnummer</span>
         </label>
         <label for="email">
-          <input type="email" id="email" class="validatedText lock" value="bus@bus.com">
+          <input type="email" id="email" class="validatedText lock">
           <span>E-postadress</span>
         </label>
 
-          <p>Välj betalsätt:</p>
-          <label class="paymentMethodLabel" for="paymentCard">
-            <input id="paymentCard" class="lock" type="radio" name="radio">
-            Kort
-            <span class="checkmark"></span>
-          </label>
+        <p>Välj betalsätt:</p>
+        <label class="paymentMethodLabel" for="paymentCard">
+          <input id="paymentCard" class="lock" type="radio" name="radio">
+          Kort
+        </label>
 
-          <label class="paymentMethodLabel" for="paymentInvoice">
-            <input id="paymentInvoice" class="lock" type="radio" name="radio">
-            Faktura
-            <span class="checkmark"></span>
-          </label>
+        <label class="paymentMethodLabel" for="paymentInvoice">
+          <input id="paymentInvoice" class="lock" type="radio" name="radio">
+          Faktura
+        </label>
 
         <!--Card & invoice-form is hidden, shown when chosen in scroll menu. Should be shown with display:flex, otherwise they'll be on top of each other-->
 
@@ -408,18 +406,18 @@
         <div class="hiddenPaymentInvoice">
           <label for="socialSecurityNumber">
             <input type="number" id="socialSecurityNumber" class="validatedText lock">
-            <span>Personnummer</span>
+            <span id="socialSecurityNumberSpan">Personnummer</span>
           </label>
         </div>
 
-          <label for="storageData" class="checkBoxes">
-            <input type="checkbox" id="storageData" class="validatedCheckbox lock">
-            Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
-          </label>
-          <label for="newsLetter" class="checkBoxes">
-            <input type="checkbox" id="newsLetter"  class="lock" checked>
-            Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
-          </label>
+        <label for="storageData" class="checkBoxes">
+          <input type="checkbox" id="storageData" class="validatedCheckbox lock">
+          Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
+        </label>
+        <label for="newsLetter" class="checkBoxes">
+          <input type="checkbox" id="newsLetter" class="lock" checked>
+          Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
+        </label>
 
         <button type="submit" id="orderButton" class="lock">Skicka beställning</button>
         <p id="orderMessage"></p>

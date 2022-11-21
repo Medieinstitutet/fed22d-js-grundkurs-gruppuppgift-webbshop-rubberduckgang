@@ -112,10 +112,6 @@ function giveDiscount() {
   }
 }
 
-/* This is the code for the form, by Hanna*/
-
-/* Toggle between card & invoice*/
-
 //*****************************************************************************************
 //--------------------------- Toggle mellan kort & faktura -------------------------------- By Hanna
 //*****************************************************************************************
@@ -148,10 +144,6 @@ function switchPayment(e) {
 //*****************************************************************************************
 //-------------------- Validering av formuläret (enablar beställ-knapp) ------------------- By Hanna
 //*****************************************************************************************
-
-/**
- * [] Add validation rules to more boxes (done: zipCode, phoneNumber)
- */
 
 const orderBtn = document.querySelector("#orderButton");
 orderBtn.disabled = true;
@@ -215,14 +207,18 @@ function order(e) {
   const zipCodeSpan = document.querySelector("#zipCodeSpan");
   const phoneNumber = document.querySelector("#phoneNumber").value;
   const phoneNumberSpan = document.querySelector("#phoneNumberSpan");
+  const socialSecurityNumber = document.querySelector('#socialSecurityNumber').value;
+  const socialSecurityNumberSpan = document.querySelector('#socialSecurityNumberSpan');
 
   const orderMessage = document.querySelector("#orderMessage");
-
   orderMessage.innerHTML = "";
+
   zipCodeSpan.innerHTML = "Postnummer";
   zipCodeSpan.classList.remove("errorMessage");
   phoneNumberSpan.innerHTML = "Telefonnummer";
   phoneNumberSpan.classList.remove("errorMessage");
+  socialSecurityNumberSpan.innerHTML = "Personnummer";
+  socialSecurityNumberSpan.classList.remove("errorMessage");
 
   let hasErrors = false;
   let errors = [];
@@ -241,6 +237,14 @@ function order(e) {
 
     hasErrors = true;
     errors.push("Fyll i ett giltligt telefonnummer!");
+  }
+
+  if (socialSecurityNumber.length != 12) {
+    socialSecurityNumberSpan.innerHTML = "Personnummer *";
+    socialSecurityNumberSpan.classList.add("errorMessage");
+
+    hasErrors = true;
+    errors.push("Fyll i personnumret med 12 siffror!");
   }
 
   if (hasErrors) {
