@@ -12,6 +12,12 @@ html {
 	scroll-behavior: smooth;
 }
 
+/*--------------Error message class-----------------*/
+.errorMessage {
+    color: red !important;
+}
+
+
 /*--------------Sass rules-----------------*/
 $primary-color: #556edf;
 $secondary-color: #fdbc91;
@@ -129,6 +135,7 @@ header {
             font-size: 0.825rem;
             color: #6b6b6b;
         }
+
     }
 }
 
@@ -157,6 +164,10 @@ input::-webkit-inner-spin-button {
 #orderButton:hover {
 	background-color: rgba(86, 171, 82, 70%);
 	transition: all 0.4s ease;
+}
+
+#orderButton:disabled {
+  background-color: grey;
 }
 
 #clearOrder {
