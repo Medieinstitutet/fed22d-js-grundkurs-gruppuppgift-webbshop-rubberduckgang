@@ -9,6 +9,7 @@
 
 
 updateTotalPrice();
+giveMondayDiscount();
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
@@ -28,6 +29,10 @@ function removeCartRow(event) {
     updateTotalPrice();
 }
 
+//*****************************************************************************************
+//----------------- Uppdatera totalpriset när antalet ändras ------------------------------ By J. del Pilar
+//*****************************************************************************************
+
 const quantityInput = document.getElementsByClassName('cart__product--amount');
     for (let i = 0; i < quantityInput.length; i++) {
       const input = quantityInput[i];
@@ -42,6 +47,8 @@ function quantityInputChanged(event) {
     }
     
     updateTotalPrice();
+    giveDiscount();
+    giveMondayDiscount();
 }
 
 //*****************************************************************************************
@@ -72,8 +79,9 @@ function updateTotalPrice() {
 //--------------------------- Måndagsrabatt 10% före kl 10.00 ----------------------------- By J. del Pilar
 //*****************************************************************************************
 
+function giveMondayDiscount() {
 const mondayDiscount = new Date();
-if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() < 10) { // söndag = 0, måndag = 1 osv
+if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() > 10) { // söndag = 0, måndag = 1 osv
     const messageToUser = 'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
     document.getElementById('msg__to__user').innerText = messageToUser;
 
@@ -82,12 +90,10 @@ if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() < 10) { // sön
     reducedPrice = Number(reducedPrice * 0.9);
     document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-'
 
-    console.log (reducedPrice);
-    console.log(messageToUser);
 } else {
     document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt'
 }
-
+}
 //*****************************************************************************************
 //--------------------------- Manuell rabattkod ------------------------------------------- By J. del Pilar
 //*****************************************************************************************
@@ -104,7 +110,9 @@ function giveDiscount() {
         document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
     } else {
         updateTotalPrice();
-    }
+        giveMondayDiscount();
+    } 
+    
 }
 
 /* This is the code for the form, by Hanna*/
