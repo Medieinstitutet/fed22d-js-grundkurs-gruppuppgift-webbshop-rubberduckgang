@@ -88,6 +88,22 @@ if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() < 10) { // sön
     document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt'
 }
 
+//*****************************************************************************************
+//--------------------------- Manuell rabattkod ------------------------------------------- By J. del Pilar
+//*****************************************************************************************
+
+const discountInput = document.getElementById('discount');
+
+discountInput.addEventListener('change', giveDiscount);
+console.log(discountInput);
+
+function giveDiscount() {
+    if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
+        let newPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
+        newPrice = Number(newPrice * 0);
+        document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
+    }
+}
 
 /* This is the code for the form, by Hanna*/
 
