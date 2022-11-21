@@ -10,9 +10,9 @@
 
 updateTotalPrice();
 
-//***************************************************************************************************************************************************
-//---------------------------------------------------- Ta bort vara ur kundkorgen - "Btn Danger" ---------------------------------------------------- By J. del Pilar
-//***************************************************************************************************************************************************
+//*****************************************************************************************
+//-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
+//*****************************************************************************************
 
 
 
@@ -30,8 +30,8 @@ function removeCartRow(event) {
 
 const quantityInput = document.getElementsByClassName('cart__product--amount');
     for (let i = 0; i < quantityInput.length; i++) {
-    const input = quantityInput[i];
-    input.addEventListener('change', quantityInputChanged); 
+      const input = quantityInput[i];
+        input.addEventListener('change', quantityInputChanged); 
 }
 
 
@@ -44,9 +44,9 @@ function quantityInputChanged(event) {
     updateTotalPrice();
 }
 
-//***************************************************************************************************************************************************
-//---------------------------------------------------- Uppdatera totalpriset när en vara tas bort --------------------------------------------------- By J. del Pilar
-//***************************************************************************************************************************************************
+//*****************************************************************************************
+//-----------------Uppdatera totalpriset när en vara tas bort ----------------------------- By J. del Pilar
+//*****************************************************************************************
 
 function updateTotalPrice() {
     const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
@@ -67,6 +67,27 @@ function updateTotalPrice() {
 
     document.getElementById('cart__total__price').innerText = total + ':-';
 }
+
+//*****************************************************************************************
+//--------------------------- Måndagsrabatt 10% före kl 10.00 ----------------------------- By J. del Pilar
+//*****************************************************************************************
+
+const mondayDiscount = new Date();
+if ( mondayDiscount.getDay() === 1 &&  mondayDiscount.getHours() < 10) { // söndag = 0, måndag = 1 osv
+    const messageToUser = 'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
+    document.getElementById('msg__to__user').innerText = messageToUser;
+
+    let reducedPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
+  
+    reducedPrice = Number(reducedPrice * 0.9);
+    document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-'
+
+    console.log (reducedPrice);
+    console.log(messageToUser);
+} else {
+    document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt'
+}
+
 
 /* This is the code for the form, by Hanna*/
 
