@@ -1,18 +1,21 @@
 /*--------------------------- Styling för varu/kundkorg ---------------------------*/
 
-.checkout__cart {
+.checkout {
 	width: 90vw;
 	max-width: 50rem;
 	margin-inline: auto;
+	margin-block-end: 4rem;
 }
 
-.checkout__cart--header {
+.checkout__header {
 	display: flex;
 	justify-content: space-between;
-	background-color: hsl(0, 86%, 61%);
+	background-color: $primary-color;
 	color: hsl(0, 71%, 97%);
 	padding-inline: 0.5rem;
 	margin-block-end: 1rem;
+	border-radius: 0.625rem;
+	box-shadow: 4px 4px 8px #3b4d9ce3;
 }
 
 .checkout__cart--row {
@@ -22,16 +25,16 @@
 	// &:last-child {
 	align-items: center;
 
-	& .checkout__cart--produkt {
+	& .checkout__cart__article--product {
 		// display: flex;
 		text-align: left;
 	}
 
-	& .checkout__cart--pris {
+	& .checkout__cart__article--price {
 		text-align: left;
 	}
 
-	& .checkout__cart--antal {
+	& .checkout__cart__article--quantity {
 		text-align: right;
 	}
 
@@ -42,22 +45,9 @@
 		background-color: hsla(0, 0%, 31%, 0.432);
 		border: 2px solid grey;
 	}
-
-	& .btn-danger {
-		padding: 0.2rem;
-		border: none;
-		background-color: hsl(0, 86%, 61%);
-		color: hsl(0, 71%, 97%);
-		border-radius: 0.325rem;
-	}
-
-	& .btn-danger:hover {
-		background-color: hsl(0, 60%, 48%);
-		cursor: pointer;
-	}
 }
 
-.checkout__cart--summa {
+.checkout__cart--sum {
 	text-align: right;
 	margin-block-end: 2rem;
 }
@@ -70,20 +60,16 @@
 	gap: 2rem;
 
 	& button:first-child {
-		background-color: hsl(120, 90%, 67%);
+		background-color: hsl(117, 35%, 50%, 1);
+		font-weight: 700;
+		color: hsla(0, 71%, 97%, 1);
+		transition: all 0.2s ease-in-out;
 	}
 
 	& button:first-child:hover {
-		background-color: hsl(120, 46%, 50%);
+		background-color: hsla(117, 35%, 50%, 0.7);
+		transition: all 0.4s ease-in-out;
 		cursor: pointer;
-	}
-
-	& button:last-of-type {
-		background-color: hsl(0, 92%, 66%);
-	}
-
-	& button:last-of-type:hover {
-		background-color: hsl(0, 47%, 48%);
 	}
 }
 
@@ -92,4 +78,18 @@
 	padding-inline: 3rem;
 	padding-block: 1rem;
 	border-radius: 0.625rem;
+}
+
+.btn-danger {
+	border: none;
+	color: hsla(0, 71%, 97%, 1);
+	background-color: hsla(359, 53%, 51%, 1);
+	cursor: pointer;
+	padding-inline: 0.4rem;
+	padding-block: 0.3rem;
+	font-size: 0.8rem;
+}
+
+.btn-danger:hover {
+	background-color: hsla(359, 53%, 51%, 0.7);
 }

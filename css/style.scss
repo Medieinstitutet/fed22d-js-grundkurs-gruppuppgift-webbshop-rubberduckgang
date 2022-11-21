@@ -3,9 +3,12 @@
 @import "desktop";
 @import "cart";
 
+body {
+	font-family: "Open Sans", sans-serif;
+}
+
 // Detta är en klass för att göra något visuellt osynligt men ändå tillgänglit för screenreaders etc.
 // - Joel
-
 .visually-hidden {
 	position: absolute;
 	position: absolute !important;
