@@ -95,5 +95,6 @@
 }
 
 .red__frame {
-	outline: 2px solid red;
+	background-color: hsla(9, 93%, 39%, 0.37);
+	box-shadow: 0px 2px 10px 8px hsla(9, 93%, 39%, 0.384);
 }

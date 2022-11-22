@@ -83,11 +83,11 @@ function updateTotalPrice() {
 //----------------- Visuell kundkorgsindikering på tillägg -------------------------------- By J. del Pilar
 //*****************************************************************************************
 
-const redFrame = document.querySelector('.checkout');
+const redFrame = document.querySelector('#cart__total__price');
 
 function visualCartUpdate() {
     redFrame.classList.add('red__frame');
-    setTimeout(clearRedFrame, 350);
+    setTimeout(clearRedFrame, 300);
 }
 
 function clearRedFrame() {
