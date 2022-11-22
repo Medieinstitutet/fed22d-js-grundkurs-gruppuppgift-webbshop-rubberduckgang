@@ -10,7 +10,7 @@
 
 updateTotalPrice();
 giveMondayDiscount();
-giveDiscount();
+
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
@@ -53,6 +53,7 @@ function quantityInputChanged(event) {
     updateTotalPrice();
     giveDiscount();
     giveMondayDiscount();
+    visualCartUpdate()
 }
 
 //*****************************************************************************************
@@ -65,18 +66,32 @@ function updateTotalPrice() {
     let total = 0;
 
     for (let i = 0; i < cartRows.length; i++) {
-        const row = cartRows[i];
-        const productPrice = row.getElementsByClassName('cart__product--price')[0];
-        const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
+    const row = cartRows[i];
+    const productPrice = row.getElementsByClassName('cart__product--price')[0];
+    const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
        
-        const price = Number(productPrice.innerText);
-        const quantity = productQuantity.value;
+    const price = Number(productPrice.innerText);
+    const quantity = productQuantity.value;
 
         total = total + (price * quantity);
-        console.log(price);
     }
 
     document.getElementById('cart__total__price').innerText = total + ':-';
+}
+
+//*****************************************************************************************
+//----------------- Visuell kundkorgsindikering på tillägg -------------------------------- By J. del Pilar
+//*****************************************************************************************
+
+const redFrame = document.querySelector('.checkout');
+
+function visualCartUpdate() {
+    redFrame.classList.add('red__frame');
+    setTimeout(clearRedFrame, 350);
+}
+
+function clearRedFrame() {
+    redFrame.classList.remove('red__frame');
 }
 
 //*****************************************************************************************
@@ -103,7 +118,9 @@ function giveMondayDiscount() {
 //*****************************************************************************************
 
 const discountInput = document.getElementById('discount');
+
 discountInput.addEventListener('change', giveDiscount);
+console.log(discountInput);
 
 function giveDiscount() {
     if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
