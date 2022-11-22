@@ -111,8 +111,37 @@ const ducksArray = [
 //------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
 //*****************************************************************************************
 
+const duckContainer = document.querySelector('.duck__wrapper');
 
+function renderDucks() {
+  duckContainer.innerHTML = '';
 
+  for (let i = 0; i < ducksArray.length; i++) {
+    duckContainer.innerHTML += `
+        <article class="duck__$+[i]">
+            <div class="slideshow">
+                <span>&lt;</span>
+                <img src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
+                <span>&gt;</span>
+            </div>
+            <h3>${ducksArray[i].name}</h3>
+            <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
+            <div class="duck__info">${ducksArray[i].info}</div>
+            <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+            <div class="duck__amount">
+                <button class="subtract_btn">-</button>
+                <span>Antal:</span>
+                <input type="number" min="0" max="99" value="${ducksArray[i].amount}">
+                <button class="add_btn">+</button><br>
+            </div>
+            <button class="add_to_cart_btn">Lägg till</button>
+        </article>
+    `;
+  }
+}
+
+renderDucks()
+  
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
