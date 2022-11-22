@@ -104,7 +104,7 @@ function giveMondayDiscount() {
 const discountInput = document.getElementById("discount");
 
 discountInput.addEventListener("change", giveDiscount);
-console.log(discountInput);
+//console.log(discountInput);
 
 function giveDiscount() {
   if (discountInput.value == "a_damn_fine-cup_of_coffee") {
@@ -270,10 +270,7 @@ function order(e) {
   if (!hasErrors) {
     const firstName = document.querySelector("#firstName");
     alert(
-      "Tack för din beställning " +
-        firstName.value +
-        "!" +
-        " Leverans sker om 30 min."
+      `Tack för din beställning ${firstName.value}! Leverans sker ${getDeliveryTime()}`
     );
 
     for (i = 0; i < formInputs.length; i++) {
@@ -282,13 +279,27 @@ function order(e) {
   }
 }
 
-/* Rules for delivery: (usually 30 min) */
+//*****************************************************************************************
+//---------------------------- Leveranstider (standard 30 min) ---------------------------- By Hanna
+//*****************************************************************************************
 
-/* If the customer orders on a weekend: 1,5 h */
+function getDeliveryTime() {
+  const now = new Date();
 
-/* If the custonmer orders in the middle of the night: 45 min */
+  if (now.getDay() === 5 || now.getDay() === 6) {
+    return 'om 90 min.'; //om kunden beställer på lör eller sön
+  }
 
-/* If the customer orders on a friday between 11 & 13 (weekly meeting): delivery at 15:00 */
+  if (now.getHours() >= 0 && now.getHours() <= 6) {
+    return 'om 45 min.' //om kunden beställer mellan 24:00 & 6:00
+  }
+
+  if (now.getDay() === 4 && now.getHours() >= 11 && now.getHours() <= 13) {
+    return 'kl 15:00.' //om kunden beställer på en fredag mellan 11 & 13
+  }
+
+  return 'om 30 min.';
+}
 
 /* If 15 minutes pass, clear form. Alert("Too slow!") */
 
@@ -299,4 +310,25 @@ function order(e) {
 
 /* If cart exceeds 800kr, invoice can't be chosen */
 
-/* The end of form*/
+
+
+function giveMondayDiscount() {
+  const mondayDiscount = new Date();
+  if (mondayDiscount.getDay() === 1 && mondayDiscount.getHours() < 10) {
+    // söndag = 0, måndag = 1 osv
+    const messageToUser =
+      "Måndag morgon, varsågod du får 10 % rabatt på din beställning";
+    document.getElementById("msg__to__user").innerText = messageToUser;
+
+    let reducedPrice = document
+      .getElementById("cart__total__price")
+      .innerHTML.replace(":-", "");
+
+    reducedPrice = Number(reducedPrice * 0.9);
+    document.getElementById("cart__total__price").innerHTML =
+      reducedPrice + ":-";
+  } else {
+    document.getElementById("msg__to__user").innerText =
+      "Måndagar före kl 10.00 gäller 10% rabatt";
+  }
+}
