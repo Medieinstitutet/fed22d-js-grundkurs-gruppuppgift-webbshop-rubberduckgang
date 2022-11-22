@@ -11,6 +11,109 @@ updateTotalPrice();
 giveMondayDiscount();
 
 //*****************************************************************************************
+//---------------------------------- Array för ankor -------------------------------------- By David
+//*****************************************************************************************
+
+const ducksArray = [    
+    { 
+        name: 'Regular Rubber Duck',
+        image: 'assets/img/produkt_1/produkt_1_a.webp',
+        info: 'Vår mest populära anka i klassisk gul färg.',
+        price: 150,
+        rating: 5,
+        category: 'standard',
+        amount: 0,
+    },
+    {
+        name: 'Blue Rubber Duck',
+        image: 'assets/img/produkt_2/produkt_2_a.webp',
+        info: "Nykomling med hög potential. It's Blue Da-ba-dee!",
+        price: 185,
+        rating: 4,
+        category: 'standard',
+        amount: 0,
+    },
+    {
+        name: 'Green Rubber Duck',
+        image: 'assets/img/produkt_3/produkt_3_a.webp',
+        info: 'The greenie!! Ge han lite tid, han kommer ta sig.',
+        price: 100,
+        rating: 2,
+        category: 'standard',
+        amount: 0,
+    },
+    {
+        name: 'Pink Rubber Duck',
+        image: 'assets/img/produkt_4/produkt_4_a.webp',
+        info: 'Vad ska man säga. Rosa är rosa!',
+        price: 125,
+        rating: 3,
+        category: 'standard',
+        amount: 0,
+    },
+    {
+        name: 'Evel Knievel Duck',
+        image: 'assets/img/produkt_5/produkt_5_a.webp',
+        info: 'Kommer bjuda på en show du inte visste en anka kan!',
+        price: 235,
+        rating: 4,
+        category: 'special',
+        amount: 0,
+    },
+    {
+        name: 'Black Rubber Duck',
+        image: 'assets/img/produkt_6/produkt_6_a.webp',
+        info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
+        price: 666,
+        rating: 0,
+        category: 'unique',
+        amount: 0,
+    },
+    {
+        name: 'Rainbow Duck',
+        image: 'assets/img/produkt_7/produkt_7_a.webp',
+        info: 'Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.',
+        price: 250,
+        rating: 5,
+        category: 'special',
+        amount: 0,
+    },
+    {
+        name: 'Army of Ducks',
+        image: 'assets/img/produkt_8/produkt_8_a.webp',
+        info: 'Fler, Fler, FLEEEEEER ANKOR!',
+        price: 1750,
+        rating: 5,
+        category: 'standard',
+        amount: 0,
+    },
+    {
+        name: 'Giant Duck',
+        image: 'assets/img/produkt_9/produkt_9_a.webp',
+        info: 'När det gäller ankor så har i alla fall storleken betydelse.',
+        price: 2499,
+        rating: 5,
+        category: 'special',
+        amount: 0,
+    },
+    {
+        name: 'THE Golden Duck',
+        image: 'assets/img/produkt_10/produkt_10_a.webp',
+        info: 'Ingen har någonsinn sett den, men här kan den beställas.',
+        price: 9999,
+        rating: 0,
+        category: 'unique',
+        amount: 0,
+    },
+  ];
+
+//*****************************************************************************************
+//------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
+//*****************************************************************************************
+
+
+
+//*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
