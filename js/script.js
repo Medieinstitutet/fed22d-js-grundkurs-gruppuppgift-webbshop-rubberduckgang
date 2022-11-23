@@ -114,6 +114,16 @@ const ducksArray = [
 
 const duckContainer = document.querySelector('.duck__wrapper');
 
+const weekEndPrice = new Date();
+
+let newPrice = ducksArray.map(prod => Math.round(prod.price));
+
+if((weekEndPrice.getDay() === 5 && weekEndPrice.getHours() > 15) || weekEndPrice.getDay() === 6 || weekEndPrice.getDay() === 0 || (weekEndPrice.getDay() === 1 && weekEndPrice.getHours() < 3 )) {
+     newPrice = ducksArray.map(prod => Math.round(prod.price * 1.15));
+    
+  }
+
+
 function renderDucks() {
   duckContainer.innerHTML = '';
 
@@ -128,7 +138,7 @@ function renderDucks() {
             <h3>${ducksArray[i].name}</h3>
             <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
             <div class="duck__info">${ducksArray[i].info}</div>
-            <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+            <span class="duck__pricing">Pris ${newPrice[i]}:-</span>
             <div class="duck__amount">
                 <button class="subtract_btn">-</button>
                 <span>Antal:</span>
@@ -139,9 +149,10 @@ function renderDucks() {
         </article>
     `;
   }
+
 }
 
-renderDucks()
+renderDucks();
   
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
@@ -204,8 +215,6 @@ function updateTotalPrice() {
         total = total + (price * quantity);
     }
 
-    total = total + price * quantity;
-
   document.getElementById("cart__total__price").innerText = total + ":-";
 }
 
@@ -255,7 +264,6 @@ function giveMondayDiscount() {
 const discountInput = document.getElementById("discount");
 
 discountInput.addEventListener("change", giveDiscount);
-console.log(discountInput);
 
 function giveDiscount() {
   if (discountInput.value == "a_damn_fine-cup_of_coffee") {
