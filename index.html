@@ -17,23 +17,25 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 
-
-</head>
+  </head>
 
 <body>
 
-
   <!--Header, first part, by Hanna-->
-  <header>
+  <header id="headerID">
     <nav>
-      <h1>Gottfrids ankor</h1>
-      <span class="material-symbols-outlined">shopping_cart</span>
+      <a href="#headerID" aria-label="Navigate to start page">
+        <h1>Gottfrids ankor</h1>
+      </a>
+      <a href="#checkoutID" aria-label="Navigate to shopping cart">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </a>
     </nav>
 
     <section class="intro">
       <h2><br><br>Välkommen till Gottfrids! Här finner du alla ankor du någonsin drömt om.. plus fler!</h2>
-      <img class="intro-img-rubberduck" src="assets/img/header-purple-duck.png" alt="A drawn purple duck" width="400"
-        height="400" loading="lazy">
+      <img class="intro-img-rubberduck" src="assets/img/header-purple-duck.png" alt="A drawn purple duck" width="300"
+        height="300" loading="lazy">
     </section>
   </header>
 
@@ -41,232 +43,10 @@
 
     <!--Main duck page-->
 
-    <div class="duck__wrapper">
-
-      <article class="duck__1">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_1/produkt_1_a.webp" alt="regular rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Regular Rubber Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>5 / 5</strong></span>
-        <div class="duck__info">
-          Vår mest populära anka i klassisk gul färg.
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__1--price">150</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__2">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_2/produkt_2_a.jpg" alt="blue rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Blue Rubber Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>4 / 5</strong></span>
-        <div class="duck__info">
-          Nykomling med hög potential. It's Blue Da-ba-dee!
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__2--price">185</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__3">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_3/produkt_3_a.jpg" alt="green rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Green Rubber Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>2 / 5</strong></span>
-        <div class="duck__info">
-          The greenie!! Ge han lite tid, han kommer ta sig.
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__3--price">100</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__4">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_4/produkt_4_a.jpg" alt="pink rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Pink Rubber Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>3 / 5</strong></span>
-        <div class="duck__info">
-          Vad ska man säga. Rosa är rosa!
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__4--price">125</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__5">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_5/produkt_5_a.jpg" alt="blue rubber duck with pink stars" width="130px">
-              <span>></span>
-        </div>
-        <h3>Evel Knievel Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>4 / 5</strong></span>
-        <div class="duck__info">
-          Kommer bjuda på en show du inte visste en anka kan!
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__5--price">235</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__6">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_6/produkt_6_a.webp" alt="black rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Black Rubber Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>X / 5</strong></span>
-        <div class="duck__info">
-          Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__6--price">666</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="666">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__7">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_7/produkt_7_a.webp" alt="multicolored rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Rainbow Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>&#127752; / 5</strong></span>
-        <div class="duck__info">
-          Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__7--price">250</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__8">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_8/produkt_8_a.webp" alt="army of rubber ducks" width="130px">
-              <span>></span>
-        </div>
-        <h3>Army of Ducks</h3>
-        <span class="duck__rating">Omdöme - <strong>5 / 5</strong></span>
-        <div class="duck__info">
-          Fler, Fler, FLEEEEEER ANKOR!
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__8--price">1750</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__9">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_9/produkt_9_a.webp" alt="giant rubber duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>Giant Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>9 / 9</strong></span>
-        <div class="duck__info">
-          När det gäller ankor så har i alla fall storleken betydelse.
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__9--price">2499</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-      <article class="duck__10">
-        <div class="slideshow">
-          <span>
-            < </span>
-              <img src="assets/img/produkt_10/produkt_10_a.webp" alt="golden duck" width="130px">
-              <span>></span>
-        </div>
-        <h3>THE Golden Duck</h3>
-        <span class="duck__rating">Omdöme - <strong>? / ?</strong></span>
-        <div class="duck__info">
-          Ingen har någonsinn sett den, men här kan den beställas.
-        </div>
-        <span class="duck__pricing">Pris <span class="duck__10--price">9999</span>:-</span>
-        <div class="duck__amount">
-          <button class="subtract_btn">-</button>
-          <span>Antal:</span>
-          <input type="number" min="0" max="99">
-          <button class="add_btn">+</button><br>
-        </div>
-        <button class="add_to_cart_btn">Lägg till</button>
-      </article>
-
-    </div>
+    <div class="duck__wrapper"></div>
 
     <!------ Shopping cart, by Joel-------->
-    <section class="checkout">
+    <section class="checkout" id="checkoutID">
       <h2>Varukorg</h2>
 
       <header class="checkout__header">
