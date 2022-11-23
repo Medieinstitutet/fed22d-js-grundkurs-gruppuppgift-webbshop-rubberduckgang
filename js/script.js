@@ -301,11 +301,9 @@ function getDeliveryTime() {
   return 'om 30 min.';
 }
 
-/* If 15 minutes pass, clear form. Alert("Too slow!") */
-
-/**
- * setTimeout(function, 1000 * 1500)
- * börja med alert
- */
+setTimeout(function(){
+  document.querySelector('.checkoutForm').reset();
+  alert('Nu tog det lite lång tid... Om du vill beställa får du fylla i formuläret igen.');
+}, 1000 * 60 * 15); // rensar formuläret efter 15 min
 
 /* If cart exceeds 800kr, invoice can't be chosen */
