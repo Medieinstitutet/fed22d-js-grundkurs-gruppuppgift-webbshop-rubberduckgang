@@ -7,6 +7,12 @@
  *  4. Kassa knapp???
  */
 
+ const paymentCardInput = document.querySelector("#paymentCard");
+ const paymentCardBox = document.querySelector(".hiddenPaymentCard");
+ 
+ const paymentInvoiceInput = document.querySelector("#paymentInvoice");
+ const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
+
 updateTotalPrice();
 giveMondayDiscount();
 
@@ -199,8 +205,17 @@ function updateTotalPrice() {
     const quantity = productQuantity.value;
 
     total = total + price * quantity;
-    // console.log(price);
   }
+
+  const paymentInvoice = document.querySelector('#paymentInvoice');
+  const paymentCard = document.querySelector('#paymentCard');
+  if (total > 800) {
+    paymentInvoice.disabled = true;
+    paymentCard.checked = true;
+    switchPayment('paymentCard');
+  } else {
+    paymentInvoice.disabled = false;
+  } //denna kod är från hanna & gör att faktura väljs bort när totalsumman > 800
 
   document.getElementById("cart__total__price").innerText = total + ":-";
 }
@@ -255,23 +270,22 @@ function giveDiscount() {
 //--------------------------- Toggle mellan kort & faktura -------------------------------- By Hanna
 //*****************************************************************************************
 
-const paymentCardInput = document.querySelector("#paymentCard");
-const paymentCardBox = document.querySelector(".hiddenPaymentCard");
+paymentCardInput.addEventListener("change", switchPaymentEventHandler);
+paymentInvoiceInput.addEventListener("change", switchPaymentEventHandler);
 
-const paymentInvoiceInput = document.querySelector("#paymentInvoice");
-const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
+function switchPaymentEventHandler(e) {
+  switchPayment(e.target.id);
+}
 
-paymentCardInput.addEventListener("click", switchPayment);
-paymentInvoiceInput.addEventListener("click", switchPayment);
-
-function switchPayment(e) {
-  if (e.target.id == "paymentCard") {
+function switchPayment(paymentType) {
+  if (paymentType == "paymentCard") {
     paymentInvoiceBox.classList.remove("showPaymentInvoice");
     paymentInvoiceBox.classList.add("hiddenPaymentInvoice");
 
     paymentCardBox.classList.remove("hiddenPaymentCard");
     paymentCardBox.classList.add("showPaymentCard");
-  } else {
+  }
+  if (paymentType == 'paymentInvoice') {
     paymentCardBox.classList.remove("showPaymentCard");
     paymentCardBox.classList.add("hiddenPaymentCard");
 
@@ -346,12 +360,8 @@ function order(e) {
   const zipCodeSpan = document.querySelector("#zipCodeSpan");
   const phoneNumber = document.querySelector("#phoneNumber").value;
   const phoneNumberSpan = document.querySelector("#phoneNumberSpan");
-  const socialSecurityNumber = document.querySelector(
-    "#socialSecurityNumber"
-  ).value;
-  const socialSecurityNumberSpan = document.querySelector(
-    "#socialSecurityNumberSpan"
-  );
+  const socialSecurityNumber = document.querySelector("#socialSecurityNumber").value;
+  const socialSecurityNumberSpan = document.querySelector("#socialSecurityNumberSpan");
 
   const orderMessage = document.querySelector("#orderMessage");
   orderMessage.innerHTML = "";
@@ -412,7 +422,7 @@ function order(e) {
 }
 
 //*****************************************************************************************
-//---------------------------- Leveranstider (standard 30 min) ---------------------------- By Hanna
+//-------------------------------------- Leveranstider ------------------------------------ By Hanna
 //*****************************************************************************************
 
 function getDeliveryTime() {
@@ -430,12 +440,16 @@ function getDeliveryTime() {
     return 'kl 15:00.' //om kunden beställer på en fredag mellan 11 & 13
   }
 
-  return 'om 30 min.';
+  return 'om 30 min.'; //standard-leverans
 }
 
-setTimeout(function(){
+//*****************************************************************************************
+//------------------------------ Rensar formulär efter 15 min ----------------------------- By Hanna
+//*****************************************************************************************
+
+function resetForm() {
   document.querySelector('.checkoutForm').reset();
   alert('Nu tog det lite lång tid... Om du vill beställa får du fylla i formuläret igen.');
-}, 1000 * 60 * 15); // rensar formuläret efter 15 min
+}
 
-/* If cart exceeds 800kr, invoice can't be chosen */
+setTimeout(resetForm , 1000 * 60 * 15);
