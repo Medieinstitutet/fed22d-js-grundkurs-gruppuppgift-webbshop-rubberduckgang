@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+/* * {
+  outline: 1px solid #f00 !important; // Turn on to see layout and overflowing containers better
+} */
+
 .clearfix::after {
 	content: "";
 	clear: both;
@@ -216,12 +220,28 @@ input::-webkit-inner-spin-button {
         justify-content: center;
         align-items: center;
 
-        button{
+        .slideshow_btn_left{
             padding: 0.25rem;
             font-size: 1.25rem;
-            background-color: $secondary-color;
+            background-color: transparent;
             border: none;
+            position: relative;
+            left: 24px;
+            height: 35px;
+            width: 35px;
         }
+
+        .slideshow_btn_right{
+          padding: 0.25rem;
+          font-size: 1.25rem;
+          background-color: transparent;
+          border: none;
+          position: relative;
+          right: 24px;
+          height: 35px;
+          width: 35px;
+      }
+      
       }
 
       h3{

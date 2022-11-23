@@ -120,9 +120,9 @@ function renderDucks() {
     duckContainer.innerHTML += `
         <article class="duck__$+[i]">
             <div class="slideshow">
-                <button>&lt;</button>
+                <button class="slideshow_btn_left">&lt;</button>
                 <img src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
-                <button>&gt;</button>
+                <button class="slideshow_btn_right">&gt;</button>
             </div>
             <h3>${ducksArray[i].name}</h3>
             <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
