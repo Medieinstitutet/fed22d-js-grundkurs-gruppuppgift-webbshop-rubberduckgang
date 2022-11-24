@@ -356,12 +356,16 @@ const formInputs = document.querySelectorAll(".lock");
 function order(e) {
   e.preventDefault();
 
-  const zipCode = document.querySelector("#zipCode").value;
+  const zipCode = document.querySelector("#zipCode");
   const zipCodeSpan = document.querySelector("#zipCodeSpan");
-  const phoneNumber = document.querySelector("#phoneNumber").value;
+  const phoneNumber = document.querySelector("#phoneNumber");
   const phoneNumberSpan = document.querySelector("#phoneNumberSpan");
-  const socialSecurityNumber = document.querySelector("#socialSecurityNumber").value;
+  const socialSecurityNumber = document.querySelector("#socialSecurityNumber");
   const socialSecurityNumberSpan = document.querySelector("#socialSecurityNumberSpan");
+
+  const regexZC = /^\d{3}[ ]?\d{2}$/;
+  const regexPN = /^(([+]46)\s*(7)|07)[02369]\s*(\d{4})\s*(\d{3})$/;
+  const regexSSN = /^(19|20)?[0-9]{6}[- ]?[0-9]{4}$/;
 
   const orderMessage = document.querySelector("#orderMessage");
   orderMessage.innerHTML = "";
@@ -376,7 +380,7 @@ function order(e) {
   let hasErrors = false;
   let errors = [];
 
-  if (zipCode < 10000 || zipCode > 99999) {
+  if (!regexZC.test(zipCode.value)) {
     zipCodeSpan.innerHTML = "Postnummer *";
     zipCodeSpan.classList.add("errorMessage");
 
@@ -384,7 +388,7 @@ function order(e) {
     errors.push("Fyll i ett giltligt postnummer!");
   }
 
-  if (phoneNumber.length != 10) {
+  if (!regexPN.test(phoneNumber.value)) {
     phoneNumberSpan.innerHTML = "Telefonnummer *";
     phoneNumberSpan.classList.add("errorMessage");
 
@@ -392,12 +396,12 @@ function order(e) {
     errors.push("Fyll i ett giltligt telefonnummer!");
   }
 
-  if (socialSecurityNumber.length != 12) {
+  if (!regexSSN.test(socialSecurityNumber.value)) {
     socialSecurityNumberSpan.innerHTML = "Personnummer *";
     socialSecurityNumberSpan.classList.add("errorMessage");
 
     hasErrors = true;
-    errors.push("Fyll i personnumret med 12 siffror!");
+    errors.push("Fyll i ett giltligt personnummer!");
   }
 
   if (hasErrors) {
