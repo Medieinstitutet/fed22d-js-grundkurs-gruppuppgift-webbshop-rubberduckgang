@@ -44,15 +44,23 @@
     <!--Main duck page-->
 
     <section class="sorting__section">
-      <label for="sort__options">
-      <select id="sort__options">
-        <option selected disabled>Sortera på:</option>
-        <option id="sortCategory">Kategori</option>
-        <option id="sortRating">Betyg</option>
-        <option id="sortPriceLow">Pris: Lågt till högt</option>
-        <option id="sortPriceHigh">Pris: Högt till lågt</option>
-      </select>
-    </label>
+      <label>
+        <select id="sort__options">
+          <option selected disabled>Sortera på:</option>
+          <option id="sortRating">Betyg</option>
+          <option id="sortPriceLow">Pris: Lågt till högt</option>
+          <option id="sortPriceHigh">Pris: Högt till lågt</option>
+        </select>
+      </label>
+      <label>
+        <select id="sort__categories">
+          <option selected disabled>Välj kategori:</option>
+          <option id="categoryAll">Alla</option>
+          <option id="categoryUnique">Unik</option>
+          <option id="categorySpecial">Speciell</option>
+          <option id="categoryStandard">Standard</option>
+        </select>
+      </label>
     </section>
 
     <div class="duck__wrapper"></div>
