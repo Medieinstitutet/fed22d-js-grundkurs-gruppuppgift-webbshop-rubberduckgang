@@ -147,7 +147,41 @@ function renderDucks() {
 }
 
 renderDucks()
-  
+
+//*****************************************************************************************
+//--------------------------------------- Sortera ankor ----------------------------------- By Hanna
+//*****************************************************************************************
+
+const sortOptions = document.querySelector('#sort__options');
+sortOptions.addEventListener('change', sortDucks);
+
+function sortDucks() {
+  const sortCategory = document.querySelector('#sortCategory');
+  const sortRating = document.querySelector('#sortRating');
+  const sortPriceLow = document.querySelector('#sortPriceLow');
+  const sortPriceHigh = document.querySelector('#sortPriceHigh');
+
+  if (sortCategory.selected) {
+    //sortera på kategori
+  }
+
+  if (sortRating.selected) {
+    //sortera på rating
+  }
+
+  if (sortPriceLow.selected) {
+    ducksArray.sort((duck1, duck2) => duck1.price - duck2.price);
+  }
+
+  if (sortPriceHigh.selected) {
+    ducksArray.sort((duck1, duck2) => duck2.price - duck1.price);
+  }
+
+  renderDucks();
+}
+
+console.table(ducksArray);
+
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
