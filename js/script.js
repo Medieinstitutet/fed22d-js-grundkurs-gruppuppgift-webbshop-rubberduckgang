@@ -152,16 +152,19 @@ renderDucks()
 //------------------------------ Plus/minus & Lägg till ----------------------------------- By David
 //*****************************************************************************************
 
+//Variabler för knapparna Plus, minus och lägg till
 const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
 const addBtn = document.querySelectorAll('button[data-operator="add"]');
 const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
 
+// loop för att sätta eventlistener till funktionerna på knapparna
 for (let i = 0; i < addBtn.length; i++) {
   subtractBtn[i].addEventListener('click', subtractDuck);
   addBtn[i].addEventListener('click', addDuck);
   addToCartBtn[i].addEventListener('click', addDuckToCart)
 }
 
+// Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '')
   const amountValue = document.querySelector(`#amount${index}`);
@@ -169,6 +172,7 @@ function addDuck(e) {
   amountValue.innerHTML = amount + 1;
 }
 
+// Minus knappen subtraherar -1 vid klick, om värdet redan är mindre än 0 och större än -1 avbryt
 function subtractDuck(e) {
   const index = e.currentTarget.id.replace('subtract', '')
   const amountValue = document.querySelector(`#amount${index}`);
@@ -180,8 +184,9 @@ function subtractDuck(e) {
     amountValue.innerHTML = amount - 1;
 }
 
+// "Lägg till" knappen läser av värdet i amount fältet och sparar värdet i arrayen under rätt objekt.
 function addDuckToCart(e) {
-  const index = e.currentTarget.id.replace('addToCart', '');
+  const index = e.currentTarget.id.replace('addToCart', ''); 
   const amount = document.querySelector(`#amount${index}`);
   ducksArray[index-1].amount = Number(amount.innerHTML);
 }
