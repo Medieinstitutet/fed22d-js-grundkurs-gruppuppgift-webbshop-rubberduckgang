@@ -20,7 +20,7 @@ giveMondayDiscount();
 //---------------------------------- Array för ankor -------------------------------------- By David
 //*****************************************************************************************
 
-const ducksArray = [    
+const ducksDatabase = [    
     { 
         name: 'Regular Rubber Duck',
         image: 'assets/img/produkt_1/produkt_1_a.webp',
@@ -113,6 +113,8 @@ const ducksArray = [
     },
   ];
 
+let ducksArray = JSON.parse(JSON.stringify(ducksDatabase));
+
 //*****************************************************************************************
 //------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
 //*****************************************************************************************
@@ -147,6 +149,63 @@ function renderDucks() {
 }
 
 renderDucks()
+
+//*****************************************************************************************
+//--------------------------------------- Sortera ankor ----------------------------------- By Hanna
+//*****************************************************************************************
+
+const sortOptions = document.querySelector('#sort__options');
+sortOptions.addEventListener('change', sortDucks);
+
+function sortDucks() {
+  const sortRating = document.querySelector('#sortRating');
+  const sortPriceLow = document.querySelector('#sortPriceLow');
+  const sortPriceHigh = document.querySelector('#sortPriceHigh');
+
+  if (sortRating.selected) {
+    ducksArray.sort((duck1, duck2) => duck2.rating - duck1.rating);
+  }
+
+  if (sortPriceLow.selected) {
+    ducksArray.sort((duck1, duck2) => duck1.price - duck2.price);
+  }
+
+  if (sortPriceHigh.selected) {
+    ducksArray.sort((duck1, duck2) => duck2.price - duck1.price);
+  }
+
+  renderDucks();
+}
+
+//*****************************************************************************************
+//-------------------------------------- Välja kategori ----------------------------------- By Hanna
+//*****************************************************************************************
+
+const sortCategory = document.querySelector('#sort__categories');
+sortCategory.addEventListener('change', chooseCategory);
+
+function chooseCategory() {
+  const categoryAll = document.querySelector('#categoryAll');
+  const categoryUnique = document.querySelector('#categoryUnique');
+  const categorySpecial = document.querySelector('#categorySpecial');
+  const categoryStandard = document.querySelector('#categoryStandard');
+
+  ducksArray = JSON.parse(JSON.stringify(ducksDatabase));
+
+  if (categoryUnique.selected) {
+    ducksArray = ducksArray.filter(duck => duck.category === 'unique');
+  }
+
+  if (categorySpecial.selected) {
+    ducksArray = ducksArray.filter(duck => duck.category === 'special');
+  }
+
+  if (categoryStandard.selected) {
+    ducksArray = ducksArray.filter(duck => duck.category === 'standard');
+  }
+
+  sortDucks();
+}
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar

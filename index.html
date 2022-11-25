@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-
+  
   <link rel="stylesheet" href="css/style.css" type="text/css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
@@ -42,6 +42,26 @@
   <main>
 
     <!--Main duck page-->
+
+    <section class="sorting__section">
+      <label>
+        <select id="sort__options">
+          <option selected disabled>Sortera på:</option>
+          <option id="sortRating">Betyg</option>
+          <option id="sortPriceLow">Pris: Lågt till högt</option>
+          <option id="sortPriceHigh">Pris: Högt till lågt</option>
+        </select>
+      </label>
+      <label>
+        <select id="sort__categories">
+          <option selected disabled>Välj kategori:</option>
+          <option id="categoryAll">Alla</option>
+          <option id="categoryUnique">Unik</option>
+          <option id="categorySpecial">Speciell</option>
+          <option id="categoryStandard">Standard</option>
+        </select>
+      </label>
+    </section>
 
     <div class="duck__wrapper"></div>
 
