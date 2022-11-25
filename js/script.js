@@ -7,11 +7,14 @@
  *  4. Kassa knapp???
  */
 
- const paymentCardInput = document.querySelector("#paymentCard");
- const paymentCardBox = document.querySelector(".hiddenPaymentCard");
- 
- const paymentInvoiceInput = document.querySelector("#paymentInvoice");
- const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
+//*****************************************************************************************
+//------------------------------ Lite kod som måste köras först ---------------------------
+//*****************************************************************************************
+
+const paymentCardInput = document.querySelector("#paymentCard");
+const paymentCardBox = document.querySelector(".hiddenPaymentCard");
+const paymentInvoiceInput = document.querySelector("#paymentInvoice");
+const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
 
 updateTotalPrice();
 giveMondayDiscount();
@@ -20,7 +23,7 @@ giveMondayDiscount();
 //---------------------------------- Array för ankor -------------------------------------- By David
 //*****************************************************************************************
 
-const ducksArray = [    
+const ducksDatabase = [    
     { 
         name: 'Regular Rubber Duck',
         image: 'assets/img/produkt_1/produkt_1_a.webp',
@@ -117,10 +120,17 @@ const ducksArray = [
 //------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
 //*****************************************************************************************
 
-const duckContainer = document.querySelector('.duck__wrapper');
+const duckContainer = document.querySelector(".duck__wrapper");
 
 function renderDucks() {
-  duckContainer.innerHTML = '';
+  let ducksArray = [...ducksDatabase];
+
+  ducksArray = filterPrice(ducksArray);
+  ducksArray = filterCategories(ducksArray);
+  sortDucks(ducksArray);
+
+
+  duckContainer.innerHTML = "";
 
   for (let i = 0; i < ducksArray.length; i++) {
     duckContainer.innerHTML += `
@@ -146,7 +156,152 @@ function renderDucks() {
   }
 }
 
-renderDucks()
+//*****************************************************************************************
+//--------------------------------------- Sortera ankor ----------------------------------- By Hanna
+//*****************************************************************************************
+
+const sortOptions = document.querySelector('#sort__options');
+sortOptions.addEventListener('change', renderDucks);
+
+function sortDucks(ducksArray) {
+  const sortRating = document.querySelector('#sortRating');
+  const sortPriceLow = document.querySelector('#sortPriceLow');
+  const sortPriceHigh = document.querySelector('#sortPriceHigh');
+
+  if (sortRating.selected) {
+    ducksArray.sort((duck1, duck2) => duck2.rating - duck1.rating);
+  }
+
+  if (sortPriceLow.selected) {
+    ducksArray.sort((duck1, duck2) => duck1.price - duck2.price);
+  }
+
+  if (sortPriceHigh.selected) {
+    ducksArray.sort((duck1, duck2) => duck2.price - duck1.price);
+  }
+}
+
+//*****************************************************************************************
+//-------------------------------------- Välja kategori ----------------------------------- By Hanna
+//*****************************************************************************************
+
+const sortCategory = document.querySelector('#sort__categories');
+sortCategory.addEventListener('change', renderDucks);
+
+function filterCategories(ducksArray) {
+  const categoryUnique = document.querySelector('#categoryUnique');
+  const categorySpecial = document.querySelector('#categorySpecial');
+  const categoryStandard = document.querySelector('#categoryStandard');
+
+  if (categoryUnique.selected) {
+    ducksArray = ducksArray.filter(duck => duck.category === 'unique');
+  }
+
+  if (categorySpecial.selected) {
+    ducksArray = ducksArray.filter(duck => duck.category === 'special');
+  }
+
+  if (categoryStandard.selected) {
+    ducksArray = ducksArray.filter(duck => duck.category === 'standard');
+  }
+  return ducksArray;
+}
+
+//*****************************************************************************************
+//---------------------------------- Filtrera ankor på pris ------------------------------- By Hanna
+//*****************************************************************************************
+
+const fromSlider = document.querySelector("#fromSlider");
+const toSlider = document.querySelector("#toSlider");
+const minDisplay = document.querySelector('#sliderMinValue');
+const maxDisplay = document.querySelector('#sliderMaxValue');
+
+let mostExpensiveDuck = -1;
+
+for (duck of ducksDatabase) {
+  if (duck.price > mostExpensiveDuck) {
+    mostExpensiveDuck = duck.price;
+  }
+}
+
+fromSlider.max = mostExpensiveDuck;
+toSlider.max = mostExpensiveDuck;
+
+fromSlider.value = 0;
+toSlider.value = mostExpensiveDuck;
+
+minDisplay.innerHTML = 0;
+maxDisplay.innerHTML = mostExpensiveDuck;
+
+fillSlider(fromSlider, toSlider, toSlider);
+setToggleAccessible(toSlider);
+
+fromSlider.addEventListener('input', (e) => controlFromSlider(fromSlider, toSlider, minDisplay, e)); 
+toSlider.addEventListener('input', () => controlToSlider(fromSlider, toSlider, maxDisplay));
+fromSlider.addEventListener('change', renderDucks);
+toSlider.addEventListener('change', renderDucks);
+
+function controlFromSlider(fromSlider, toSlider, minDisplay, e) {
+  const [from, to] = getParsed(fromSlider, toSlider);
+  fillSlider(fromSlider, toSlider, toSlider);
+  if (from > to) {
+    fromSlider.value = to;
+    minDisplay.innerHTML = to;
+  } else {
+    minDisplay.innerHTML = from;
+  }
+}
+
+function controlToSlider(fromSlider, toSlider, maxDisplay) {
+  const [from, to] = getParsed(fromSlider, toSlider);
+  fillSlider(fromSlider, toSlider, toSlider);
+  setToggleAccessible();
+  if (from <= to) {
+    toSlider.value = to;
+    maxDisplay.innerHTML = to;
+  } else {
+    maxDisplay.innerHTML = from;
+    toSlider.value = from;
+  }
+}
+
+function getParsed(currentFrom, currentTo) {
+  const from = parseInt(currentFrom.value);
+  const to = parseInt(currentTo.value);
+  return [from, to];
+}
+
+function fillSlider(from, to, controlSlider) {
+  const rangeDistance = to.max - to.min;
+  const fromPosition = from.value - to.min;
+  const toPosition = to.value - to.min;
+  const sliderColor = '#C6C6C6';
+  const rangeColor = '#556edf';
+
+  controlSlider.style.background = `linear-gradient(
+    to right,
+    ${sliderColor} 0%,
+    ${sliderColor} ${(fromPosition / rangeDistance) * 100}%,
+    ${rangeColor} ${(fromPosition / rangeDistance) * 100}%,
+    ${rangeColor} ${(toPosition / rangeDistance) * 100}%, 
+    ${sliderColor} ${(toPosition / rangeDistance) * 100}%, 
+    ${sliderColor} 100%)`;
+}
+
+function setToggleAccessible() {
+  const toSlider = document.querySelector("#toSlider");
+  if (Number(toSlider.value) <= 0) {
+    toSlider.style.zIndex = 2;
+  } else {
+    toSlider.style.zIndex = 0;
+  }
+}
+
+function filterPrice(ducksArray) {
+  return ducksArray.filter(duck => duck.price >= fromSlider.value && duck.price <= toSlider.value);
+}
+
+renderDucks();
 
 //*****************************************************************************************
 //------------------------------ Plus/minus & Lägg till ----------------------------------- By David
@@ -294,7 +449,6 @@ function giveMondayDiscount() {
 const discountInput = document.getElementById("discount");
 
 discountInput.addEventListener("change", giveDiscount);
-//console.log(discountInput);
 
 function giveDiscount() {
   if (discountInput.value == "a_damn_fine-cup_of_coffee") {
@@ -399,12 +553,16 @@ const formInputs = document.querySelectorAll(".lock");
 function order(e) {
   e.preventDefault();
 
-  const zipCode = document.querySelector("#zipCode").value;
+  const zipCode = document.querySelector("#zipCode");
   const zipCodeSpan = document.querySelector("#zipCodeSpan");
-  const phoneNumber = document.querySelector("#phoneNumber").value;
+  const phoneNumber = document.querySelector("#phoneNumber");
   const phoneNumberSpan = document.querySelector("#phoneNumberSpan");
-  const socialSecurityNumber = document.querySelector("#socialSecurityNumber").value;
+  const socialSecurityNumber = document.querySelector("#socialSecurityNumber");
   const socialSecurityNumberSpan = document.querySelector("#socialSecurityNumberSpan");
+
+  const regexZC = /^\d{3}[ ]?\d{2}$/;
+  const regexPN = /^(([+]46)\s*(7)|07)[02369]\s*(\d{4})\s*(\d{3})$/;
+  const regexSSN = /^(19|20)?[0-9]{6}[- ]?[0-9]{4}$/;
 
   const orderMessage = document.querySelector("#orderMessage");
   orderMessage.innerHTML = "";
@@ -419,7 +577,7 @@ function order(e) {
   let hasErrors = false;
   let errors = [];
 
-  if (zipCode < 10000 || zipCode > 99999) {
+  if (!regexZC.test(zipCode.value)) {
     zipCodeSpan.innerHTML = "Postnummer *";
     zipCodeSpan.classList.add("errorMessage");
 
@@ -427,7 +585,7 @@ function order(e) {
     errors.push("Fyll i ett giltligt postnummer!");
   }
 
-  if (phoneNumber.length != 10) {
+  if (!regexPN.test(phoneNumber.value)) {
     phoneNumberSpan.innerHTML = "Telefonnummer *";
     phoneNumberSpan.classList.add("errorMessage");
 
@@ -435,12 +593,12 @@ function order(e) {
     errors.push("Fyll i ett giltligt telefonnummer!");
   }
 
-  if (socialSecurityNumber.length != 12) {
+  if (!regexSSN.test(socialSecurityNumber.value)) {
     socialSecurityNumberSpan.innerHTML = "Personnummer *";
     socialSecurityNumberSpan.classList.add("errorMessage");
 
     hasErrors = true;
-    errors.push("Fyll i personnumret med 12 siffror!");
+    errors.push("Fyll i ett giltligt personnummer!");
   }
 
   if (hasErrors) {
