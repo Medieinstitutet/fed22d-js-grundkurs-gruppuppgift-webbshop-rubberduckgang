@@ -27,13 +27,13 @@ $secondary-color: #fdbc91;
 
 /*--------------Header & Intro, by Hanna-----------------*/
 header {
-	// font-family: "Playfair Display", serif;
+  margin-bottom: 50px;
 
 	nav {
 		background-color: $primary-color;
 		opacity: 90%;
 		position: fixed;
-		z-index: 2;
+		z-index: 4;
 		top: 0;
 		width: 100%;
 		display: flex;
@@ -195,7 +195,7 @@ input::-webkit-inner-spin-button {
 
 .sorting__section {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /*--------------Filtering ducks-----------------*/
@@ -203,12 +203,13 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   align-content: center;
-  width: 70%;
+  width: 60%;
   margin: 10px auto;
 
   .filter__price__text {
     text-align: center;
   }
+
   .sliders_control {
     position: relative;
     min-height: 50px;
@@ -234,7 +235,7 @@ input::-webkit-inner-spin-button {
       width: 24px;
       height: 24px;
       background-color: #fff;
-      border-radius: 100%;
+      border-radius: 50%;
       box-shadow: 0 0 0 1px #C6C6C6;
       cursor: pointer;
     }
@@ -249,7 +250,7 @@ input::-webkit-inner-spin-button {
 
     #fromSlider {
       height: 0;
-      z-index: 1;
+      z-index: 2;
     }
   }
 }
