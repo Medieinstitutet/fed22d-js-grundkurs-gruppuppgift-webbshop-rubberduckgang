@@ -12,12 +12,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="css/style.css" type="text/css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 
-  </head>
+</head>
 
 <body>
 
@@ -42,6 +42,18 @@
   <main>
 
     <!--Main duck page-->
+
+    <section class="filtering__section">
+      <p class="filter__price__text">Filtrera på pris:</p>
+      <div class="sliders_control">
+        <div id="sliderMinValue">
+        </div>
+        <input id="fromSlider" type="range" value="0" min="0" max="100">
+        <input id="toSlider" type="range" value="100" min="0" max="100">
+        <div id="sliderMaxValue">
+        </div>
+      </div>
+    </section>
 
     <section class="sorting__section">
       <label>
@@ -164,7 +176,7 @@
           <span>Postort</span>
         </label>
         <label for="buzzCode">
-          <input type="number" id="buzzCode" class="lock">
+          <input type="text" id="buzzCode" class="lock">
           <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
@@ -186,7 +198,7 @@
           <input id="paymentInvoice" class="lock" type="radio" name="radio">
           Faktura
         </label>
-        
+
         <div class="hiddenPaymentCard">
           <label for="cardNumber">
             <input type="number" id="cardNumber" class="validatedText lock">
