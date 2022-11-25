@@ -36,7 +36,7 @@ const ducksDatabase = [
     {
         name: 'Blue Rubber Duck',
         image: 'assets/img/produkt_2/produkt_2_a.webp',
-        info: "Nykomling med hög potential. It's Blue Da-ba-dee!",
+        info: 'Nykomling med hög potential. It\'s Blue Da-ba-dee!',
         price: 185,
         rating: 4,
         category: 'standard',
@@ -134,7 +134,7 @@ function renderDucks() {
 
   for (let i = 0; i < ducksArray.length; i++) {
     duckContainer.innerHTML += `
-        <article class="duck__$+[i]">
+        <article class="duck__${i+1}">
             <div class="slideshow">
                 <button class="slideshow_btn_left">&lt;</button>
                 <img src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
@@ -145,12 +145,12 @@ function renderDucks() {
             <div class="duck__info">${ducksArray[i].info}</div>
             <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
             <div class="duck__amount">
-                <button class="subtract_btn">-</button>
-                <span>Antal:</span>
-                <input type="number" min="0" max="99" value="${ducksArray[i].amount}">
-                <button class="add_btn">+</button><br>
+                <button id="subtract${i+1}" class="subtract_btn" data-operator="subtract">-</button>
+                <span class="amount_text">Antal:</span>
+                <span id="amount${i+1}" class="amount_value">0</span>
+                <button id="add${i+1}" class="add_btn" data-operator="add">+</button><br>
             </div>
-            <button class="add_to_cart_btn">Lägg till</button>
+            <button id="addToCart${i+1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
         </article>
     `;
   }
@@ -302,6 +302,49 @@ function filterPrice(ducksArray) {
 }
 
 renderDucks();
+
+//*****************************************************************************************
+//------------------------------ Plus/minus & Lägg till ----------------------------------- By David
+//*****************************************************************************************
+
+//Variabler för knapparna Plus, minus och lägg till
+const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
+const addBtn = document.querySelectorAll('button[data-operator="add"]');
+const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
+
+// loop för att sätta eventlistener till funktionerna på knapparna
+for (let i = 0; i < addBtn.length; i++) {
+  subtractBtn[i].addEventListener('click', subtractDuck);
+  addBtn[i].addEventListener('click', addDuck);
+  addToCartBtn[i].addEventListener('click', addDuckToCart)
+}
+
+// Plus knappen lägger till +1 vid klick
+function addDuck(e) {
+  const index = e.currentTarget.id.replace('add', '')
+  const amountValue = document.querySelector(`#amount${index}`);
+  let amount = Number(amountValue.innerText);
+  amountValue.innerHTML = amount + 1;
+}
+
+// Minus knappen subtraherar -1 vid klick, om värdet redan är mindre än 0 och större än -1 avbryt
+function subtractDuck(e) {
+  const index = e.currentTarget.id.replace('subtract', '')
+  const amountValue = document.querySelector(`#amount${index}`);
+  let amount = Number(amountValue.innerText);
+
+  if (amount - 1 < 0) {
+    return;
+  } else
+    amountValue.innerHTML = amount - 1;
+}
+
+// "Lägg till" knappen läser av värdet i amount fältet och sparar värdet i arrayen under rätt objekt.
+function addDuckToCart(e) {
+  const index = e.currentTarget.id.replace('addToCart', ''); 
+  const amount = document.querySelector(`#amount${index}`);
+  ducksArray[index-1].amount = Number(amount.innerHTML);
+}
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
