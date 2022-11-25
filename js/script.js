@@ -238,12 +238,12 @@ maxDisplay.innerHTML = mostExpensiveDuck;
 fillSlider(fromSlider, toSlider, toSlider);
 setToggleAccessible(toSlider);
 
-fromSlider.addEventListener('input', () => controlFromSlider(fromSlider, toSlider, minDisplay)); 
+fromSlider.addEventListener('input', (e) => controlFromSlider(fromSlider, toSlider, minDisplay, e)); 
 toSlider.addEventListener('input', () => controlToSlider(fromSlider, toSlider, maxDisplay));
 fromSlider.addEventListener('change', renderDucks);
 toSlider.addEventListener('change', renderDucks);
 
-function controlFromSlider(fromSlider, toSlider, minDisplay) {
+function controlFromSlider(fromSlider, toSlider, minDisplay, e) {
   const [from, to] = getParsed(fromSlider, toSlider);
   fillSlider(fromSlider, toSlider, toSlider);
   if (from > to) {
