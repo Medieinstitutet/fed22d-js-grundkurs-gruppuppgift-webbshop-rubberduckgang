@@ -209,8 +209,6 @@ function filterCategories(ducksArray) {
 
 //*****************************************************************************************
 //---------------------------------- Filtrera ankor på pris ------------------------------- By Hanna
-//Cred to:
-//https://medium.com/@predragdavidovic10/native-dual-range-slider-html-css-javascript-91e778134816
 //*****************************************************************************************
 
 const fromSlider = document.querySelector("#fromSlider");
