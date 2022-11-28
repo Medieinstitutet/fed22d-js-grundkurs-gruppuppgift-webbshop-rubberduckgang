@@ -1,12 +1,8 @@
-/**
- *  Kund / Varukorgs funktioner, lägga till och ta bort varor.
- *
- *  1. Lägga till varor i varukorgen
- *  2. Ta bort varor från varukorgen
- *  3. Uppdatera totalpriset
- *  4. Kassa knapp???
- */
+'use strict';
 
+/**
+ * Dessa funktioner körs här för att testa funktionalitet på sidan under utvecklingen.
+ */
 updateTotalPrice();
 giveMondayDiscount();
 
@@ -110,16 +106,17 @@ const ducksArray = [
 
 //*****************************************************************************************
 //------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
+//...Helgpris, påslag 15% på orginalpriset, Fre efter 15.00 till Mån 03.00 (WeekEndPrice)...By J. del Pilar
 //*****************************************************************************************
 
 const duckContainer = document.querySelector('.duck__wrapper');
 
-const weekEndPrice = new Date();
+const weekendPrice = new Date();
 
-let newPrice = ducksArray.map(prod => Math.round(prod.price));
+let newWeekendPrice = ducksArray.map(prod => Math.round(prod.price));
 
-if((weekEndPrice.getDay() === 5 && weekEndPrice.getHours() > 15) || weekEndPrice.getDay() === 6 || weekEndPrice.getDay() === 0 || (weekEndPrice.getDay() === 1 && weekEndPrice.getHours() < 3 )) {
-     newPrice = ducksArray.map(prod => Math.round(prod.price * 1.15));
+if((weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) || weekendPrice.getDay() === 6 || weekendPrice.getDay() === 0 || (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3 )) {
+     newWeekendPrice = ducksArray.map(prod => Math.round(prod.price * 1.15));
     
   }
 
@@ -138,7 +135,7 @@ function renderDucks() {
             <h3>${ducksArray[i].name}</h3>
             <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
             <div class="duck__info">${ducksArray[i].info}</div>
-            <span class="duck__pricing">Pris ${newPrice[i]}:-</span>
+            <span class="duck__pricing">Pris ${newWeekendPrice[i]}:-</span>
             <div class="duck__amount">
                 <button class="subtract_btn">-</button>
                 <span>Antal:</span>
@@ -158,10 +155,10 @@ renderDucks();
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const removeProductBtn = document.getElementsByClassName("btn-danger"); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
+const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
 for (let i = 0; i < removeProductBtn.length; i++) {
   let removeBtn = removeProductBtn[i];
-  removeBtn.addEventListener("click", removeCartRow);
+  removeBtn.addEventListener('click', removeCartRow);
 }
 
 function removeCartRow(event) {
@@ -177,10 +174,10 @@ function removeCartRow(event) {
 //----------------- Uppdatera totalpriset när antalet ändras ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const quantityInput = document.getElementsByClassName("cart__product--amount");
+const quantityInput = document.getElementsByClassName('cart__product--amount');
 for (let i = 0; i < quantityInput.length; i++) {
   const input = quantityInput[i];
-  input.addEventListener("change", quantityInputChanged);
+  input.addEventListener('change', quantityInputChanged);
 }
 
 function quantityInputChanged(event) {
@@ -200,8 +197,8 @@ function quantityInputChanged(event) {
 //*****************************************************************************************
 
 function updateTotalPrice() {
-  const checkoutCart = document.getElementsByClassName("checkout__cart")[0];
-  const cartRows = checkoutCart.getElementsByClassName("checkout__cart--row");
+  const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
+  const cartRows = checkoutCart.getElementsByClassName('checkout__cart--row');
   let total = 0;
 
     for (let i = 0; i < cartRows.length; i++) {
@@ -215,7 +212,7 @@ function updateTotalPrice() {
         total = total + (price * quantity);
     }
 
-  document.getElementById("cart__total__price").innerText = total + ":-";
+  document.getElementById('cart__total__price').innerText = total + ':-';
 }
 
 //*****************************************************************************************
@@ -234,6 +231,27 @@ function clearRedFrame() {
 }
 
 //*****************************************************************************************
+//------------------- Mängdrabatt vid köp av fler än 10 av samma sort --------------------- By J. del Pilar
+//*****************************************************************************************
+
+let ducksArrayCheckAmount = [...ducksArray];
+
+ducksArrayCheckAmount = ducksArray.filter((product) => {
+    const amountOfDucks = product.amount;
+    let duckPrice = product.price;
+    console.log(duckPrice);
+    if(amountOfDucks >= 10) {
+        duckPrice = Math.round(duckPrice * 0.9);
+
+        console.log(duckPrice);
+    } else {
+        console.log('ingen rabatt');
+    }
+ 
+  }); 
+
+
+//*****************************************************************************************
 //--------------------------- Måndagsrabatt 10% före kl 10.00 ----------------------------- By J. del Pilar
 //*****************************************************************************************
 
@@ -242,36 +260,36 @@ function giveMondayDiscount() {
   if (mondayDiscount.getDay() === 1 && mondayDiscount.getHours() < 10) {
     // söndag = 0, måndag = 1 osv
     const messageToUser =
-      "Måndag morgon, varsågod du får 10 % rabatt på din beställning";
-    document.getElementById("msg__to__user").innerText = messageToUser;
+      'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
+    document.getElementById('msg__to__user').innerText = messageToUser;
 
     let reducedPrice = document
-      .getElementById("cart__total__price")
+      .getElementById('cart__total__price')
       .innerHTML.replace(":-", "");
 
     reducedPrice = Number(reducedPrice * 0.9);
-    document.getElementById("cart__total__price").innerHTML =
-      reducedPrice + ":-";
+    document.getElementById('cart__total__price').innerHTML =
+      reducedPrice + ':-';
   } else {
-    document.getElementById("msg__to__user").innerText =
-      "Måndagar före kl 10.00 gäller 10% rabatt";
+    document.getElementById('msg__to__user').innerText =
+      'Måndagar före kl 10.00 gäller 10% rabatt';
   }
 }
 //*****************************************************************************************
 //--------------------------- Manuell rabattkod ------------------------------------------- By J. del Pilar
 //*****************************************************************************************
 
-const discountInput = document.getElementById("discount");
+const discountInput = document.getElementById('discount');
 
-discountInput.addEventListener("change", giveDiscount);
+discountInput.addEventListener('change', giveDiscount);
 
 function giveDiscount() {
-  if (discountInput.value == "a_damn_fine-cup_of_coffee") {
+  if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
     let newPrice = document
-      .getElementById("cart__total__price")
-      .innerHTML.replace(":-", "");
+      .getElementById('cart__total__price')
+      .innerHTML.replace(':-', '');
     newPrice = Number(newPrice * 0);
-    document.getElementById("cart__total__price").innerHTML = newPrice + ":-";
+    document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
   } else {
     updateTotalPrice();
     giveMondayDiscount();
