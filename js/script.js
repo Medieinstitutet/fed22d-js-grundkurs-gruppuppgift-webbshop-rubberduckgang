@@ -133,25 +133,31 @@ function renderDucks() {
   duckContainer.innerHTML = "";
 
   for (let i = 0; i < ducksArray.length; i++) {
+    let starText = '';
+
+    for (let j = 0; j < ducksArray[i].rating; j++) {
+      starText += '&#9733;';
+    }
+
     duckContainer.innerHTML += `
-        <article class="duck__${i+1}">
-            <div class="slideshow">
-                <button class="slideshow_btn_left">&lt;</button>
-                <img src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
-                <button class="slideshow_btn_right">&gt;</button>
-            </div>
-            <h3>${ducksArray[i].name}</h3>
-            <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
-            <div class="duck__info">${ducksArray[i].info}</div>
-            <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
-            <div class="duck__amount">
-                <button id="subtract${i+1}" class="subtract_btn" data-operator="subtract">-</button>
-                <span class="amount_text">Antal:</span>
-                <span id="amount${i+1}" class="amount_value">0</span>
-                <button id="add${i+1}" class="add_btn" data-operator="add">+</button><br>
-            </div>
-            <button id="addToCart${i+1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
-        </article>
+      <article class="duck__${i+1}">
+        <div class="slideshow">
+          <button class="slideshow_btn_left">&lt;</button>
+          <img src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
+          <button class="slideshow_btn_right">&gt;</button>
+        </div>
+        <h3>${ducksArray[i].name}</h3>
+        <span class="duck__rating">${starText}</span>
+        <div class="duck__info">${ducksArray[i].info}</div>
+        <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+        <div class="duck__amount">
+          <button id="subtract${i+1}" class="subtract_btn" data-operator="subtract">-</button>
+          <span class="amount_text">Antal:</span>
+          <span id="amount${i+1}" class="amount_value">0</span>
+          <button id="add${i+1}" class="add_btn" data-operator="add">+</button><br>
+        </div>
+        <button id="addToCart${i+1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
+      </article>
     `;
   }
 }
