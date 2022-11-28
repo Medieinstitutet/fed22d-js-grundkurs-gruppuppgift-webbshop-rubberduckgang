@@ -1,11 +1,4 @@
-/**
- *  Kund / Varukorgs funktioner, lägga till och ta bort varor.
- *
- *  1. Lägga till varor i varukorgen
- *  2. Ta bort varor från varukorgen
- *  3. Uppdatera totalpriset
- *  4. Kassa knapp???
- */
+'use strict';
 
 //*****************************************************************************************
 //------------------------------ Lite kod som måste köras först ---------------------------
@@ -19,6 +12,7 @@ const paymentInvoiceBox = document.querySelector(".hiddenPaymentInvoice");
 updateTotalPrice();
 giveMondayDiscount();
 
+
 //*****************************************************************************************
 //---------------------------------- Array för ankor -------------------------------------- By David
 //*****************************************************************************************
@@ -31,7 +25,7 @@ const ducksDatabase = [
         price: 150,
         rating: 4.5,
         category: 'standard',
-        amount: 0,
+        id: 1,
     },
     {
         name: 'Blue Rubber Duck',
@@ -40,7 +34,7 @@ const ducksDatabase = [
         price: 185,
         rating: 4,
         category: 'standard',
-        amount: 0,
+        id: 2,
     },
     {
         name: 'Green Rubber Duck',
@@ -49,7 +43,7 @@ const ducksDatabase = [
         price: 100,
         rating: 2,
         category: 'standard',
-        amount: 0,
+        id: 3,
     },
     {
         name: 'Pink Rubber Duck',
@@ -58,7 +52,7 @@ const ducksDatabase = [
         price: 125,
         rating: 3.5,
         category: 'standard',
-        amount: 0,
+        id: 4,
     },
     {
         name: 'Evel Knievel Duck',
@@ -67,7 +61,7 @@ const ducksDatabase = [
         price: 235,
         rating: 4,
         category: 'special',
-        amount: 0,
+        id: 5,
     },
     {
         name: 'Black Rubber Duck',
@@ -76,7 +70,7 @@ const ducksDatabase = [
         price: 666,
         rating: 0.5,
         category: 'unique',
-        amount: 0,
+        id: 6,
     },
     {
         name: 'Rainbow Duck',
@@ -85,7 +79,7 @@ const ducksDatabase = [
         price: 250,
         rating: 5,
         category: 'special',
-        amount: 0,
+        id: 7,
     },
     {
         name: 'Army of Ducks',
@@ -94,7 +88,7 @@ const ducksDatabase = [
         price: 1750,
         rating: 5,
         category: 'standard',
-        amount: 0,
+        id: 8,
     },
     {
         name: 'Giant Duck',
@@ -103,24 +97,38 @@ const ducksDatabase = [
         price: 2499,
         rating: 5,
         category: 'special',
-        amount: 0,
+        id: 9,
     },
     {
         name: 'THE Golden Duck',
         image: 'assets/img/produkt_10/produkt_10_a.webp',
         info: 'Ingen har någonsinn sett den, men här kan den beställas.',
-        price: 9999,
+        price: 3000,
         rating: 0,
         category: 'unique',
-        amount: 0,
+        id: 10,
     },
   ];
 
+  const cart = [];
+
 //*****************************************************************************************
 //------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
+//...Helgpris, påslag 15% på orginalpriset, Fre efter 15.00 till Mån 03.00 (WeekEndPrice)...By J. del Pilar
 //*****************************************************************************************
 
 const duckContainer = document.querySelector(".duck__wrapper");
+
+const weekendPrice = new Date();
+
+// let newWeekendPrice = ducksDatabase.map(prod => Math.round(prod.price));
+
+if((weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) || weekendPrice.getDay() === 6 || weekendPrice.getDay() === 0 || (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3 )) {
+
+    ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
+    
+  }
+
 
 function renderDucks() {
   let ducksArray = [...ducksDatabase];
@@ -145,27 +153,28 @@ function renderDucks() {
     }
 
     duckContainer.innerHTML += `
-      <article class="duck__${i+1}">
-        <div class="slideshow">
-          <button class="slideshow_btn_left">&lt;</button>
-          <img src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
-          <button class="slideshow_btn_right">&gt;</button>
-        </div>
-        <h3>${ducksArray[i].name}</h3>
-        <span class="duck__rating fa">${stars}</span>
-        <div class="duck__info">${ducksArray[i].info}</div>
-        <span id="duck__pricing__theme${i+1}" class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
-        <div class="duck__amount">
-          <button id="subtract${i+1}" class="subtract_btn" data-operator="subtract">-</button>
-          <span class="amount_text">Antal:</span>
-          <span id="amount${i+1}" class="amount_value">0</span>
-          <button id="add${i+1}" class="add_btn" data-operator="add">+</button><br>
-        </div>
-        <button id="addToCart${i+1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
-      </article>
+        <article class="duck__${i+1}" id="${ducksArray[i].id}">
+            <div class="slideshow">
+                <button class="slideshow_btn_left">&lt;</button>
+                <img class="duck__img" src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
+                <button class="slideshow_btn_right">&gt;</button>
+            </div>
+            <h3 class="duck__title">${ducksArray[i].name}</h3>
+            <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
+            <div class="duck__info">${ducksArray[i].info}</div>
+            <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+            <div class="duck__amount">
+                <button id="subtract${i+1}" class="subtract_btn" data-operator="subtract">-</button>
+                <span class="amount_text">Antal:</span>
+                <span id="amount${i+1}" class="amount_value">0</span>
+                <button id="add${i+1}" class="add_btn" data-operator="add">+</button><br>
+            </div>
+            <button id="addToCart${i+1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
+        </article>
     `;
   }
 }
+
 
 //*****************************************************************************************
 //--------------------------------------- Sortera ankor ----------------------------------- By Hanna
@@ -229,11 +238,18 @@ const maxDisplay = document.querySelector('#sliderMaxValue');
 
 let mostExpensiveDuck = -1;
 
-for (duck of ducksDatabase) {
-  if (duck.price > mostExpensiveDuck) {
-    mostExpensiveDuck = duck.price;
+for(let i = 0; i < ducksDatabase.length; i++) {
+
+   if (ducksDatabase[i].price > mostExpensiveDuck) {
+    mostExpensiveDuck = ducksDatabase[i].price;
   }
 }
+
+
+
+// for (duck of ducksDatabase) {
+
+// }
 
 fromSlider.max = mostExpensiveDuck;
 toSlider.max = mostExpensiveDuck;
@@ -327,8 +343,9 @@ const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"
 for (let i = 0; i < addBtn.length; i++) {
   subtractBtn[i].addEventListener('click', subtractDuck);
   addBtn[i].addEventListener('click', addDuck);
-  addToCartBtn[i].addEventListener('click', addDuckToCart)
+  addToCartBtn[i].addEventListener('click', addDuckToCart);
 }
+
 
 // Plus knappen lägger till +1 vid klick
 function addDuck(e) {
@@ -336,6 +353,7 @@ function addDuck(e) {
   const amountValue = document.querySelector(`#amount${index}`);
   let amount = Number(amountValue.innerText);
   amountValue.innerHTML = amount + 1;
+ 
 }
 
 // Minus knappen subtraherar -1 vid klick, om värdet redan är mindre än 0 och större än -1 avbryt
@@ -348,50 +366,163 @@ function subtractDuck(e) {
     return;
   } else
     amountValue.innerHTML = amount - 1;
+
 }
 
 // "Lägg till" knappen läser av värdet i amount fältet och sparar värdet i arrayen under rätt objekt.
 function addDuckToCart(e) {
   const index = e.currentTarget.id.replace('addToCart', ''); 
   const amount = document.querySelector(`#amount${index}`);
+  let ducksArray = [...ducksDatabase];
   ducksArray[index-1].amount = Number(amount.innerHTML);
+  console.log(amount.innerHTML);
 }
+
+
+//*****************************************************************************************
+//----------------- Lägg till en vara ur varukorgen---------------------------------------- By J. del Pilar
+//*****************************************************************************************
+
+const cartContainer = document.querySelector('.checkout__cart');
+
+
+cartContainer.innerHTML = '';
+
+for (let i = 0; i < addToCartBtn.length; i++) {
+  let addBtnClicked = addToCartBtn[i];
+  addBtnClicked.addEventListener('click', addItemToCart);
+}
+
+function addItemToCart(event) {
+
+  let button = event.target;
+  const clickedItem = button.parentElement;
+  const amountDom = clickedItem.getElementsByClassName('duck__amount')[0].getElementsByClassName('amount_value')[0];
+  const amountToAdd = parseInt(amountDom.innerHTML);
+  if (amountToAdd <= 0){
+    return;
+  }
+
+  const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id); 
+  duckToAdd.amount = amountToAdd;
+
+  cart.push(duckToAdd);
+  renderCart();
+  console.log(cart);
+
+  // addDuckToCart(image, price, title);
+
+}
+
+function renderCart() {
+  const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
+  checkoutCart.innerHTML = '';
+  for (let i = 0; i < cart.length; i++) {
+    checkoutCart.innerHTML +=
+    `
+    <div class="checkout__cart--row">
+      <article class="checkout__cart__article--product">
+        <img src=${cart[i].image} alt="" width="100">
+        <p>${cart[i].name}</p>
+      </article>
+
+      <article class="checkout__cart__article--price">
+        <span class="cart__product--price">${cart[i].price}</span>
+      </article>
+
+    <article class="checkout__cart__article--quantity">
+        <!--- Denna label ska göras visually-hidden i css/sass -->
+        <label class="visually-hidden" for="amount">antal</label>
+        <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="${cart[i].amount}">
+
+        <button role="button" class="btn-danger">Rensa</button>
+      </article>
+    </div>
+    `
+
+  }
+  updateTotalPrice();
+  giveMondayDiscount();
+}
+
+// function addDuckToCart() {
+//   let checkoutCartRow = document.createElement('div');
+//   checkoutCartRow.classList.add('checkout__cart--row')
+//   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
+//   let duckTitle = checkoutCart.getElementsByClassName('duck__title');
+//   for (let i = 0; i < duckTitle.length; i++) {
+//     if(duckTitle[i].innerText == title) {
+//       alert('Oj, denna vara ligger redan i varukorgen!');
+//       return;
+//     }
+//   }
+  
+//   const cartRowContent = 
+//   `
+//           <article class="checkout__cart__article--product">
+//             <img src=${image} alt="" width="100">
+//             <p>${title}</p>
+//           </article>
+
+//           <article class="checkout__cart__article--price">
+//             <span class="cart__product--price">${price}</span>
+//           </article>
+
+//           <article class="checkout__cart__article--quantity">
+//             <!--- Denna label ska göras visually-hidden i css/sass -->
+//             <label class="visually-hidden" for="amount">antal</label>
+//             <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="1">
+
+//             <button role="button" class="btn-danger">Rensa</button>
+//           </article>
+//   `
+//   checkoutCartRow.innerHTML = cartRowContent;
+//   checkoutCart.append(checkoutCartRow);
+//   updateTotalPrice();
+// }
+
+
+
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const removeProductBtn = document.getElementsByClassName("btn-danger"); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
+const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
 for (let i = 0; i < removeProductBtn.length; i++) {
   let removeBtn = removeProductBtn[i];
-  removeBtn.addEventListener("click", removeCartRow);
+  removeBtn.addEventListener('click', removeCartRow);
 }
 
 function removeCartRow(event) {
-  let removeBtnClicked = event.target;
-  removeBtnClicked.parentElement.parentElement.remove();
-  updateTotalPrice();
+    let removeBtnClicked = event.target
+    removeBtnClicked.parentElement.parentElement.remove();
+
+    updateTotalPrice();
+    giveDiscount();
+    giveMondayDiscount();
 }
 
 //*****************************************************************************************
 //----------------- Uppdatera totalpriset när antalet ändras ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const quantityInput = document.getElementsByClassName("cart__product--amount");
+const quantityInput = document.getElementsByClassName('cart__product--amount');
 for (let i = 0; i < quantityInput.length; i++) {
   const input = quantityInput[i];
-  input.addEventListener("change", quantityInputChanged);
+  input.addEventListener('change', quantityInputChanged);
 }
 
 function quantityInputChanged(event) {
-  const input = event.target;
-  if (isNaN(input.value) || input.value <= 0) {
-    input.value = 1;
-  }
-
-  updateTotalPrice();
-  giveDiscount();
-  giveMondayDiscount();
+    const input = event.target;
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+    }
+    
+    updateTotalPrice();
+    giveDiscount();
+    giveMondayDiscount();
+    visualCartUpdate()
 }
 
 //*****************************************************************************************
@@ -399,21 +530,19 @@ function quantityInputChanged(event) {
 //*****************************************************************************************
 
 function updateTotalPrice() {
-  const checkoutCart = document.getElementsByClassName("checkout__cart")[0];
-  const cartRows = checkoutCart.getElementsByClassName("checkout__cart--row");
+  const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
+  const cartRows = checkoutCart.getElementsByClassName('checkout__cart--row');
   let total = 0;
 
-  for (let i = 0; i < cartRows.length; i++) {
+    for (let i = 0; i < cartRows.length; i++) {
     const row = cartRows[i];
-    const productPrice = row.getElementsByClassName("cart__product--price")[0];
-    const productQuantity = row.getElementsByClassName(
-      "cart__product--amount"
-    )[0];
-
+    const productPrice = row.getElementsByClassName('cart__product--price')[0];
+    const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
+       
     const price = Number(productPrice.innerText);
     const quantity = productQuantity.value;
 
-    total = total + price * quantity;
+    total = total + (price * quantity);
   }
 
   const paymentInvoice = document.querySelector('#paymentInvoice');
@@ -430,6 +559,42 @@ function updateTotalPrice() {
 }
 
 //*****************************************************************************************
+//----------------- Visuell kundkorgsindikering på tillägg -------------------------------- By J. del Pilar
+//*****************************************************************************************
+
+const redFrame = document.querySelector('#cart__total__price');
+
+function visualCartUpdate() {
+    redFrame.classList.add('red__frame');
+    setTimeout(clearRedFrame, 300);
+}
+
+function clearRedFrame() {
+    redFrame.classList.remove('red__frame');
+}
+
+//*****************************************************************************************
+//------------------- Mängdrabatt vid köp av fler än 10 av samma sort --------------------- By J. del Pilar
+//*****************************************************************************************
+
+// let ducksArrayCheckAmount = [...ducksDatabase];
+
+// ducksArrayCheckAmount = ducksDatabase.filter((product) => {
+//     const amountOfDucks = product.amount;
+//     let duckPrice = product.price;
+//     console.log(duckPrice);
+//     if(amountOfDucks >= 10) {
+//         duckPrice = Math.round(duckPrice * 0.9);
+
+//         console.log(duckPrice);
+//     } else {
+//         console.log('ingen rabatt');
+//     }
+ 
+//   }); 
+
+
+//*****************************************************************************************
 //--------------------------- Måndagsrabatt 10% före kl 10.00 ----------------------------- By J. del Pilar
 //*****************************************************************************************
 
@@ -438,36 +603,36 @@ function giveMondayDiscount() {
   if (mondayDiscount.getDay() === 1 && mondayDiscount.getHours() < 10) {
     // söndag = 0, måndag = 1 osv
     const messageToUser =
-      "Måndag morgon, varsågod du får 10 % rabatt på din beställning";
-    document.getElementById("msg__to__user").innerText = messageToUser;
+      'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
+    document.getElementById('msg__to__user').innerText = messageToUser;
 
     let reducedPrice = document
-      .getElementById("cart__total__price")
+      .getElementById('cart__total__price')
       .innerHTML.replace(":-", "");
 
     reducedPrice = Number(reducedPrice * 0.9);
-    document.getElementById("cart__total__price").innerHTML =
-      reducedPrice + ":-";
+    document.getElementById('cart__total__price').innerHTML =
+      reducedPrice + ':-';
   } else {
-    document.getElementById("msg__to__user").innerText =
-      "Måndagar före kl 10.00 gäller 10% rabatt";
+    document.getElementById('msg__to__user').innerText =
+      'Måndagar före kl 10.00 gäller 10% rabatt';
   }
 }
 //*****************************************************************************************
 //--------------------------- Manuell rabattkod ------------------------------------------- By J. del Pilar
 //*****************************************************************************************
 
-const discountInput = document.getElementById("discount");
+const discountInput = document.getElementById('discount');
 
-discountInput.addEventListener("change", giveDiscount);
+discountInput.addEventListener('change', giveDiscount);
 
 function giveDiscount() {
-  if (discountInput.value == "a_damn_fine-cup_of_coffee") {
+  if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
     let newPrice = document
-      .getElementById("cart__total__price")
-      .innerHTML.replace(":-", "");
+      .getElementById('cart__total__price')
+      .innerHTML.replace(':-', '');
     newPrice = Number(newPrice * 0);
-    document.getElementById("cart__total__price").innerHTML = newPrice + ":-";
+    document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
   } else {
     updateTotalPrice();
     giveMondayDiscount();
