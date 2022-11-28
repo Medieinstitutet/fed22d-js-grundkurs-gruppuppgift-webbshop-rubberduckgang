@@ -23,7 +23,7 @@ const ducksDatabase = [
         image: 'assets/img/produkt_1/produkt_1_a.webp',
         info: 'Vår mest populära anka i klassisk gul färg.',
         price: 150,
-        rating: 5,
+        rating: 4.5,
         category: 'standard',
         id: 1,
     },
@@ -50,7 +50,7 @@ const ducksDatabase = [
         image: 'assets/img/produkt_4/produkt_4_a.webp',
         info: 'Vad ska man säga. Rosa är rosa!',
         price: 125,
-        rating: 3,
+        rating: 3.5,
         category: 'standard',
         id: 4,
     },
@@ -68,7 +68,7 @@ const ducksDatabase = [
         image: 'assets/img/produkt_6/produkt_6_a.webp',
         info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
         price: 666,
-        rating: 0,
+        rating: 0.5,
         category: 'unique',
         id: 6,
     },
@@ -137,10 +137,21 @@ function renderDucks() {
   ducksArray = filterCategories(ducksArray);
   sortDucks(ducksArray);
 
-
   duckContainer.innerHTML = "";
 
   for (let i = 0; i < ducksArray.length; i++) {
+    let stars = '';
+
+    for (let j = 0; j < 5 ; j++) {
+      if (j - ducksArray[i].rating < -0.5) {
+        stars += '&#xf005';
+      } else if (j - ducksArray[i].rating == -0.5) {
+        stars += '&#xf123';
+      } else {
+        stars += '&#xf006;';
+      }
+    }
+
     duckContainer.innerHTML += `
         <article class="duck__${i+1}" id="${ducksArray[i].id}">
             <div class="slideshow">
@@ -819,3 +830,21 @@ function resetForm() {
 }
 
 setTimeout(resetForm , 1000 * 60 * 15);
+
+//*****************************************************************************************
+//-------------------------------- Jultema på julafton ------------------------------------ By David
+//*****************************************************************************************
+
+let christmasEve = new Date();
+
+if(christmasEve.getDate() === 24 && christmasEve.getMonth() === 11) {
+  let ducksArray = [...ducksDatabase];
+  const body = document.querySelector('#body')
+
+  body.classList.add('body__christmas__theme')
+
+  for (let i = 0; i < ducksArray.length; i++) {
+    const duckPrice = document.querySelector(`#duck__pricing__theme${i+1}`)
+    duckPrice.classList.add('duck__pricing__christmas')
+  }
+}
