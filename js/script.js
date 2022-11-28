@@ -29,7 +29,7 @@ const ducksDatabase = [
         image: 'assets/img/produkt_1/produkt_1_a.webp',
         info: 'Vår mest populära anka i klassisk gul färg.',
         price: 150,
-        rating: 5,
+        rating: 4.5,
         category: 'standard',
         amount: 0,
     },
@@ -56,7 +56,7 @@ const ducksDatabase = [
         image: 'assets/img/produkt_4/produkt_4_a.webp',
         info: 'Vad ska man säga. Rosa är rosa!',
         price: 125,
-        rating: 3,
+        rating: 3.5,
         category: 'standard',
         amount: 0,
     },
@@ -74,7 +74,7 @@ const ducksDatabase = [
         image: 'assets/img/produkt_6/produkt_6_a.webp',
         info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
         price: 666,
-        rating: 0,
+        rating: 0.5,
         category: 'unique',
         amount: 0,
     },
@@ -129,14 +129,19 @@ function renderDucks() {
   ducksArray = filterCategories(ducksArray);
   sortDucks(ducksArray);
 
-
   duckContainer.innerHTML = "";
 
   for (let i = 0; i < ducksArray.length; i++) {
-    let starText = '';
+    let stars = '';
 
-    for (let j = 0; j < ducksArray[i].rating; j++) {
-      starText += '&#9733;';
+    for (let j = 0; j < 5 ; j++) {
+      if (j - ducksArray[i].rating < -0.5) {
+        stars += '&#xf005';
+      } else if (j - ducksArray[i].rating == -0.5) {
+        stars += '&#xf123';
+      } else {
+        stars += '&#xf006;';
+      }
     }
 
     duckContainer.innerHTML += `
@@ -147,7 +152,7 @@ function renderDucks() {
           <button class="slideshow_btn_right">&gt;</button>
         </div>
         <h3>${ducksArray[i].name}</h3>
-        <span class="duck__rating">${starText}</span>
+        <span class="duck__rating fa">${stars}</span>
         <div class="duck__info">${ducksArray[i].info}</div>
         <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
         <div class="duck__amount">
