@@ -154,7 +154,7 @@ function renderDucks() {
         <h3>${ducksArray[i].name}</h3>
         <span class="duck__rating fa">${stars}</span>
         <div class="duck__info">${ducksArray[i].info}</div>
-        <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+        <span id="duck__pricing__theme${i+1}" class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
         <div class="duck__amount">
           <button id="subtract${i+1}" class="subtract_btn" data-operator="subtract">-</button>
           <span class="amount_text">Antal:</span>
@@ -665,3 +665,21 @@ function resetForm() {
 }
 
 setTimeout(resetForm , 1000 * 60 * 15);
+
+//*****************************************************************************************
+//-------------------------------- Jultema på julafton ------------------------------------ By David
+//*****************************************************************************************
+
+let christmasEve = new Date();
+
+if(christmasEve.getDate() === 24 && christmasEve.getMonth() === 11) {
+  let ducksArray = [...ducksDatabase];
+  const body = document.querySelector('#body')
+
+  body.classList.add('body__christmas__theme')
+
+  for (let i = 0; i < ducksArray.length; i++) {
+    const duckPrice = document.querySelector(`#duck__pricing__theme${i+1}`)
+    duckPrice.classList.add('duck__pricing__christmas')
+  }
+}
