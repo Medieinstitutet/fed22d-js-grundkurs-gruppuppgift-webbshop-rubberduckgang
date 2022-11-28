@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+/* * {
+  outline: 1px solid #f00 !important; // Turn on to see layout and overflowing containers better
+} */
+
 .clearfix::after {
 	content: "";
 	clear: both;
@@ -17,20 +21,19 @@ html {
     color: red !important;
 }
 
-
 /*--------------Sass rules-----------------*/
 $primary-color: #556edf;
 $secondary-color: #fdbc91;
 
 /*--------------Header & Intro, by Hanna-----------------*/
 header {
-	// font-family: "Playfair Display", serif;
+  margin-bottom: 50px;
 
 	nav {
 		background-color: $primary-color;
 		opacity: 90%;
 		position: fixed;
-		z-index: 1;
+		z-index: 4;
 		top: 0;
 		width: 100%;
 		display: flex;
@@ -38,22 +41,27 @@ header {
 		padding-left: 20px;
 		padding-right: 20px;
 
-		h1 {
-			font-weight: 600;
-		}
+    a {
+      color: black;
+      text-decoration: none;
 
-		.material-symbols-outlined {
-			position: relative;
-			top: 25px;
-			font-size: 2rem;
-		}
+      h1 {
+        font-weight: 600;
+      }
+
+      .material-symbols-outlined {
+        position: relative;
+        top: 25px;
+        font-size: 2rem;
+      }
+    }
 	}
 
 	.intro {
 		padding-top: 100px;
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+    flex-wrap: wrap;
+		justify-content: space-evenly;
 		align-items: center;
 		margin: 20px;
 
@@ -67,13 +75,10 @@ header {
 		}
 
 		.intro-img-rubberduck {
-			width: 300px;
-			height: 300px;
 			border-radius: 100%;
 		}
 	}
 }
-/*--------------End of 'Header & Intro'-----------------*/
 
 /*--------------Checkout Form, by Hanna-----------------*/
 .checkoutContainer {
@@ -100,6 +105,7 @@ header {
 
         .paymentMethodLabel{
             border-bottom: none;
+            width: 80px;
         }
 
         .hiddenPaymentCard, .hiddenPaymentInvoice {
@@ -185,11 +191,105 @@ input::-webkit-inner-spin-button {
 	background-color: rgba(196, 63, 65, 70%);
 	transition: all 0.4s ease;
 }
-/*--------------End Of Checkout Form-----------------*/
+/*--------------Sorting ducks-----------------*/
+
+.sorting__section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/*--------------Filtering ducks-----------------*/
+.filtering__section {
+  $slider-height: 3px;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 60%;
+  margin: 10px auto;
+
+  .filter__price__text {
+    text-align: center;
+  }
+
+  .sliders_control {
+    position: relative;
+    min-height: 50px;
+
+    #sliderMinValue {
+      position: absolute;
+      left: -60px;
+      bottom: 40px;
+    }
+
+    #sliderMaxValue {
+      position: absolute;
+      right: -60px;
+      bottom: 40px;
+    }
+
+    #sliderMinValue::after, #sliderMaxValue::after {
+      content: " kr";
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: $slider-height;
+      width: 100%;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb{
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #C6C6C6;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    input[type=range]::-moz-range-thumb{
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #C6C6C6;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    input[type=range]::-ms-thumb{
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #C6C6C6;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    #fromSlider {
+      height: 0;
+      z-index: 2;
+    }
+
+    #fromSlider::-webkit-slider-thumb {
+      transform:translateY($slider-height/2);
+    }
+    #fromSlider::-moz-range-thumb {
+      transform:translateY($slider-height/2);
+    }
+    #fromSlider::-ms-thumb {
+      transform:translateY($slider-height/2);
+    }
+  }
+}
+
 
 /*-------------- Main duck page -----------------*/
 
-.duck__wrapper{  
+.duck__wrapper{
     display: grid;
     justify-content: center;
     grid-template-columns: 45% 45%;
@@ -216,10 +316,28 @@ input::-webkit-inner-spin-button {
         justify-content: center;
         align-items: center;
 
-        span{
+        .slideshow_btn_left{
             padding: 0.25rem;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            background-color: transparent;
+            border: none;
+            position: relative;
+            left: 24px;
+            height: 35px;
+            width: 35px;
         }
+
+        .slideshow_btn_right{
+          padding: 0.25rem;
+          font-size: 1.25rem;
+          background-color: transparent;
+          border: none;
+          position: relative;
+          right: 24px;
+          height: 35px;
+          width: 35px;
+      }
+
       }
 
       h3{
@@ -253,7 +371,7 @@ input::-webkit-inner-spin-button {
         width: 150px;
         margin: 5px;
 
-        span{
+        .amount_text{
             position: absolute;
             top: -5px;
         }
@@ -265,24 +383,8 @@ input::-webkit-inner-spin-button {
         border: 2px solid gray;
       }
 
+      .add_btn,
       .subtract_btn{
-        background-color: $secondary-color;
-        color: #000;
-        font-size: 1rem;
-        width: 35px;
-        height: 35px;
-        padding: 0.5rem;
-        margin: 0.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #000;
-        box-shadow: 2px 2px 2px rgb(95, 90, 90);
-        position: relative;
-        transition: all 0.15s ease-in-out;
-        right: 0px;
-        bottom: 0px;
-      }
-
-      .add_btn{
         background-color: $secondary-color;
         color: #000;
         font-size: 1rem;
@@ -313,7 +415,9 @@ input::-webkit-inner-spin-button {
         bottom: 0px;
       }
 
-      button:hover{
+      .add_btn:hover,
+      .subtract_btn:hover,
+      .add_to_cart_btn:hover{
         box-shadow: 3px 3px 3px rgb(95, 90, 90);
         position: relative;
         right: 1px;
@@ -335,44 +439,44 @@ input::-webkit-inner-spin-button {
       }
 }
 
-.duck__1{ 
-    grid-area: duck__1; 
+.duck__1{
+    grid-area: duck__1;
 }
 
-.duck__2{ 
+.duck__2{
     grid-area: duck__2;
 }
 
-.duck__3{ 
-    grid-area: duck__3; 
+.duck__3{
+    grid-area: duck__3;
 }
 
-.duck__4{ 
-    grid-area: duck__4; 
+.duck__4{
+    grid-area: duck__4;
 }
 
-.duck__5{ 
-    grid-area: duck__5; 
+.duck__5{
+    grid-area: duck__5;
 }
 
-.duck__6{ 
-    grid-area: duck__6; 
+.duck__6{
+    grid-area: duck__6;
 }
 
-.duck__7{ 
-    grid-area: duck__7; 
+.duck__7{
+    grid-area: duck__7;
 }
 
-.duck__8{ 
-    grid-area: duck__8; 
+.duck__8{
+    grid-area: duck__8;
 }
 
-.duck__9{ 
-    grid-area: duck__9; 
+.duck__9{
+    grid-area: duck__9;
 }
 
-.duck__10{ 
-    grid-area: duck__10; 
+.duck__10{
+    grid-area: duck__10;
 }
 
 /*-------------- End of Main duck page -----------------*/

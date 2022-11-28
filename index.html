@@ -17,23 +17,25 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 
-
 </head>
 
 <body>
 
-
   <!--Header, first part, by Hanna-->
-  <header>
+  <header id="headerID">
     <nav>
-      <h1>Gottfrids ankor</h1>
-      <span class="material-symbols-outlined">shopping_cart</span>
+      <a href="#headerID" aria-label="Navigate to start page">
+        <h1>Gottfrids ankor</h1>
+      </a>
+      <a href="#checkoutID" aria-label="Navigate to shopping cart">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </a>
     </nav>
 
     <section class="intro">
       <h2><br><br>Välkommen till Gottfrids! Här finner du alla ankor du någonsin drömt om.. plus fler!</h2>
-      <img class="intro-img-rubberduck" src="assets/img/header-purple-duck.png" alt="A drawn purple duck" width="400"
-        height="400" loading="lazy">
+      <img class="intro-img-rubberduck" src="assets/img/header-purple-duck.png" alt="A drawn purple duck" width="300"
+        height="300" loading="lazy">
     </section>
   </header>
 
@@ -41,10 +43,42 @@
 
     <!--Main duck page-->
 
+    <section class="filtering__section">
+      <p class="filter__price__text">Filtrera på pris:</p>
+      <div class="sliders_control">
+        <div id="sliderMinValue">
+        </div>
+        <input id="fromSlider" type="range" value="0" min="0" max="100">
+        <input id="toSlider" type="range" value="100" min="0" max="100">
+        <div id="sliderMaxValue">
+        </div>
+      </div>
+    </section>
+
+    <section class="sorting__section">
+      <label>
+        <select id="sort__options">
+          <option selected disabled>Sortera på:</option>
+          <option id="sortRating">Betyg</option>
+          <option id="sortPriceLow">Pris: Lågt till högt</option>
+          <option id="sortPriceHigh">Pris: Högt till lågt</option>
+        </select>
+      </label>
+      <label>
+        <select id="sort__categories">
+          <option selected disabled>Välj kategori:</option>
+          <option id="categoryAll">Alla</option>
+          <option id="categoryUnique">Unik</option>
+          <option id="categorySpecial">Speciell</option>
+          <option id="categoryStandard">Standard</option>
+        </select>
+      </label>
+    </section>
+
     <div class="duck__wrapper"></div>
 
     <!------ Shopping cart, by Joel-------->
-    <section class="checkout">
+    <section class="checkout" id="checkoutID">
       <h2>Varukorg</h2>
 
       <header class="checkout__header">
@@ -134,7 +168,7 @@
           <span>Adress (gata)</span>
         </label>
         <label for="zipCode">
-          <input type="number" id="zipCode" class="validatedText lock">
+          <input type="text" id="zipCode" class="validatedText lock">
           <span id="zipCodeSpan">Postnummer</span>
         </label>
         <label for="cityName">
@@ -142,11 +176,11 @@
           <span>Postort</span>
         </label>
         <label for="buzzCode">
-          <input type="number" id="buzzCode" class="lock">
+          <input type="text" id="buzzCode" class="lock">
           <span>Eventuell portkod</span>
         </label>
         <label for="phoneNumber">
-          <input type="number" id="phoneNumber" class="validatedText lock">
+          <input type="text" id="phoneNumber" class="validatedText lock">
           <span id="phoneNumberSpan">Telefonnummer</span>
         </label>
         <label for="email">
@@ -164,7 +198,7 @@
           <input id="paymentInvoice" class="lock" type="radio" name="radio">
           Faktura
         </label>
-        
+
         <div class="hiddenPaymentCard">
           <label for="cardNumber">
             <input type="number" id="cardNumber" class="validatedText lock">
@@ -181,7 +215,7 @@
         </div>
         <div class="hiddenPaymentInvoice">
           <label for="socialSecurityNumber">
-            <input type="number" id="socialSecurityNumber" class="validatedText lock">
+            <input type="text" id="socialSecurityNumber" class="validatedText lock">
             <span id="socialSecurityNumberSpan">Personnummer</span>
           </label>
         </div>
