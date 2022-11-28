@@ -103,7 +103,7 @@ const ducksDatabase = [
         name: 'THE Golden Duck',
         image: 'assets/img/produkt_10/produkt_10_a.webp',
         info: 'Ingen har någonsinn sett den, men här kan den beställas.',
-        price: 9999,
+        price: 3000,
         rating: 0,
         category: 'unique',
         amount: 0,
@@ -119,10 +119,10 @@ const duckContainer = document.querySelector(".duck__wrapper");
 
 const weekendPrice = new Date();
 
-let newWeekendPrice = ducksArray.map(prod => Math.round(prod.price));
+let newWeekendPrice = ducksDatabase.map(prod => Math.round(prod.price));
 
 if((weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) || weekendPrice.getDay() === 6 || weekendPrice.getDay() === 0 || (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3 )) {
-     newWeekendPrice = ducksArray.map(prod => Math.round(prod.price * 1.15));
+     newWeekendPrice = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
     
   }
 
@@ -161,6 +161,7 @@ function renderDucks() {
   }
 
 }
+
 
 //*****************************************************************************************
 //--------------------------------------- Sortera ankor ----------------------------------- By Hanna
@@ -224,11 +225,18 @@ const maxDisplay = document.querySelector('#sliderMaxValue');
 
 let mostExpensiveDuck = -1;
 
-for (duck of ducksDatabase) {
-  if (duck.price > mostExpensiveDuck) {
-    mostExpensiveDuck = duck.price;
+for(let i = 0; i < ducksDatabase.length; i++) {
+
+   if (ducksDatabase[i].price > mostExpensiveDuck) {
+    mostExpensiveDuck = ducksDatabase[i].price;
   }
 }
+
+
+
+// for (duck of ducksDatabase) {
+
+// }
 
 fromSlider.max = mostExpensiveDuck;
 toSlider.max = mostExpensiveDuck;
@@ -445,21 +453,21 @@ function clearRedFrame() {
 //------------------- Mängdrabatt vid köp av fler än 10 av samma sort --------------------- By J. del Pilar
 //*****************************************************************************************
 
-let ducksArrayCheckAmount = [...ducksArray];
+// let ducksArrayCheckAmount = [...ducksDatabase];
 
-ducksArrayCheckAmount = ducksArray.filter((product) => {
-    const amountOfDucks = product.amount;
-    let duckPrice = product.price;
-    console.log(duckPrice);
-    if(amountOfDucks >= 10) {
-        duckPrice = Math.round(duckPrice * 0.9);
+// ducksArrayCheckAmount = ducksDatabase.filter((product) => {
+//     const amountOfDucks = product.amount;
+//     let duckPrice = product.price;
+//     console.log(duckPrice);
+//     if(amountOfDucks >= 10) {
+//         duckPrice = Math.round(duckPrice * 0.9);
 
-        console.log(duckPrice);
-    } else {
-        console.log('ingen rabatt');
-    }
+//         console.log(duckPrice);
+//     } else {
+//         console.log('ingen rabatt');
+//     }
  
-  }); 
+//   }); 
 
 
 //*****************************************************************************************
