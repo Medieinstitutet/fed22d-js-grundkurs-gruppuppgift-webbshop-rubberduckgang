@@ -480,3 +480,20 @@ input::-webkit-inner-spin-button {
 }
 
 /*-------------- End of Main duck page -----------------*/
+
+/*--------------Christmas theme-----------------*/
+
+.body__christmas__theme {
+  background-image: url(../assets/img/christmas_theme_bg/christmas_theme_bg.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.duck__pricing__christmas {
+  color: red;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
