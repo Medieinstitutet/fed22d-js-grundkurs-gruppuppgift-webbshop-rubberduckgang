@@ -1,7 +1,7 @@
 'use strict';
 
 //*****************************************************************************************
-//------------------------------ Lite kod som måste köras först ---------------------------
+//------------------------------ Initialize HTML references -------------------------------
 //*****************************************************************************************
 
 const paymentCardInput = document.querySelector('#paymentCard');
@@ -13,13 +13,14 @@ updateTotalPrice();
 giveMondayDiscount();
 
 //*****************************************************************************************
-//---------------------------------- Array för ankor -------------------------------------- By David
+//-------------------------------- Initialize ducksDatabase ------------------------------- By David
+//........Weekend price, 15% more friday after 15:00 to monday 03.00 (WeekEndPrice)........By J. del Pilar
 //*****************************************************************************************
 
 const ducksDatabase = [
   {
-    name: 'Regular Rubber Duck',
-    image: 'assets/img/produkt_1/produkt_1_a.webp',
+    name: 'Simpel gummianka',
+    image: 'assets/img/product_1/product_1_a.webp',
     info: 'Vår mest populära anka i klassisk gul färg.',
     price: 150,
     rating: 4.5,
@@ -28,9 +29,9 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Blue Rubber Duck',
-    image: 'assets/img/produkt_2/produkt_2_a.webp',
-    info: "Nykomling med hög potential. It's Blue Da-ba-dee!",
+    name: 'Blå gummianka',
+    image: 'assets/img/product_2/product_2_a.webp',
+    info: 'Nykomling med hög potential. Det är Blue Da-ba-dee!',
     price: 185,
     rating: 4,
     category: 'standard',
@@ -38,9 +39,9 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Green Rubber Duck',
-    image: 'assets/img/produkt_3/produkt_3_a.webp',
-    info: 'The greenie!! Ge han lite tid, han kommer ta sig.',
+    name: 'Grön gummianka',
+    image: 'assets/img/product_3/product_3_a.webp',
+    info: 'Gröngölingen! Ge han lite tid, han kommer ta sig.',
     price: 100,
     rating: 2,
     category: 'standard',
@@ -48,8 +49,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Pink Rubber Duck',
-    image: 'assets/img/produkt_4/produkt_4_a.webp',
+    name: 'Rosa gummianka',
+    image: 'assets/img/product_4/product_4_a.webp',
     info: 'Vad ska man säga. Rosa är rosa!',
     price: 125,
     rating: 3.5,
@@ -58,8 +59,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Evel Knievel Duck',
-    image: 'assets/img/produkt_5/produkt_5_a.webp',
+    name: 'Evel Knievel-ankan',
+    image: 'assets/img/product_5/product_5_a.webp',
     info: 'Kommer bjuda på en show du inte visste en anka kan!',
     price: 235,
     rating: 4,
@@ -68,8 +69,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Black Rubber Duck',
-    image: 'assets/img/produkt_6/produkt_6_a.webp',
+    name: 'Svart gummianka',
+    image: 'assets/img/product_6/product_6_a.webp',
     info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
     price: 666,
     rating: 0.5,
@@ -78,8 +79,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Rainbow Duck',
-    image: 'assets/img/produkt_7/produkt_7_a.webp',
+    name: 'Regnbågsankan',
+    image: 'assets/img/product_7/product_7_a.webp',
     info: 'Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.',
     price: 250,
     rating: 5,
@@ -88,8 +89,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Army of Ducks',
-    image: 'assets/img/produkt_8/produkt_8_a.webp',
+    name: 'Ankornas armé',
+    image: 'assets/img/product_8/product_8_a.webp',
     info: 'Fler, Fler, FLEEEEEER ANKOR!',
     price: 1750,
     rating: 5,
@@ -98,8 +99,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Giant Duck',
-    image: 'assets/img/produkt_9/produkt_9_a.webp',
+    name: 'Giganten',
+    image: 'assets/img/product_9/product_9_a.webp',
     info: 'När det gäller ankor så har i alla fall storleken betydelse.',
     price: 2499,
     rating: 5,
@@ -108,8 +109,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'THE Golden Duck',
-    image: 'assets/img/produkt_10/produkt_10_a.webp',
+    name: 'Den enda guldankan',
+    image: 'assets/img/product_10/product_10_a.webp',
     info: 'Ingen har någonsinn sett den, men här kan den beställas.',
     price: 3000,
     rating: 0,
@@ -118,8 +119,8 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Stjärngosse',
-    image: 'assets/img/produkt_11/produkt_11_a.webp',
+    name: 'Stjärngåsen',
+    image: 'assets/img/product_11/product_11_a.webp',
     info: 'Stilla natt, heliga natt..',
     price: 0,
     rating: 3,
@@ -129,18 +130,7 @@ const ducksDatabase = [
   },
 ];
 
-let cart = [];
-
-//*****************************************************************************************
-//------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
-//...Helgpris, påslag 15% på orginalpriset, Fre efter 15.00 till Mån 03.00 (WeekEndPrice)...By J. del Pilar
-//*****************************************************************************************
-
-const duckContainer = document.querySelector('.duck__wrapper');
-
 const weekendPrice = new Date();
-
-// let newWeekendPrice = ducksDatabase.map(prod => Math.round(prod.price));
 
 if (
   (weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) ||
@@ -150,6 +140,14 @@ if (
 ) {
   ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
 }
+
+let cart = [];
+
+//*****************************************************************************************
+//--------------------------------- Render ducks to HTML ---------------------------------- By David
+//*****************************************************************************************
+
+const duckContainer = document.querySelector('.duck__wrapper');
 
 function renderDucks() {
   let ducksArray = [...ducksDatabase];
@@ -201,7 +199,7 @@ function renderDucks() {
 }
 
 //*****************************************************************************************
-//--------------------------------------- Sortera ankor ----------------------------------- By Hanna
+//--------------------------------------- Sort ducks -------------------------------------- By Hanna
 //*****************************************************************************************
 
 const sortOptions = document.querySelector('#sort__options');
@@ -226,7 +224,7 @@ function sortDucks(ducksArray) {
 }
 
 //*****************************************************************************************
-//-------------------------------------- Välja kategori ----------------------------------- By Hanna
+//---------------------------------- Filter by category ----------------------------------- By Hanna
 //*****************************************************************************************
 
 const sortCategory = document.querySelector('#sort__categories');
@@ -252,7 +250,7 @@ function filterCategories(ducksArray) {
 }
 
 //*****************************************************************************************
-//---------------------------------- Filtrera ankor på pris ------------------------------- By Hanna
+//---------------------------------- Filter ducks by price -------------------------------- By Hanna
 //*****************************************************************************************
 
 const fromSlider = document.querySelector('#fromSlider');
@@ -348,7 +346,7 @@ function filterPrice(ducksArray) {
 renderDucks();
 
 //*****************************************************************************************
-//------------------------------ Plus/minus & Lägg till ----------------------------------- By David
+//------------------------------- Add & subtract amount ----------------------------------- By David
 //*****************************************************************************************
 
 //Variabler för knapparna Plus, minus och lägg till
@@ -391,7 +389,7 @@ function addDuckToCart(e) {
 }
 
 //*****************************************************************************************
-//----------------- Lägg till en vara ur varukorgen---------------------------------------- By J. del Pilar
+//----------------------------- Add article to cart---------------------------------------- By J. del Pilar
 //*****************************************************************************************
 
 const cartContainer = document.querySelector('.checkout__cart');
@@ -466,10 +464,10 @@ function hasLuciaDuck(cart) {
 }
 
 //*****************************************************************************************
-//-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
+//--------------------- Remove article from cart, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
+const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variable to access button "btn-danger" (clear)
 for (let i = 0; i < removeProductBtn.length; i++) {
   let removeBtn = removeProductBtn[i];
   removeBtn.addEventListener('click', removeCartRow);
@@ -485,7 +483,7 @@ function removeCartRow(event) {
 }
 
 //*****************************************************************************************
-//----------------- Uppdatera totalpriset när antalet ändras ------------------------------ By J. del Pilar
+//----------------- Update total price when changed quantity ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
 const quantityInput = document.getElementsByClassName('cart__product--amount');
@@ -507,7 +505,7 @@ function quantityInputChanged(event) {
 }
 
 //*****************************************************************************************
-//-----------------Uppdatera totalpriset när en vara tas bort ----------------------------- By J. del Pilar
+//--------------------- Update total sum when article removed ----------------------------- By J. del Pilar
 //*****************************************************************************************
 
 function updateTotalPrice() {
@@ -534,13 +532,13 @@ function updateTotalPrice() {
     switchPayment('paymentCard');
   } else {
     paymentInvoice.disabled = false;
-  } //denna kod är från hanna & gör att faktura väljs bort när totalsumman > 800
+  }
 
   document.getElementById('cart__total__price').innerText = total + ':-';
 }
 
 //*****************************************************************************************
-//----------------- Visuell kundkorgsindikering på tillägg -------------------------------- By J. del Pilar
+//-------------------- Visual indicator on addition in cart ------------------------------- By J. del Pilar
 //*****************************************************************************************
 
 const redFrame = document.querySelector('#cart__total__price');
@@ -555,7 +553,7 @@ function clearRedFrame() {
 }
 
 //*****************************************************************************************
-//------------------- Mängdrabatt vid köp av fler än 10 av samma sort --------------------- By J. del Pilar
+//--------------- Quantity discount when purchase 10 or more of the same sort ------------- By J. del Pilar
 //*****************************************************************************************
 
 // let ducksArrayCheckAmount = [...ducksDatabase];
@@ -575,7 +573,7 @@ function clearRedFrame() {
 //   });
 
 //*****************************************************************************************
-//--------------------------- Måndagsrabatt 10% före kl 10.00 ----------------------------- By J. del Pilar
+//----------------------------- Monday discount 10% before 10:00 -------------------------- By J. del Pilar
 //*****************************************************************************************
 
 function giveMondayDiscount() {
@@ -594,7 +592,7 @@ function giveMondayDiscount() {
   }
 }
 //*****************************************************************************************
-//--------------------------- Manuell rabattkod ------------------------------------------- By J. del Pilar
+//---------------------------- Manual discount code --------------------------------------- By J. del Pilar
 //*****************************************************************************************
 
 const discountInput = document.getElementById('discount');
@@ -613,7 +611,7 @@ function giveDiscount() {
 }
 
 //*****************************************************************************************
-//--------------------------- Toggle mellan kort & faktura -------------------------------- By Hanna
+//--------------------------- Toggle between card & invoice ------------------------------- By Hanna
 //*****************************************************************************************
 
 paymentCardInput.addEventListener('change', switchPaymentEventHandler);
@@ -641,7 +639,7 @@ function switchPayment(paymentType) {
 }
 
 //*****************************************************************************************
-//-------------------- Validering av formuläret (enablar beställ-knapp) ------------------- By Hanna
+//------------------------ Validate form (enables order button) --------------------------- By Hanna
 //*****************************************************************************************
 
 const orderBtn = document.querySelector('#orderButton');
@@ -692,7 +690,7 @@ checkoutForm.addEventListener('submit', order);
 const formInputs = document.querySelectorAll('.lock');
 
 //*****************************************************************************************
-//-------------- Validering av formuläret (vid klick på beställ-knapp) -------------------- By Hanna
+//---------------------- Validate form (when clicking order button) ----------------------- By Hanna
 //*****************************************************************************************
 
 function order(e) {
@@ -766,29 +764,29 @@ function order(e) {
 }
 
 //*****************************************************************************************
-//-------------------------------------- Leveranstider ------------------------------------ By Hanna
+//---------------------------------------- Delivery --------------------------------------- By Hanna
 //*****************************************************************************************
 
 function getDeliveryTime() {
   const now = new Date();
 
   if (now.getDay() === 5 || now.getDay() === 6) {
-    return 'om 90 min.'; //om kunden beställer på lör eller sön
+    return 'om 90 min.'; //if customer orders on a saturday or sunday
   }
 
   if (now.getHours() >= 0 && now.getHours() <= 6) {
-    return 'om 45 min.'; //om kunden beställer mellan 24:00 & 6:00
+    return 'om 45 min.'; //if customer orders between 24:00 & 6:00
   }
 
   if (now.getDay() === 4 && now.getHours() >= 11 && now.getHours() <= 13) {
-    return 'kl 15:00.'; //om kunden beställer på en fredag mellan 11 & 13
+    return 'kl 15:00.'; //if customer orders on a friday between 11:00 & 13:00
   }
 
-  return 'om 30 min.'; //standard-leverans
+  return 'om 30 min.'; //standard-delivery
 }
 
 //*****************************************************************************************
-//------------------------------ Rensar formulär efter 15 min ----------------------------- By Hanna
+//------------------------------ Clear form after 15 minutes ------------------------------ By Hanna
 //*****************************************************************************************
 
 function resetForm() {
@@ -799,7 +797,7 @@ function resetForm() {
 setTimeout(resetForm, 1000 * 60 * 15);
 
 //*****************************************************************************************
-//-------------------------------- Radera beställning-knapp ------------------------------- By Hanna
+//----------------------------------- Delete order-button --------------------------------- By Hanna
 //*****************************************************************************************
 
 const clearOrderBtn = document.querySelector('#clearOrder');
@@ -813,7 +811,7 @@ function clearOrder() {
 }
 
 //*****************************************************************************************
-//-------------------------------- Jultema på julafton ------------------------------------ By David
+//--------------------------- Christmas theme on Christmas eve ---------------------------- By David
 //*****************************************************************************************
 
 let christmasEve = new Date();

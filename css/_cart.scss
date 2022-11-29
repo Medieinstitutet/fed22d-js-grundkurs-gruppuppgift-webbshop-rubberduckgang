@@ -1,4 +1,4 @@
-/*--------------------------- Styling för varu/kundkorg ---------------------------*/
+/*--------------------------- Styling for cart ---------------------------*/
 
 .checkout {
 	width: 90vw;
@@ -23,11 +23,9 @@
 	display: grid;
 	grid-template-columns: 3fr 1fr 2fr;
 
-	// &:last-child {
 	align-items: center;
 
 	& .checkout__cart__article--product {
-		// display: flex;
 		text-align: left;
 	}
 
