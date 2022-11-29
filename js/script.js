@@ -25,6 +25,7 @@ const ducksDatabase = [
     rating: 4.5,
     category: 'standard',
     id: 1,
+    visible: true,
   },
   {
     name: 'Blue Rubber Duck',
@@ -34,6 +35,7 @@ const ducksDatabase = [
     rating: 4,
     category: 'standard',
     id: 2,
+    visible: true,
   },
   {
     name: 'Green Rubber Duck',
@@ -43,6 +45,7 @@ const ducksDatabase = [
     rating: 2,
     category: 'standard',
     id: 3,
+    visible: true,
   },
   {
     name: 'Pink Rubber Duck',
@@ -52,6 +55,7 @@ const ducksDatabase = [
     rating: 3.5,
     category: 'standard',
     id: 4,
+    visible: true,
   },
   {
     name: 'Evel Knievel Duck',
@@ -61,6 +65,7 @@ const ducksDatabase = [
     rating: 4,
     category: 'special',
     id: 5,
+    visible: true,
   },
   {
     name: 'Black Rubber Duck',
@@ -70,6 +75,7 @@ const ducksDatabase = [
     rating: 0.5,
     category: 'unique',
     id: 6,
+    visible: true,
   },
   {
     name: 'Rainbow Duck',
@@ -79,6 +85,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'special',
     id: 7,
+    visible: true,
   },
   {
     name: 'Army of Ducks',
@@ -88,6 +95,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'standard',
     id: 8,
+    visible: true,
   },
   {
     name: 'Giant Duck',
@@ -97,6 +105,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'special',
     id: 9,
+    visible: true,
   },
   {
     name: 'THE Golden Duck',
@@ -106,6 +115,17 @@ const ducksDatabase = [
     rating: 0,
     category: 'unique',
     id: 10,
+    visible: true,
+  },
+  {
+    name: 'Stjärngosse',
+    image: 'assets/img/produkt_11/produkt_11_a.webp',
+    info: 'Stilla natt, heliga natt..',
+    price: 0,
+    rating: 3,
+    category: 'unique',
+    id: 11,
+    visible: false,
   },
 ];
 
@@ -141,6 +161,10 @@ function renderDucks() {
   duckContainer.innerHTML = '';
 
   for (let i = 0; i < ducksArray.length; i++) {
+    if (!ducksArray[i].visible) {
+      continue;
+    }
+
     let stars = '';
 
     for (let j = 0; j < 5; j++) {
@@ -243,10 +267,6 @@ for (let i = 0; i < ducksDatabase.length; i++) {
     mostExpensiveDuck = ducksDatabase[i].price;
   }
 }
-
-// for (duck of ducksDatabase) {
-
-// }
 
 fromSlider.max = mostExpensiveDuck;
 toSlider.max = mostExpensiveDuck;
@@ -368,7 +388,6 @@ function addDuckToCart(e) {
   const amount = document.querySelector(`#amount${index}`);
   let ducksArray = [...ducksDatabase];
   ducksArray[index - 1].amount = Number(amount.innerHTML);
-  console.log(amount.innerHTML);
 }
 
 //*****************************************************************************************
@@ -397,10 +416,14 @@ function addItemToCart(event) {
   duckToAdd.amount = amountToAdd;
 
   cart.push(duckToAdd);
-  renderCart();
-  console.log(cart);
 
-  // addDuckToCart(image, price, title);
+  if (isLucia() && !hasLuciaDuck(cart)) {
+    const luciaDuck = ducksDatabase.find(duck => duck.id == 11);
+    luciaDuck.amount = 1;
+    cart.push(luciaDuck);
+  }
+
+  renderCart();
 }
 
 function renderCart() {
@@ -432,41 +455,15 @@ function renderCart() {
   giveMondayDiscount();
 }
 
-// function addDuckToCart() {
-//   let checkoutCartRow = document.createElement('div');
-//   checkoutCartRow.classList.add('checkout__cart--row')
-//   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
-//   let duckTitle = checkoutCart.getElementsByClassName('duck__title');
-//   for (let i = 0; i < duckTitle.length; i++) {
-//     if(duckTitle[i].innerText == title) {
-//       alert('Oj, denna vara ligger redan i varukorgen!');
-//       return;
-//     }
-//   }
+function isLucia() {
+  const now = new Date();
 
-//   const cartRowContent =
-//   `
-//           <article class="checkout__cart__article--product">
-//             <img src=${image} alt="" width="100">
-//             <p>${title}</p>
-//           </article>
+  return now.getMonth() === 11 && now.getDate() === 13;
+}
 
-//           <article class="checkout__cart__article--price">
-//             <span class="cart__product--price">${price}</span>
-//           </article>
-
-//           <article class="checkout__cart__article--quantity">
-//             <!--- Denna label ska göras visually-hidden i css/sass -->
-//             <label class="visually-hidden" for="amount">antal</label>
-//             <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="1">
-
-//             <button role="button" class="btn-danger">Rensa</button>
-//           </article>
-//   `
-//   checkoutCartRow.innerHTML = cartRowContent;
-//   checkoutCart.append(checkoutCartRow);
-//   updateTotalPrice();
-// }
+function hasLuciaDuck(cart) {
+  return cart.some(duck => duck.id == 11);
+}
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
