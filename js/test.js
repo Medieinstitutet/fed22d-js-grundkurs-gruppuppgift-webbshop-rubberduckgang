@@ -1,36 +1,35 @@
 function validateInput(fieldName, errorFieldId) {
-    let inputField = document.getElementById(fieldName).value;
-    const errorField = document.getElementById(errorFieldId);
-  
-    if (inputField.length === 0) {
-      errorField.innerHTML = '*';
-      return false;
-    }
-  
-    errorField.innerHTML = '<i class="fa-solid fa-check"></i>';
-    return true;
+  let inputField = document.getElementById(fieldName).value;
+  const errorField = document.getElementById(errorFieldId);
+
+  if (inputField.length === 0) {
+    errorField.innerHTML = '*';
+    return false;
   }
-  
-  validateInput('zipCode', 'zipCodeError');
+
+  errorField.innerHTML = '<i class="fa-solid fa-check"></i>';
+  return true;
+}
+
+validateInput('zipCode', 'zipCodeError');
 
 //*****************************************************************************************
 //----------------- Kod som vi testat men inte använder i projektet -----------------------
 //*****************************************************************************************
 
-  function addDuckToCart() {
+function addDuckToCart() {
   let checkoutCartRow = document.createElement('div');
-  checkoutCartRow.classList.add('checkout__cart--row')
+  checkoutCartRow.classList.add('checkout__cart--row');
   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
   let duckTitle = checkoutCart.getElementsByClassName('duck__title');
   for (let i = 0; i < duckTitle.length; i++) {
-    if(duckTitle[i].innerText == title) {
+    if (duckTitle[i].innerText == title) {
       alert('Oj, denna vara ligger redan i varukorgen!');
       return;
     }
   }
-  
-  const cartRowContent = 
-  `
+
+  const cartRowContent = `
           <article class="checkout__cart__article--product">
             <img src=${image} alt="" width="100">
             <p>${title}</p>
@@ -47,7 +46,7 @@ function validateInput(fieldName, errorFieldId) {
 
             <button role="button" class="btn-danger">Rensa</button>
           </article>
-  `
+  `;
   checkoutCartRow.innerHTML = cartRowContent;
   checkoutCart.append(checkoutCartRow);
   updateTotalPrice();
