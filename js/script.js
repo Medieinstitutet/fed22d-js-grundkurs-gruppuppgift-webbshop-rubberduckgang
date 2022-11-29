@@ -109,7 +109,7 @@ const ducksDatabase = [
   },
 ];
 
-const cart = [];
+let cart = [];
 
 //*****************************************************************************************
 //------------------------------ Skriva ut Ankor till HTML -------------------------------- By David
@@ -800,6 +800,20 @@ function resetForm() {
 }
 
 setTimeout(resetForm, 1000 * 60 * 15);
+
+//*****************************************************************************************
+//-------------------------------- Radera beställning-knapp ------------------------------- By Hanna
+//*****************************************************************************************
+
+const clearOrderBtn = document.querySelector('#clearOrder');
+clearOrderBtn.addEventListener('click', clearOrder);
+
+function clearOrder() {
+  document.querySelector('.checkoutForm').reset();
+
+  cart = [];
+  renderCart();
+}
 
 //*****************************************************************************************
 //-------------------------------- Jultema på julafton ------------------------------------ By David
