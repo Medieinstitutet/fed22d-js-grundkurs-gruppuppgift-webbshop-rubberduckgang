@@ -161,7 +161,7 @@ function renderDucks() {
                 <button class="slideshow_btn_right">&gt;</button>
             </div>
             <h3 class="duck__title">${ducksArray[i].name}</h3>
-            <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
+            <span class="duck__rating fa">${stars}</span>
             <div class="duck__info">${ducksArray[i].info}</div>
             <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
             <div class="duck__amount">
