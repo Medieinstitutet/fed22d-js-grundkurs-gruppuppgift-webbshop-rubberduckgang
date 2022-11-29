@@ -680,11 +680,11 @@ const paymentCardRadio = document.querySelector("#paymentCard");
 const paymentInvoiceRadio = document.querySelector("#paymentInvoice");
 const socialSecurityNumber = document.querySelector("#socialSecurityNumber");
 
-for (text of validatedTexts) {
+for (let text of validatedTexts) {
   text.addEventListener("input", validate);
 }
 
-for (box of validatedCheckboxes) {
+for (let box of validatedCheckboxes) {
   box.addEventListener("change", validate);
 }
 
@@ -694,7 +694,7 @@ paymentInvoiceRadio.addEventListener("change", validate);
 function validate() {
   let shouldEnable = true;
 
-  for (text of validatedTexts) {
+  for (let text of validatedTexts) {
     if (
       text.value == "" &&
       window.getComputedStyle(text.parentElement.parentElement, null)
@@ -704,7 +704,7 @@ function validate() {
     }
   }
 
-  for (box of validatedCheckboxes) {
+  for (let box of validatedCheckboxes) {
     if (!box.checked) {
       shouldEnable = false;
     }
@@ -778,7 +778,7 @@ function order(e) {
   }
 
   if (hasErrors) {
-    for (i = 0; i < errors.length; i++) {
+    for (let i = 0; i < errors.length; i++) {
       if (i > 0) {
         orderMessage.innerHTML += "<br>";
       }
@@ -792,7 +792,7 @@ function order(e) {
       `Tack för din beställning ${firstName.value}! Leverans sker ${getDeliveryTime()}`
     );
 
-    for (i = 0; i < formInputs.length; i++) {
+    for (let i = 0; i < formInputs.length; i++) {
       formInputs[i].disabled = true;
     }
   }
