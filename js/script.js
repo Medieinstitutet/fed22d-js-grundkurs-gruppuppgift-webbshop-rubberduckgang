@@ -25,6 +25,7 @@ const ducksDatabase = [
     rating: 4.5,
     category: 'standard',
     id: 1,
+    amount: 0,
   },
   {
     name: 'Blue Rubber Duck',
@@ -34,6 +35,7 @@ const ducksDatabase = [
     rating: 4,
     category: 'standard',
     id: 2,
+    amount: 0,
   },
   {
     name: 'Green Rubber Duck',
@@ -43,6 +45,7 @@ const ducksDatabase = [
     rating: 2,
     category: 'standard',
     id: 3,
+    amount: 0,
   },
   {
     name: 'Pink Rubber Duck',
@@ -52,6 +55,7 @@ const ducksDatabase = [
     rating: 3.5,
     category: 'standard',
     id: 4,
+    amount: 0,
   },
   {
     name: 'Evel Knievel Duck',
@@ -61,6 +65,7 @@ const ducksDatabase = [
     rating: 4,
     category: 'special',
     id: 5,
+    amount: 0,
   },
   {
     name: 'Black Rubber Duck',
@@ -70,6 +75,7 @@ const ducksDatabase = [
     rating: 0.5,
     category: 'unique',
     id: 6,
+    amount: 0,
   },
   {
     name: 'Rainbow Duck',
@@ -79,6 +85,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'special',
     id: 7,
+    amount: 0,
   },
   {
     name: 'Army of Ducks',
@@ -88,6 +95,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'standard',
     id: 8,
+    amount: 0,
   },
   {
     name: 'Giant Duck',
@@ -97,6 +105,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'special',
     id: 9,
+    amount: 0,
   },
   {
     name: 'THE Golden Duck',
@@ -106,6 +115,7 @@ const ducksDatabase = [
     rating: 0,
     category: 'unique',
     id: 10,
+    amount: 0,
   },
 ];
 
@@ -171,6 +181,7 @@ function renderDucks() {
         </article>
     `;
   }
+  applyListeners();
 }
 
 //*****************************************************************************************
@@ -328,18 +339,21 @@ renderDucks();
 //------------------------------ Plus/minus & Lägg till ----------------------------------- By David
 //*****************************************************************************************
 
-//Variabler för knapparna Plus, minus och lägg till
-const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
-const addBtn = document.querySelectorAll('button[data-operator="add"]');
-const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
+function applyListeners() { 
 
-// loop för att sätta eventlistener till funktionerna på knapparna
-for (let i = 0; i < addBtn.length; i++) {
-  subtractBtn[i].addEventListener('click', subtractDuck);
-  addBtn[i].addEventListener('click', addDuck);
-  addToCartBtn[i].addEventListener('click', addDuckToCart);
+  //Variabler för knapparna Plus, minus och lägg till
+  const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
+  const addBtn = document.querySelectorAll('button[data-operator="add"]');
+  const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
+
+  // loop för att sätta eventlistener till funktionerna på knapparna
+  for (let i = 0; i < addBtn.length; i++) {
+    subtractBtn[i].addEventListener('click', subtractDuck);
+    addBtn[i].addEventListener('click', addDuck);
+    addToCartBtn[i].addEventListener('click', addItemToCart);
+    // addBtnClicked[i].addEventListener('click', addItemToCart);
+  }
 }
-
 // Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '');
@@ -360,12 +374,14 @@ function subtractDuck(e) {
 }
 
 // "Lägg till" knappen läser av värdet i amount fältet och sparar värdet i arrayen under rätt objekt.
-function addDuckToCart(e) {
-  const index = e.currentTarget.id.replace('addToCart', '');
-  const amount = document.querySelector(`#amount${index}`);
-  let ducksArray = [...ducksDatabase];
-  ducksArray[index - 1].amount = Number(amount.innerHTML);
-}
+// function addDuckToCart(e) {
+//   const index = e.currentTarget.id.replace('addToCart', '');
+//   const amount = document.querySelector(`#amount${index}`);
+//   let ducksArray = [...ducksDatabase];
+//   let newValue = ducksArray[index - 1].amount;
+//   newValue = Number(amount.innerHTML);
+// }
+
 
 //*****************************************************************************************
 //----------------- Lägg till en vara ur varukorgen---------------------------------------- By J. del Pilar
@@ -375,10 +391,6 @@ const cartContainer = document.querySelector('.checkout__cart');
 
 cartContainer.innerHTML = '';
 // addToCartBtn variabeln ligger i plus minus.
-for (let i = 0; i < addToCartBtn.length; i++) {
-  let addBtnClicked = addToCartBtn[i];
-  addBtnClicked.addEventListener('click', addItemToCart);
-}
 
 function addItemToCart(event) {
   let button = event.target;
@@ -389,9 +401,9 @@ function addItemToCart(event) {
     return;
   } 
 
+
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
-  duckToAdd.amount = amountToAdd;
-  cart.push(duckToAdd);
+  duckToAdd.amount = amountToAdd;    
 
   renderCart();
 }
@@ -399,24 +411,34 @@ function addItemToCart(event) {
 function renderCart() {
   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
   checkoutCart.innerHTML = '';
-  for (let i = 0; i < cart.length; i++) {
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    if (ducksDatabase[i].amount == 0) {
+      continue;
+    } 
+    let price;
+    if (ducksDatabase[i].amount >= 10) {
+      price = ducksDatabase[i].price * 0.9;
+    } else {
+      price = ducksDatabase[i].price;
+    }
+
     checkoutCart.innerHTML += `
-    <div class="checkout__cart--row" id="${cart[i].id}">
+    <div class="checkout__cart--row" id="${ducksDatabase[i].id}">
       <article class="checkout__cart__article--product">
-        <img src=${cart[i].image} alt="" width="100">
-        <p>${cart[i].name}</p>
+        <img src=${ducksDatabase[i].image} alt="" width="100">
+        <p>${ducksDatabase[i].name}</p>
       </article>
 
       <article class="checkout__cart__article--price">
-        <span class="cart__product--price">${cart[i].price}</span>
+        <span class="cart__product--price">${price}</span>
       </article>
 
-    <article class="checkout__cart__article--quantity">
+      <article class="checkout__cart__article--quantity">
         <!--- Denna label ska göras visually-hidden i css/sass -->
         <label class="visually-hidden" for="amount">antal</label>
-        <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="${cart[i].amount}">
+        <input type="number" class="cart__product--amount" id="amount__cart${ducksDatabase[i].id}" name="antal" min="1" value="${ducksDatabase[i].amount}">
 
-        <button role="button" class="btn-danger">Rensa</button>
+        <button role="button" class="btn-danger" id="${ducksDatabase[i].id}" >Rensa</button>
       </article>
     </div>
     `;
@@ -432,6 +454,9 @@ function renderCart() {
     const input = quantityInput[i];
     input.addEventListener('change', quantityInputChanged);
   }
+
+  const discountInput = document.getElementById('discount');
+  discountInput.addEventListener('change', giveDiscount);
 
   updateTotalPrice();
   giveMondayDiscount();
@@ -453,11 +478,12 @@ function renderCart() {
 
 function removeCartRow(event) {
   let removeBtnClicked = event.target;
-  removeBtnClicked.parentElement.parentElement.remove();
-
-  updateTotalPrice();
-  giveDiscount();
-  giveMondayDiscount();
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    if (removeBtnClicked.id == ducksDatabase[i].id) {
+      ducksDatabase[i].amount = 0;
+    }
+  }
+  renderCart();
 }
 
 //*****************************************************************************************
