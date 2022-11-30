@@ -55,8 +55,16 @@ const ducksDatabase = [
   },
   {
     name: 'Green Rubber Duck',
-    image: 'assets/img/produkt_3/produkt_3_a.webp',
-    image2: 'assets/img/produkt_3/produkt_3_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_3/produkt_3_a.webp',
+        alt: 'Green Rubber Duck',
+      },
+      {
+        src: 'assets/img/produkt_3/produkt_3_b.webp',
+        alt: 'Green Rubber Duck',
+      },
+    ],
     info: 'The greenie!! Ge han lite tid, han kommer ta sig.',
     price: 100,
     rating: 2,
@@ -65,8 +73,16 @@ const ducksDatabase = [
   },
   {
     name: 'Pink Rubber Duck',
-    image: 'assets/img/produkt_4/produkt_4_a.webp',
-    image2: 'assets/img/produkt_4/produkt_4_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_4/produkt_4_a.webp',
+        alt: 'Pink Rubber Duck',
+      },
+      {
+        src: 'assets/img/produkt_4/produkt_4_b.webp',
+        alt: 'Pink Rubber Duck',
+      },
+    ],
     info: 'Vad ska man säga. Rosa är rosa!',
     price: 125,
     rating: 3.5,
@@ -75,8 +91,16 @@ const ducksDatabase = [
   },
   {
     name: 'Evel Knievel Duck',
-    image: 'assets/img/produkt_5/produkt_5_a.webp',
-    image2: 'assets/img/produkt_5/produkt_5_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_5/produkt_5_a.webp',
+        alt: 'Evel Knievel Duck',
+      },
+      {
+        src: 'assets/img/produkt_5/produkt_5_b.webp',
+        alt: 'Evel Knievel Duck',
+      },
+    ],
     info: 'Kommer bjuda på en show du inte visste en anka kan!',
     price: 235,
     rating: 4,
@@ -85,8 +109,16 @@ const ducksDatabase = [
   },
   {
     name: 'Black Rubber Duck',
-    image: 'assets/img/produkt_6/produkt_6_a.webp',
-    image2: 'assets/img/produkt_6/produkt_6_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_6/produkt_6_b.webp',
+        alt: 'Black Rubber Duck',
+      },
+      {
+        src: 'assets/img/produkt_6/produkt_6_a.webp',
+        alt: 'Black Rubber Duck',
+      },
+    ],
     info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
     price: 666,
     rating: 0.5,
@@ -95,8 +127,16 @@ const ducksDatabase = [
   },
   {
     name: 'Rainbow Duck',
-    image: 'assets/img/produkt_7/produkt_7_a.webp',
-    image2: 'assets/img/produkt_7/produkt_7_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_7/produkt_7_a.webp',
+        alt: 'Rainbow Duck',
+      },
+      {
+        src: 'assets/img/produkt_7/produkt_7_b.webp',
+        alt: 'Rainbow Duck',
+      },
+    ],
     info: 'Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.',
     price: 250,
     rating: 5,
@@ -105,8 +145,16 @@ const ducksDatabase = [
   },
   {
     name: 'Army of Ducks',
-    image: 'assets/img/produkt_8/produkt_8_a.webp',
-    image2: 'assets/img/produkt_8/produkt_8_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_8/produkt_8_a.webp',
+        alt: 'Army of Ducks',
+      },
+      {
+        src: 'assets/img/produkt_8/produkt_8_b.webp',
+        alt: 'Army of Ducks',
+      },
+    ],
     info: 'Fler, Fler, FLEEEEEER ANKOR!',
     price: 1750,
     rating: 5,
@@ -115,8 +163,16 @@ const ducksDatabase = [
   },
   {
     name: 'Giant Duck',
-    image: 'assets/img/produkt_9/produkt_9_a.webp',
-    image2: 'assets/img/produkt_9/produkt_9_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_9/produkt_9_b.webp',
+        alt: 'Giant Duck',
+      },
+      {
+        src: 'assets/img/produkt_9/produkt_9_a.webp',
+        alt: 'Giant Duck',
+      },
+    ],
     info: 'När det gäller ankor så har i alla fall storleken betydelse.',
     price: 2499,
     rating: 5,
@@ -125,8 +181,16 @@ const ducksDatabase = [
   },
   {
     name: 'THE Golden Duck',
-    image: 'assets/img/produkt_10/produkt_10_a.webp',
-    image2: 'assets/img/produkt_10/produkt_10_b.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_10/produkt_10_a.webp',
+        alt: 'THE Golden Duck',
+      },
+      {
+        src: 'assets/img/produkt_10/produkt_10_b.webp',
+        alt: 'THE Golden Duck',
+      },
+    ],
     info: 'Ingen har någonsinn sett den, men här kan den beställas.',
     price: 3000,
     rating: 0,
