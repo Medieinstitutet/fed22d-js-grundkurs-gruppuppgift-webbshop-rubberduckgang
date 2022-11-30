@@ -19,7 +19,16 @@ giveMondayDiscount();
 const ducksDatabase = [
   {
     name: 'Regular Rubber Duck',
-    image: 'assets/img/produkt_1/produkt_1_a.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_1/produkt_1_a.webp',
+        alt: 'Regular Rubber Duck',
+      },
+      {
+        src: 'assets/img/produkt_1/produkt_1_b.webp',
+        alt: 'Regular Rubber Duck',
+      },
+    ],
     info: 'Vår mest populära anka i klassisk gul färg.',
     price: 150,
     rating: 4.5,
@@ -28,7 +37,16 @@ const ducksDatabase = [
   },
   {
     name: 'Blue Rubber Duck',
-    image: 'assets/img/produkt_2/produkt_2_a.webp',
+    image: [
+      {
+        src: 'assets/img/produkt_2/produkt_2_a.webp',
+        alt: 'Blue Rubber Duck',
+      },
+      {
+        src: 'assets/img/produkt_2/produkt_2_b.webp',
+        alt: 'Blue Rubber Duck',
+      },
+    ],
     info: "Nykomling med hög potential. It's Blue Da-ba-dee!",
     price: 185,
     rating: 4,
@@ -38,6 +56,7 @@ const ducksDatabase = [
   {
     name: 'Green Rubber Duck',
     image: 'assets/img/produkt_3/produkt_3_a.webp',
+    image2: 'assets/img/produkt_3/produkt_3_b.webp',
     info: 'The greenie!! Ge han lite tid, han kommer ta sig.',
     price: 100,
     rating: 2,
@@ -47,6 +66,7 @@ const ducksDatabase = [
   {
     name: 'Pink Rubber Duck',
     image: 'assets/img/produkt_4/produkt_4_a.webp',
+    image2: 'assets/img/produkt_4/produkt_4_b.webp',
     info: 'Vad ska man säga. Rosa är rosa!',
     price: 125,
     rating: 3.5,
@@ -56,6 +76,7 @@ const ducksDatabase = [
   {
     name: 'Evel Knievel Duck',
     image: 'assets/img/produkt_5/produkt_5_a.webp',
+    image2: 'assets/img/produkt_5/produkt_5_b.webp',
     info: 'Kommer bjuda på en show du inte visste en anka kan!',
     price: 235,
     rating: 4,
@@ -65,6 +86,7 @@ const ducksDatabase = [
   {
     name: 'Black Rubber Duck',
     image: 'assets/img/produkt_6/produkt_6_a.webp',
+    image2: 'assets/img/produkt_6/produkt_6_b.webp',
     info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
     price: 666,
     rating: 0.5,
@@ -74,6 +96,7 @@ const ducksDatabase = [
   {
     name: 'Rainbow Duck',
     image: 'assets/img/produkt_7/produkt_7_a.webp',
+    image2: 'assets/img/produkt_7/produkt_7_b.webp',
     info: 'Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.',
     price: 250,
     rating: 5,
@@ -83,6 +106,7 @@ const ducksDatabase = [
   {
     name: 'Army of Ducks',
     image: 'assets/img/produkt_8/produkt_8_a.webp',
+    image2: 'assets/img/produkt_8/produkt_8_b.webp',
     info: 'Fler, Fler, FLEEEEEER ANKOR!',
     price: 1750,
     rating: 5,
@@ -92,6 +116,7 @@ const ducksDatabase = [
   {
     name: 'Giant Duck',
     image: 'assets/img/produkt_9/produkt_9_a.webp',
+    image2: 'assets/img/produkt_9/produkt_9_b.webp',
     info: 'När det gäller ankor så har i alla fall storleken betydelse.',
     price: 2499,
     rating: 5,
@@ -101,6 +126,7 @@ const ducksDatabase = [
   {
     name: 'THE Golden Duck',
     image: 'assets/img/produkt_10/produkt_10_a.webp',
+    image2: 'assets/img/produkt_10/produkt_10_b.webp',
     info: 'Ingen har någonsinn sett den, men här kan den beställas.',
     price: 3000,
     rating: 0,
@@ -156,9 +182,10 @@ function renderDucks() {
     duckContainer.innerHTML += `
         <article class="duck__${i + 1}" id="${ducksArray[i].id}">
             <div class="slideshow">
-                <button class="slideshow_btn_left">&lt;</button>
-                <img class="duck__img" src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
-                <button class="slideshow_btn_right">&gt;</button>
+                <button id="prevImg${i + 1}" class="slideshow_btn_left" data-operator="prevImg">&lt;</button>
+                <img id="img__1-${i + 1}" src="${ducksArray[i].image[0].src}" alt="${ducksArray[i].image[0].alt}" width="130">
+                <img id="img__2-${i + 1}" class="hidden" src="${ducksArray[i].image[1].src}" alt="${ducksArray[i].image[1].alt}" width="130">
+                <button id="nextImg${i + 1}" class="slideshow_btn_right" data-operator="nextImg">&gt;</button>
             </div>
             <h3 class="duck__title">${ducksArray[i].name}</h3>
             <span class="duck__rating">Omdöme - <strong>${ducksArray[i].rating} / 5</strong></span>
@@ -818,3 +845,92 @@ if (christmasEve.getDate() === 24 && christmasEve.getMonth() === 11) {
     duckPrice.classList.add('duck__pricing__christmas');
   }
 }
+
+//*****************************************************************************************
+//------------------------------------ Slideshow ------------------------------------------ By David
+//*****************************************************************************************
+
+function switchImage(e) {
+  const index = e.currentTarget.id.replace('prevImg', '').replace('nextImg', '');
+  const img1 = document.querySelector(`#img__1-${index}`);
+  const img2 = document.querySelector(`#img__2-${index}`);
+
+  if (img1.classList.contains('hidden')) {
+    img1.classList.remove('hidden');
+    img2.classList.add('hidden');
+  } else {
+    img1.classList.add('hidden');
+    img2.classList.remove('hidden');
+  }
+}
+
+const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]')
+const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
+
+prevBtn.forEach(btn => {
+  btn.addEventListener('click', switchImage);
+});
+
+nextBtn.forEach((btn) => {
+  btn.addEventListener('click', switchImage);
+});
+/* let currentImageIndex = 0;
+console.log(currentImageIndex)
+
+//Variabler för knapparna Nästa och Föregående bild
+const nextImgBtn = document.querySelectorAll('button[data-operator="nextImg"]');
+const prevImgBtn = document.querySelectorAll('button[data-operator="prevImg"]');
+
+// loop för att sätta eventlistener till funktionerna på knapparna
+for (let i = 0; i < nextImgBtn.length; i++) {
+  nextImgBtn[i].addEventListener('click', nextImage);
+  prevImgBtn[i].addEventListener('click', prevImage);
+}
+
+function nextImage(e) {
+  const index = e.currentTarget.id;
+  let img = e.currentTarget.parentNode.childNodes[3].src;
+
+  if (currentImageIndex + 1 > ducksDatabase.image - 1) {
+    currentImageIndex = 0;
+  } else {
+    currentImageIndex += 1;
+  }
+
+  console.log(currentImageIndex);
+}
+
+  console.log(img)
+  console.log(index)
+
+function prevImage(e) {
+  const index = e.currentTarget.id;
+  console.log(index)
+} */
+/* function nextImage(){
+  if (currentImageIndex + 1 > images.length - 1) {
+    //restart from beginning
+    currentImageIndex = 0;
+    swapImages(images.length - 1, currentImageIndex);
+  } else {
+    currentImageIndex += 1;
+    swapImages(currentImageIndex - 1, currentImageIndex);
+  }
+
+  console.log('nextImage', currentImageIndex);
+
+}
+
+function prevImage() {
+  if (currentImageIndex - 1 < 0) {
+    // Restart from end
+    currentImageIndex = images.length - 1;
+    swapImages(0, currentImageIndex);
+  } else {
+    currentImageIndex -= 1;
+    swapImages(currentImageIndex + 1, currentImageIndex);
+  }
+
+  console.log('prevImage', currentImageIndex);
+
+} */

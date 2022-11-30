@@ -306,9 +306,21 @@ input::-webkit-inner-spin-button {
       "duck__9 duck__10";
 
       img{
+        position: absolute;
+        top: 15px;
         border: 1px solid #000;
         border-radius: 0.5rem;
         width: 130px;
+        opacity: 1;
+      }
+
+      img.hidden{
+        position: absolute;
+        top: 15px;
+        border: 1px solid #000;
+        border-radius: 0.5rem;
+        width: 130px;
+        opacity: 0;
       }
 
       .slideshow{
@@ -322,9 +334,11 @@ input::-webkit-inner-spin-button {
             background-color: transparent;
             border: none;
             position: relative;
-            left: 24px;
+            right: 40px;
+            top: 20px;
             height: 35px;
             width: 35px;
+            z-index: 1;
         }
 
         .slideshow_btn_right{
@@ -333,7 +347,8 @@ input::-webkit-inner-spin-button {
           background-color: transparent;
           border: none;
           position: relative;
-          right: 24px;
+          left: 40px;
+          top: 20px;
           height: 35px;
           width: 35px;
       }
@@ -342,7 +357,7 @@ input::-webkit-inner-spin-button {
 
       h3{
         margin: 0;
-        padding: 5px;
+        padding-top: 60px;
         text-align: center;
       }
 
