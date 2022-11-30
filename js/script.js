@@ -538,8 +538,23 @@ function updateTotalPrice() {
   } else {
     paymentInvoice.disabled = false;
   } //denna kod är från hanna & gör att faktura väljs bort när totalsumman > 800
+  let now = new Date();
+  if (now.getDay() == 3 && getWeeks(now) % 2 == 0 && total >= 25 ) {
+    total -= 25;
+  }
 
   document.getElementById('cart__total__price').innerText = total + ':-';
+}
+
+function getWeeks(date) {
+    let startDate = new Date(date.getFullYear(), 0, 1);
+    let days = Math.floor((date - startDate) /
+        (24 * 60 * 60 * 1000));
+
+    var weekNumber = Math.ceil(days / 7);
+
+    // Display the calculated result
+    return weekNumber;
 }
 
 //*****************************************************************************************
