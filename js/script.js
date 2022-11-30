@@ -914,6 +914,7 @@ if (christmasEve.getDate() === 24 && christmasEve.getMonth() === 11) {
 //------------------------------------ Slideshow ------------------------------------------ By David
 //*****************************************************************************************
 
+// funktion för att sätta eller ta bort class hidden 
 function switchImage(e) {
   const index = e.currentTarget.id.replace('prevImg', '').replace('nextImg', '');
   const img1 = document.querySelector(`#img__1-${index}`);
@@ -928,6 +929,7 @@ function switchImage(e) {
   }
 }
 
+// loopar för att sätta event på knapparna till slideshow
 const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]')
 const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
 
@@ -938,63 +940,3 @@ prevBtn.forEach(btn => {
 nextBtn.forEach((btn) => {
   btn.addEventListener('click', switchImage);
 });
-/* let currentImageIndex = 0;
-console.log(currentImageIndex)
-
-//Variabler för knapparna Nästa och Föregående bild
-const nextImgBtn = document.querySelectorAll('button[data-operator="nextImg"]');
-const prevImgBtn = document.querySelectorAll('button[data-operator="prevImg"]');
-
-// loop för att sätta eventlistener till funktionerna på knapparna
-for (let i = 0; i < nextImgBtn.length; i++) {
-  nextImgBtn[i].addEventListener('click', nextImage);
-  prevImgBtn[i].addEventListener('click', prevImage);
-}
-
-function nextImage(e) {
-  const index = e.currentTarget.id;
-  let img = e.currentTarget.parentNode.childNodes[3].src;
-
-  if (currentImageIndex + 1 > ducksDatabase.image - 1) {
-    currentImageIndex = 0;
-  } else {
-    currentImageIndex += 1;
-  }
-
-  console.log(currentImageIndex);
-}
-
-  console.log(img)
-  console.log(index)
-
-function prevImage(e) {
-  const index = e.currentTarget.id;
-  console.log(index)
-} */
-/* function nextImage(){
-  if (currentImageIndex + 1 > images.length - 1) {
-    //restart from beginning
-    currentImageIndex = 0;
-    swapImages(images.length - 1, currentImageIndex);
-  } else {
-    currentImageIndex += 1;
-    swapImages(currentImageIndex - 1, currentImageIndex);
-  }
-
-  console.log('nextImage', currentImageIndex);
-
-}
-
-function prevImage() {
-  if (currentImageIndex - 1 < 0) {
-    // Restart from end
-    currentImageIndex = images.length - 1;
-    swapImages(0, currentImageIndex);
-  } else {
-    currentImageIndex -= 1;
-    swapImages(currentImageIndex + 1, currentImageIndex);
-  }
-
-  console.log('prevImage', currentImageIndex);
-
-} */
