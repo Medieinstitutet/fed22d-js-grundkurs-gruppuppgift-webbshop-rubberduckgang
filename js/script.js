@@ -136,6 +136,7 @@ const ducksDatabase = [
     rating: 3,
     category: 'unique',
     id: 11,
+    amount: 0,
     visible: false,
   },
 ];
@@ -386,9 +387,10 @@ function subtractDuck(e) {
   const amountValue = document.querySelector(`#amount${index}`);
   let amount = Number(amountValue.innerText);
 
-  if (amount - 1 < 0) {
+  if (amount <= 0) {
     return;
-  } else amountValue.innerHTML = amount - 1;
+  } 
+  amountValue.innerHTML = amount - 1;
 }
 
 //*****************************************************************************************
@@ -398,7 +400,6 @@ function subtractDuck(e) {
 const cartContainer = document.querySelector('.checkout__cart');
 
 cartContainer.innerHTML = '';
-// addToCartBtn variabeln ligger i plus minus.
 
 function addItemToCart(event) {
   let button = event.target;
@@ -410,14 +411,11 @@ function addItemToCart(event) {
   } 
 
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
-  duckToAdd.amount = amountToAdd;    
+  duckToAdd.amount = amountToAdd;
 
-  cart.push(duckToAdd);
-
-  if (isLucia() && !hasLuciaDuck(cart)) {
+  if (isLucia() && !hasLuciaDuck()) {
     const luciaDuck = ducksDatabase.find(duck => duck.id == 11);
     luciaDuck.amount = 1;
-    cart.push(luciaDuck);
   }
 
   renderCart();
@@ -480,16 +478,13 @@ function renderCart() {
   
 }
 
-
-
 function isLucia() {
   const now = new Date();
-
   return now.getMonth() === 11 && now.getDate() === 13;
 }
 
-function hasLuciaDuck(cart) {
-  return cart.some(duck => duck.id == 11);
+function hasLuciaDuck() {
+  return ducksDatabase.find(duck => duck.id == 11).amount > 0;
 }
 
 
@@ -552,11 +547,11 @@ function updateTotalPrice() {
   } else {
     paymentInvoice.disabled = false;
   }
+
   let now = new Date();
-  if (now.getDay() == 3 && getWeeks(now) % 2 == 0 && total >= 25 ) {
+  if (now.getDay() == 2 && getWeeks(now) % 2 == 0 && total >= 25 ) {
     total -= 25;
   }
-
   document.getElementById('cart__total__price').innerText = total + ':-';
 }
 
@@ -587,26 +582,6 @@ function clearRedFrame() {
 }
 
 //*****************************************************************************************
-//--------------- Quantity discount when purchase 10 or more of the same sort ------------- By J. del Pilar
-//*****************************************************************************************
-
-// let ducksArrayCheckAmount = [...ducksDatabase];
-
-// ducksArrayCheckAmount = ducksDatabase.filter((product) => {
-//     const amountOfDucks = product.amount;
-//     let duckPrice = product.price;
-//     console.log(duckPrice);
-//     if(amountOfDucks >= 10) {
-//         duckPrice = Math.round(duckPrice * 0.9);
-
-//         console.log(duckPrice);
-//     } else {
-//         console.log('ingen rabatt');
-//     }
-
-//   });
-
-//*****************************************************************************************
 //----------------------------- Monday discount 10% before 10:00 -------------------------- By J. del Pilar
 //*****************************************************************************************
 
@@ -622,7 +597,7 @@ function giveMondayDiscount() {
     reducedPrice = Number(reducedPrice * 0.9);
     document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-';
   } else {
-    document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt';
+    // document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt';
   }
 }
 //*****************************************************************************************
