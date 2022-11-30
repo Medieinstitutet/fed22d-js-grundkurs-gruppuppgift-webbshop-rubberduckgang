@@ -117,10 +117,7 @@ const cart = [];
 //*****************************************************************************************
 
 const duckContainer = document.querySelector('.duck__wrapper');
-
 const weekendPrice = new Date();
-
-// let newWeekendPrice = ducksDatabase.map(prod => Math.round(prod.price));
 
 if (
   (weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) ||
@@ -368,7 +365,6 @@ function addDuckToCart(e) {
   const amount = document.querySelector(`#amount${index}`);
   let ducksArray = [...ducksDatabase];
   ducksArray[index - 1].amount = Number(amount.innerHTML);
-  console.log(amount.innerHTML);
 }
 
 //*****************************************************************************************
@@ -378,7 +374,7 @@ function addDuckToCart(e) {
 const cartContainer = document.querySelector('.checkout__cart');
 
 cartContainer.innerHTML = '';
-
+// addToCartBtn variabeln ligger i plus minus.
 for (let i = 0; i < addToCartBtn.length; i++) {
   let addBtnClicked = addToCartBtn[i];
   addBtnClicked.addEventListener('click', addItemToCart);
@@ -391,16 +387,13 @@ function addItemToCart(event) {
   const amountToAdd = parseInt(amountDom.innerHTML);
   if (amountToAdd <= 0) {
     return;
-  }
+  } 
 
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
   duckToAdd.amount = amountToAdd;
-
   cart.push(duckToAdd);
-  renderCart();
-  console.log(cart);
 
-  // addDuckToCart(image, price, title);
+  renderCart();
 }
 
 function renderCart() {
@@ -408,7 +401,7 @@ function renderCart() {
   checkoutCart.innerHTML = '';
   for (let i = 0; i < cart.length; i++) {
     checkoutCart.innerHTML += `
-    <div class="checkout__cart--row">
+    <div class="checkout__cart--row" id="${cart[i].id}">
       <article class="checkout__cart__article--product">
         <img src=${cart[i].image} alt="" width="100">
         <p>${cart[i].name}</p>
@@ -428,55 +421,35 @@ function renderCart() {
     </div>
     `;
   }
+  
+  const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
+  for (let i = 0; i < removeProductBtn.length; i++) {
+    let removeBtn = removeProductBtn[i];
+    removeBtn.addEventListener('click', removeCartRow);
+  }
+  const quantityInput = document.getElementsByClassName('cart__product--amount'); // Variabel för att välja ut fältet med antal.
+  for (let i = 0; i < quantityInput.length; i++) {
+    const input = quantityInput[i];
+    input.addEventListener('change', quantityInputChanged);
+  }
+
   updateTotalPrice();
   giveMondayDiscount();
+  giveDiscount();
+  
 }
 
-// function addDuckToCart() {
-//   let checkoutCartRow = document.createElement('div');
-//   checkoutCartRow.classList.add('checkout__cart--row')
-//   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
-//   let duckTitle = checkoutCart.getElementsByClassName('duck__title');
-//   for (let i = 0; i < duckTitle.length; i++) {
-//     if(duckTitle[i].innerText == title) {
-//       alert('Oj, denna vara ligger redan i varukorgen!');
-//       return;
-//     }
-//   }
-
-//   const cartRowContent =
-//   `
-//           <article class="checkout__cart__article--product">
-//             <img src=${image} alt="" width="100">
-//             <p>${title}</p>
-//           </article>
-
-//           <article class="checkout__cart__article--price">
-//             <span class="cart__product--price">${price}</span>
-//           </article>
-
-//           <article class="checkout__cart__article--quantity">
-//             <!--- Denna label ska göras visually-hidden i css/sass -->
-//             <label class="visually-hidden" for="amount">antal</label>
-//             <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="1">
-
-//             <button role="button" class="btn-danger">Rensa</button>
-//           </article>
-//   `
-//   checkoutCartRow.innerHTML = cartRowContent;
-//   checkoutCart.append(checkoutCartRow);
-//   updateTotalPrice();
-// }
 
 //*****************************************************************************************
 //-----------------Ta bort en vara ur varukorgen, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
-for (let i = 0; i < removeProductBtn.length; i++) {
-  let removeBtn = removeProductBtn[i];
-  removeBtn.addEventListener('click', removeCartRow);
-}
+// OBS! This code had to be moved in to renderCart(); otherwise the click event would not have been implemented.
+// const removeProductBtn = document.getElementsByClassName('btn-danger'); 
+// for (let i = 0; i < removeProductBtn.length; i++) {
+//   let removeBtn = removeProductBtn[i];
+//   removeBtn.addEventListener('click', removeCartRow);
+// }
 
 function removeCartRow(event) {
   let removeBtnClicked = event.target;
@@ -491,11 +464,12 @@ function removeCartRow(event) {
 //----------------- Uppdatera totalpriset när antalet ändras ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const quantityInput = document.getElementsByClassName('cart__product--amount');
-for (let i = 0; i < quantityInput.length; i++) {
-  const input = quantityInput[i];
-  input.addEventListener('change', quantityInputChanged);
-}
+//OBS! Same as for the btn-danger code here.
+// const quantityInput = document.getElementsByClassName('cart__product--amount');
+// for (let i = 0; i < quantityInput.length; i++) {
+//   const input = quantityInput[i];
+//   input.addEventListener('change', quantityInputChanged);
+// }
 
 function quantityInputChanged(event) {
   const input = event.target;
