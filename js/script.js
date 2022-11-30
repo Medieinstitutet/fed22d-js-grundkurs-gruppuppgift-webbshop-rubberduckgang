@@ -26,6 +26,7 @@ const ducksDatabase = [
     rating: 4.5,
     category: 'standard',
     id: 1,
+    amount: 0,
     visible: true,
   },
   {
@@ -36,6 +37,7 @@ const ducksDatabase = [
     rating: 4,
     category: 'standard',
     id: 2,
+    amount: 0,
     visible: true,
   },
   {
@@ -46,6 +48,7 @@ const ducksDatabase = [
     rating: 2,
     category: 'standard',
     id: 3,
+    amount: 0,
     visible: true,
   },
   {
@@ -56,6 +59,7 @@ const ducksDatabase = [
     rating: 3.5,
     category: 'standard',
     id: 4,
+    amount: 0,
     visible: true,
   },
   {
@@ -66,6 +70,7 @@ const ducksDatabase = [
     rating: 4,
     category: 'special',
     id: 5,
+    amount: 0,
     visible: true,
   },
   {
@@ -76,6 +81,7 @@ const ducksDatabase = [
     rating: 0.5,
     category: 'unique',
     id: 6,
+    amount: 0,
     visible: true,
   },
   {
@@ -86,6 +92,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'special',
     id: 7,
+    amount: 0,
     visible: true,
   },
   {
@@ -96,6 +103,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'standard',
     id: 8,
+    amount: 0,
     visible: true,
   },
   {
@@ -106,6 +114,7 @@ const ducksDatabase = [
     rating: 5,
     category: 'special',
     id: 9,
+    amount: 0,
     visible: true,
   },
   {
@@ -116,7 +125,8 @@ const ducksDatabase = [
     rating: 0,
     category: 'unique',
     id: 10,
-    visible: true,
+    amount: 0,
+    visible: true, 
   },
   {
     name: 'Stjärngåsen',
@@ -126,6 +136,7 @@ const ducksDatabase = [
     rating: 3,
     category: 'unique',
     id: 11,
+    amount: 0,
     visible: false,
   },
 ];
@@ -140,8 +151,6 @@ if (
 ) {
   ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
 }
-
-let cart = [];
 
 //*****************************************************************************************
 //--------------------------------- Render ducks to HTML ---------------------------------- By David
@@ -196,6 +205,7 @@ function renderDucks() {
         </article>
     `;
   }
+  applyListeners();
 }
 
 //*****************************************************************************************
@@ -349,18 +359,20 @@ renderDucks();
 //------------------------------- Add & subtract amount ----------------------------------- By David
 //*****************************************************************************************
 
-//Variabler för knapparna Plus, minus och lägg till
-const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
-const addBtn = document.querySelectorAll('button[data-operator="add"]');
-const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
+function applyListeners() { 
 
-// loop för att sätta eventlistener till funktionerna på knapparna
-for (let i = 0; i < addBtn.length; i++) {
-  subtractBtn[i].addEventListener('click', subtractDuck);
-  addBtn[i].addEventListener('click', addDuck);
-  addToCartBtn[i].addEventListener('click', addDuckToCart);
+  //Variabler för knapparna Plus, minus och lägg till
+  const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
+  const addBtn = document.querySelectorAll('button[data-operator="add"]');
+  const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
+
+  // loop för att sätta eventlistener till funktionerna på knapparna
+  for (let i = 0; i < addBtn.length; i++) {
+    subtractBtn[i].addEventListener('click', subtractDuck);
+    addBtn[i].addEventListener('click', addDuck);
+    addToCartBtn[i].addEventListener('click', addItemToCart);
+  }
 }
-
 // Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '');
@@ -375,17 +387,10 @@ function subtractDuck(e) {
   const amountValue = document.querySelector(`#amount${index}`);
   let amount = Number(amountValue.innerText);
 
-  if (amount - 1 < 0) {
+  if (amount <= 0) {
     return;
-  } else amountValue.innerHTML = amount - 1;
-}
-
-// "Lägg till" knappen läser av värdet i amount fältet och sparar värdet i arrayen under rätt objekt.
-function addDuckToCart(e) {
-  const index = e.currentTarget.id.replace('addToCart', '');
-  const amount = document.querySelector(`#amount${index}`);
-  let ducksArray = [...ducksDatabase];
-  ducksArray[index - 1].amount = Number(amount.innerHTML);
+  } 
+  amountValue.innerHTML = amount - 1;
 }
 
 //*****************************************************************************************
@@ -396,11 +401,6 @@ const cartContainer = document.querySelector('.checkout__cart');
 
 cartContainer.innerHTML = '';
 
-for (let i = 0; i < addToCartBtn.length; i++) {
-  let addBtnClicked = addToCartBtn[i];
-  addBtnClicked.addEventListener('click', addItemToCart);
-}
-
 function addItemToCart(event) {
   let button = event.target;
   const clickedItem = button.parentElement;
@@ -408,17 +408,14 @@ function addItemToCart(event) {
   const amountToAdd = parseInt(amountDom.innerHTML);
   if (amountToAdd <= 0) {
     return;
-  }
+  } 
 
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
   duckToAdd.amount = amountToAdd;
 
-  cart.push(duckToAdd);
-
-  if (isLucia() && !hasLuciaDuck(cart)) {
+  if (isLucia() && !hasLuciaDuck()) {
     const luciaDuck = ducksDatabase.find(duck => duck.id == 11);
     luciaDuck.amount = 1;
-    cart.push(luciaDuck);
   }
 
   renderCart();
@@ -427,70 +424,87 @@ function addItemToCart(event) {
 function renderCart() {
   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
   checkoutCart.innerHTML = '';
-  for (let i = 0; i < cart.length; i++) {
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    if (ducksDatabase[i].amount == 0) {
+      continue;
+    } 
+    let price;
+    if (ducksDatabase[i].amount >= 10) {
+      price = ducksDatabase[i].price * 0.9;
+    } else {
+      price = ducksDatabase[i].price;
+    }
+
     checkoutCart.innerHTML += `
-    <div class="checkout__cart--row">
+    <div class="checkout__cart--row" id="${ducksDatabase[i].id}">
       <article class="checkout__cart__article--product">
-        <img src=${cart[i].image} alt="" width="100">
-        <p>${cart[i].name}</p>
+        <img src=${ducksDatabase[i].image} alt="" width="100">
+        <p>${ducksDatabase[i].name}</p>
       </article>
 
       <article class="checkout__cart__article--price">
-        <span class="cart__product--price">${cart[i].price}</span>
+        <span class="cart__product--price">${price}</span>
       </article>
 
-    <article class="checkout__cart__article--quantity">
+      <article class="checkout__cart__article--quantity">
         <!--- Denna label ska göras visually-hidden i css/sass -->
         <label class="visually-hidden" for="amount">antal</label>
-        <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="${cart[i].amount}">
 
-        <button role="button" class="btn-danger">Rensa</button>
+        <input type="number" class="cart__product--amount lock" id="amount__cart${ducksDatabase[i].id}" name="antal" min="1" value="${ducksDatabase[i].amount}">
+
+        <button role="button" class="btn-danger" id="${ducksDatabase[i].id}" >Rensa</button>
       </article>
     </div>
     `;
   }
+  
+  const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
+  for (let i = 0; i < removeProductBtn.length; i++) {
+    let removeBtn = removeProductBtn[i];
+    removeBtn.addEventListener('click', removeCartRow);
+  }
+  const quantityInput = document.getElementsByClassName('cart__product--amount'); // Variabel för att välja ut fältet med antal.
+  for (let i = 0; i < quantityInput.length; i++) {
+    const input = quantityInput[i];
+    input.addEventListener('change', quantityInputChanged);
+  }
+
+  const discountInput = document.getElementById('discount');
+  discountInput.addEventListener('change', giveDiscount);
+
   updateTotalPrice();
   giveMondayDiscount();
+  giveDiscount();
+  
 }
 
 function isLucia() {
   const now = new Date();
-
   return now.getMonth() === 11 && now.getDate() === 13;
 }
 
-function hasLuciaDuck(cart) {
-  return cart.some(duck => duck.id == 11);
+function hasLuciaDuck() {
+  return ducksDatabase.find(duck => duck.id == 11).amount > 0;
 }
+
 
 //*****************************************************************************************
 //--------------------- Remove article from cart, btn-danger ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variable to access button "btn-danger" (clear)
-for (let i = 0; i < removeProductBtn.length; i++) {
-  let removeBtn = removeProductBtn[i];
-  removeBtn.addEventListener('click', removeCartRow);
-}
-
 function removeCartRow(event) {
   let removeBtnClicked = event.target;
-  removeBtnClicked.parentElement.parentElement.remove();
-
-  updateTotalPrice();
-  giveDiscount();
-  giveMondayDiscount();
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    if (removeBtnClicked.id == ducksDatabase[i].id) {
+      ducksDatabase[i].amount = 0;
+    }
+  }
+  renderCart();
 }
 
 //*****************************************************************************************
 //----------------- Update total price when changed quantity ------------------------------ By J. del Pilar
 //*****************************************************************************************
-
-const quantityInput = document.getElementsByClassName('cart__product--amount');
-for (let i = 0; i < quantityInput.length; i++) {
-  const input = quantityInput[i];
-  input.addEventListener('change', quantityInputChanged);
-}
 
 function quantityInputChanged(event) {
   const input = event.target;
@@ -534,7 +548,22 @@ function updateTotalPrice() {
     paymentInvoice.disabled = false;
   }
 
+  let now = new Date();
+  if (now.getDay() == 2 && getWeeks(now) % 2 == 0 && total >= 25 ) {
+    total -= 25;
+  }
   document.getElementById('cart__total__price').innerText = total + ':-';
+}
+
+function getWeeks(date) {
+    let startDate = new Date(date.getFullYear(), 0, 1);
+    let days = Math.floor((date - startDate) /
+        (24 * 60 * 60 * 1000));
+
+    var weekNumber = Math.ceil(days / 7);
+
+    // Display the calculated result
+    return weekNumber;
 }
 
 //*****************************************************************************************
@@ -553,26 +582,6 @@ function clearRedFrame() {
 }
 
 //*****************************************************************************************
-//--------------- Quantity discount when purchase 10 or more of the same sort ------------- By J. del Pilar
-//*****************************************************************************************
-
-// let ducksArrayCheckAmount = [...ducksDatabase];
-
-// ducksArrayCheckAmount = ducksDatabase.filter((product) => {
-//     const amountOfDucks = product.amount;
-//     let duckPrice = product.price;
-//     console.log(duckPrice);
-//     if(amountOfDucks >= 10) {
-//         duckPrice = Math.round(duckPrice * 0.9);
-
-//         console.log(duckPrice);
-//     } else {
-//         console.log('ingen rabatt');
-//     }
-
-//   });
-
-//*****************************************************************************************
 //----------------------------- Monday discount 10% before 10:00 -------------------------- By J. del Pilar
 //*****************************************************************************************
 
@@ -588,7 +597,7 @@ function giveMondayDiscount() {
     reducedPrice = Number(reducedPrice * 0.9);
     document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-';
   } else {
-    document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt';
+    // document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt';
   }
 }
 //*****************************************************************************************
@@ -687,8 +696,6 @@ function validate() {
 const checkoutForm = document.querySelector('.checkoutForm');
 checkoutForm.addEventListener('submit', order);
 
-const formInputs = document.querySelectorAll('.lock');
-
 //*****************************************************************************************
 //---------------------- Validate form (when clicking order button) ----------------------- By Hanna
 //*****************************************************************************************
@@ -756,6 +763,8 @@ function order(e) {
   if (!hasErrors) {
     const firstName = document.querySelector('#firstName');
     alert(`Tack för din beställning ${firstName.value}! Leverans sker ${getDeliveryTime()}`);
+
+    const formInputs = document.querySelectorAll('.lock');
 
     for (let i = 0; i < formInputs.length; i++) {
       formInputs[i].disabled = true;

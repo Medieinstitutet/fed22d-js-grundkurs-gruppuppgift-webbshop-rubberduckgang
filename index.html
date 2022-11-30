@@ -21,7 +21,7 @@
     />
   </head>
 
-  <body id="body">
+  <body id="body" class="dark__theme">
     <!--Header, first part, by Hanna-->
     <header id="headerID">
       <nav>
@@ -92,9 +92,12 @@
 
         <section class="checkout__cart"></section>
 
-        <label for="discount" title="Discount"> Rabattkod <input type="text" id="discount" name="discount" /> </label>
+        <label for="discount" title="Discount">
+          Rabattkod
+          <input type="text" id="discount" class="lock" name="discount" />
+        </label>
 
-        <p id="msg__to__user">"message to user"</p>
+        <p id="msg__to__user"></p>
 
         <div class="checkout__cart--sum">
           <span>Totalt : </span>
