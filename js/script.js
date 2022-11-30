@@ -66,7 +66,7 @@ const ducksDatabase = [
     name: 'Evel Knievel-ankan',
     image: 'assets/img/product_5/product_5_a.webp',
     info: 'Kommer bjuda på en show du inte visste en anka kan!',
-    price: 235,
+    price: 235.45,
     rating: 4,
     category: 'special',
     id: 5,
@@ -110,7 +110,7 @@ const ducksDatabase = [
     name: 'Giganten',
     image: 'assets/img/product_9/product_9_a.webp',
     info: 'När det gäller ankor så har i alla fall storleken betydelse.',
-    price: 2499,
+    price: 2499.99,
     rating: 5,
     category: 'special',
     id: 9,
@@ -126,7 +126,7 @@ const ducksDatabase = [
     category: 'unique',
     id: 10,
     amount: 0,
-    visible: true, 
+    visible: true,
   },
   {
     name: 'Stjärngåsen',
@@ -167,6 +167,8 @@ function renderDucks() {
 
   duckContainer.innerHTML = '';
 
+  let rendered = 0;
+
   for (let i = 0; i < ducksArray.length; i++) {
     if (!ducksArray[i].visible) {
       continue;
@@ -185,7 +187,7 @@ function renderDucks() {
     }
 
     duckContainer.innerHTML += `
-        <article class="duck__${i + 1}" id="${ducksArray[i].id}">
+        <article class="duck__${rendered + 1}" id="${ducksArray[i].id}">
             <div class="slideshow">
                 <button class="slideshow_btn_left">&lt;</button>
                 <img class="duck__img" src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
@@ -196,14 +198,15 @@ function renderDucks() {
             <div class="duck__info">${ducksArray[i].info}</div>
             <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
             <div class="duck__amount">
-                <button id="subtract${i + 1}" class="subtract_btn" data-operator="subtract">-</button>
+                <button id="subtract${rendered + 1}" class="subtract_btn" data-operator="subtract">-</button>
                 <span class="amount_text">Antal:</span>
-                <span id="amount${i + 1}" class="amount_value">0</span>
-                <button id="add${i + 1}" class="add_btn" data-operator="add">+</button><br>
+                <span id="amount${rendered + 1}" class="amount_value">0</span>
+                <button id="add${rendered + 1}" class="add_btn" data-operator="add">+</button><br>
             </div>
-            <button id="addToCart${i + 1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
+            <button id="addToCart${rendered + 1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
         </article>
     `;
+    rendered++;
   }
   applyListeners();
 }
@@ -359,8 +362,7 @@ renderDucks();
 //------------------------------- Add & subtract amount ----------------------------------- By David
 //*****************************************************************************************
 
-function applyListeners() { 
-
+function applyListeners() {
   //Variabler för knapparna Plus, minus och lägg till
   const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
   const addBtn = document.querySelectorAll('button[data-operator="add"]');
@@ -389,7 +391,7 @@ function subtractDuck(e) {
 
   if (amount <= 0) {
     return;
-  } 
+  }
   amountValue.innerHTML = amount - 1;
 }
 
@@ -408,7 +410,7 @@ function addItemToCart(event) {
   const amountToAdd = parseInt(amountDom.innerHTML);
   if (amountToAdd <= 0) {
     return;
-  } 
+  }
 
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
   duckToAdd.amount = amountToAdd;
@@ -427,7 +429,7 @@ function renderCart() {
   for (let i = 0; i < ducksDatabase.length; i++) {
     if (ducksDatabase[i].amount == 0) {
       continue;
-    } 
+    }
     let price;
     if (ducksDatabase[i].amount >= 10) {
       price = ducksDatabase[i].price * 0.9;
@@ -457,7 +459,7 @@ function renderCart() {
     </div>
     `;
   }
-  
+
   const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
   for (let i = 0; i < removeProductBtn.length; i++) {
     let removeBtn = removeProductBtn[i];
@@ -475,7 +477,6 @@ function renderCart() {
   updateTotalPrice();
   giveMondayDiscount();
   giveDiscount();
-  
 }
 
 function isLucia() {
@@ -486,7 +487,6 @@ function isLucia() {
 function hasLuciaDuck() {
   return ducksDatabase.find(duck => duck.id == 11).amount > 0;
 }
-
 
 //*****************************************************************************************
 //--------------------- Remove article from cart, btn-danger ------------------------------ By J. del Pilar
@@ -526,6 +526,7 @@ function updateTotalPrice() {
   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
   const cartRows = checkoutCart.getElementsByClassName('checkout__cart--row');
   let total = 0;
+  let totalQuantity = 0;
 
   for (let i = 0; i < cartRows.length; i++) {
     const row = cartRows[i];
@@ -533,9 +534,11 @@ function updateTotalPrice() {
     const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
 
     const price = Number(productPrice.innerText);
-    const quantity = productQuantity.value;
+    const quantity = Number(productQuantity.value);
 
     total = total + price * quantity;
+
+    totalQuantity += quantity;
   }
 
   const paymentInvoice = document.querySelector('#paymentInvoice');
@@ -548,22 +551,37 @@ function updateTotalPrice() {
     paymentInvoice.disabled = false;
   }
 
+  let shippingPrice = 25 + total * 0.1;
+
+  console.log(totalQuantity);
+
+  if (totalQuantity > 15) {
+    shippingPrice = 0;
+  }
+
+  document.querySelector('#cart__shipping__price').innerHTML = toDisplayPrice(shippingPrice);
+
   let now = new Date();
-  if (now.getDay() == 2 && getWeeks(now) % 2 == 0 && total >= 25 ) {
+  if (now.getDay() == 2 && getWeeks(now) % 2 == 0 && total >= 25) {
     total -= 25;
   }
-  document.getElementById('cart__total__price').innerText = total + ':-';
+  document.getElementById('cart__total__price').innerText = toDisplayPrice(total);
+
+  document.querySelector('#cart__payment__price').innerHTML = toDisplayPrice(total + shippingPrice);
+}
+
+function toDisplayPrice(num) {
+  return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(2) + ':-';
 }
 
 function getWeeks(date) {
-    let startDate = new Date(date.getFullYear(), 0, 1);
-    let days = Math.floor((date - startDate) /
-        (24 * 60 * 60 * 1000));
+  let startDate = new Date(date.getFullYear(), 0, 1);
+  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
 
-    var weekNumber = Math.ceil(days / 7);
+  var weekNumber = Math.ceil(days / 7);
 
-    // Display the calculated result
-    return weekNumber;
+  // Display the calculated result
+  return weekNumber;
 }
 
 //*****************************************************************************************
