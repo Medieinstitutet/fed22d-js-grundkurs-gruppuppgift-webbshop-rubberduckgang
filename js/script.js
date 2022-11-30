@@ -442,7 +442,7 @@ function renderCart() {
     <article class="checkout__cart__article--quantity">
         <!--- Denna label ska göras visually-hidden i css/sass -->
         <label class="visually-hidden" for="amount">antal</label>
-        <input type="number" class="cart__product--amount" id="amount" name="antal" min="1" value="${cart[i].amount}">
+        <input type="number" class="cart__product--amount lock" id="amount" name="antal" min="1" value="${cart[i].amount}">
 
         <button role="button" class="btn-danger">Rensa</button>
       </article>
@@ -687,8 +687,6 @@ function validate() {
 const checkoutForm = document.querySelector('.checkoutForm');
 checkoutForm.addEventListener('submit', order);
 
-const formInputs = document.querySelectorAll('.lock');
-
 //*****************************************************************************************
 //---------------------- Validate form (when clicking order button) ----------------------- By Hanna
 //*****************************************************************************************
@@ -756,6 +754,8 @@ function order(e) {
   if (!hasErrors) {
     const firstName = document.querySelector('#firstName');
     alert(`Tack för din beställning ${firstName.value}! Leverans sker ${getDeliveryTime()}`);
+
+    const formInputs = document.querySelectorAll('.lock');
 
     for (let i = 0; i < formInputs.length; i++) {
       formInputs[i].disabled = true;
