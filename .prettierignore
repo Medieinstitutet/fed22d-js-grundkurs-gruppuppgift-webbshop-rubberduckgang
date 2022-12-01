@@ -8,3 +8,4 @@ package.json
 commitments.md
 README.md
 prettierrc.json
+*.css

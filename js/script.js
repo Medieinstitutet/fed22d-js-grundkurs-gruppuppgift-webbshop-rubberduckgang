@@ -24,7 +24,16 @@ giveMondayDiscount();
 const ducksDatabase = [
   {
     name: 'Simpel gummianka',
-    image: 'assets/img/product_1/product_1_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_1/product_1_a.webp',
+        alt: 'Simpel gummianka',
+      },
+      {
+        src: 'assets/img/product_1/product_1_b.webp',
+        alt: 'Simpel gummianka',
+      },
+    ],
     info: 'Vår mest populära anka i klassisk gul färg.',
     price: 150,
     rating: 4.5,
@@ -35,7 +44,16 @@ const ducksDatabase = [
   },
   {
     name: 'Blå gummianka',
-    image: 'assets/img/product_2/product_2_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_2/product_2_a.webp',
+        alt: 'Blå gummianka',
+      },
+      {
+        src: 'assets/img/product_2/product_2_b.webp',
+        alt: 'Blå gummianka',
+      },
+    ],
     info: 'Nykomling med hög potential. Det är Blue Da-ba-dee!',
     price: 185,
     rating: 4,
@@ -46,7 +64,16 @@ const ducksDatabase = [
   },
   {
     name: 'Grön gummianka',
-    image: 'assets/img/product_3/product_3_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_3/product_3_a.webp',
+        alt: 'Grön gummianka',
+      },
+      {
+        src: 'assets/img/product_3/product_3_b.webp',
+        alt: 'Grön gummianka',
+      },
+    ],
     info: 'Gröngölingen! Ge han lite tid, han kommer ta sig.',
     price: 100,
     rating: 2,
@@ -57,7 +84,16 @@ const ducksDatabase = [
   },
   {
     name: 'Rosa gummianka',
-    image: 'assets/img/product_4/product_4_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_4/product_4_a.webp',
+        alt: 'Rosa gummianka',
+      },
+      {
+        src: 'assets/img/product_4/product_4_b.webp',
+        alt: 'Rosa gummianka',
+      },
+    ],
     info: 'Vad ska man säga. Rosa är rosa!',
     price: 125,
     rating: 3.5,
@@ -68,7 +104,16 @@ const ducksDatabase = [
   },
   {
     name: 'Evel Knievel-ankan',
-    image: 'assets/img/product_5/product_5_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_5/product_5_a.webp',
+        alt: 'Evel Knievel-ankan',
+      },
+      {
+        src: 'assets/img/product_5/product_5_b.webp',
+        alt: 'Evel Knievel-ankan',
+      },
+    ],
     info: 'Kommer bjuda på en show du inte visste en anka kan!',
     price: 235.45,
     rating: 4,
@@ -79,7 +124,16 @@ const ducksDatabase = [
   },
   {
     name: 'Svart gummianka',
-    image: 'assets/img/product_6/product_6_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_6/product_6_b.webp',
+        alt: 'Svart gummianka',
+      },
+      {
+        src: 'assets/img/product_6/product_6_a.webp',
+        alt: 'Svart gummianka',
+      },
+    ],
     info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
     price: 666,
     rating: 0.5,
@@ -90,7 +144,16 @@ const ducksDatabase = [
   },
   {
     name: 'Regnbågsankan',
-    image: 'assets/img/product_7/product_7_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_7/product_7_a.webp',
+        alt: 'Regnbågsankan',
+      },
+      {
+        src: 'assets/img/product_7/product_7_b.webp',
+        alt: 'Regnbågsankan',
+      },
+    ],
     info: 'Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.',
     price: 250,
     rating: 5,
@@ -101,7 +164,16 @@ const ducksDatabase = [
   },
   {
     name: 'Ankornas armé',
-    image: 'assets/img/product_8/product_8_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_8/product_8_a.webp',
+        alt: 'Ankornas armé',
+      },
+      {
+        src: 'assets/img/product_8/product_8_b.webp',
+        alt: 'Ankornas armé',
+      },
+    ],
     info: 'Fler, Fler, FLEEEEEER ANKOR!',
     price: 1750,
     rating: 5,
@@ -112,7 +184,16 @@ const ducksDatabase = [
   },
   {
     name: 'Giganten',
-    image: 'assets/img/product_9/product_9_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_9/product_9_b.webp',
+        alt: 'Giganten',
+      },
+      {
+        src: 'assets/img/product_9/product_9_a.webp',
+        alt: 'Giganten',
+      },
+    ],
     info: 'När det gäller ankor så har i alla fall storleken betydelse.',
     price: 2499.99,
     rating: 5,
@@ -122,8 +203,17 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Den enda guldankan',
-    image: 'assets/img/product_10/product_10_a.webp',
+    name: 'Den ENDA guldankan',
+    image: [
+      {
+        src: 'assets/img/product_10/product_10_a.webp',
+        alt: 'Den ENDA guldankan',
+      },
+      {
+        src: 'assets/img/product_10/product_10_b.webp',
+        alt: 'Den ENDA guldankan',
+      },
+    ],
     info: 'Ingen har någonsinn sett den, men här kan den beställas.',
     price: 3000,
     rating: 0,
@@ -147,12 +237,7 @@ const ducksDatabase = [
 
 const weekendPrice = new Date();
 
-if (
-  (weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) ||
-  weekendPrice.getDay() === 6 ||
-  weekendPrice.getDay() === 0 ||
-  (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3)
-) {
+if ((weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) || weekendPrice.getDay() === 6 || weekendPrice.getDay() === 0 || (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3)) {
   ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
 }
 
@@ -198,9 +283,10 @@ function renderDucks() {
     duckContainer.innerHTML += `
         <article class="duck__${rendered + 1}" id="${ducksArray[i].id}">
             <div class="slideshow">
-                <button class="slideshow_btn_left">&lt;</button>
-                <img class="duck__img" src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
-                <button class="slideshow_btn_right">&gt;</button>
+                <button id="prevImg${i + 1}" class="slideshow_btn_left" data-operator="prevImg">&lt;</button>
+                <img id="img__1-${i + 1}" src="${ducksArray[i].image[0].src}" alt="${ducksArray[i].image[0].alt}" width="130">
+                <img id="img__2-${i + 1}" class="hidden" src="${ducksArray[i].image[1].src}" alt="${ducksArray[i].image[1].alt}" width="130">
+                <button id="nextImg${i + 1}" class="slideshow_btn_right" data-operator="nextImg">&gt;</button>
             </div>
             <h3 class="duck__title">${ducksArray[i].name}</h3>
             <span class="duck__rating fa">${stars}</span>
@@ -377,13 +463,26 @@ function applyListeners() {
   const addBtn = document.querySelectorAll('button[data-operator="add"]');
   const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
 
+  // loopar för att sätta event på knapparna till slideshow
+  const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]');
+  const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
+
   // loop för att sätta eventlistener till funktionerna på knapparna
   for (let i = 0; i < addBtn.length; i++) {
     subtractBtn[i].addEventListener('click', subtractDuck);
     addBtn[i].addEventListener('click', addDuck);
     addToCartBtn[i].addEventListener('click', addItemToCart);
   }
+
+  prevBtn.forEach(btn => {
+    btn.addEventListener('click', switchImage);
+  });
+
+  nextBtn.forEach(btn => {
+    btn.addEventListener('click', switchImage);
+  });
 }
+
 // Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '');
@@ -486,7 +585,7 @@ function renderCart() {
   updateTotalPrice();
   giveMondayDiscount();
   giveDiscount();
-  visualCartUpdate()
+  visualCartUpdate();
 }
 
 function isLucia() {
@@ -856,4 +955,23 @@ if (isChristmasEve) {
   const body = document.querySelector('#body');
 
   body.classList.add('body__christmas__theme');
+}
+
+//*****************************************************************************************
+//------------------------------------ Slideshow ------------------------------------------ By David
+//*****************************************************************************************
+
+// funktion för att sätta eller ta bort class hidden
+function switchImage(e) {
+  const index = e.currentTarget.id.replace('prevImg', '').replace('nextImg', '');
+  const img1 = document.querySelector(`#img__1-${index}`);
+  const img2 = document.querySelector(`#img__2-${index}`);
+
+  if (img1.classList.contains('hidden')) {
+    img1.classList.remove('hidden');
+    img2.classList.add('hidden');
+  } else {
+    img1.classList.add('hidden');
+    img2.classList.remove('hidden');
+  }
 }
