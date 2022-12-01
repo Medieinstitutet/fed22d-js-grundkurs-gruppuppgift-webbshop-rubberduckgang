@@ -66,6 +66,7 @@ header {
     margin: 20px;
 
     h2 {
+      padding-top: 50px;
       width: 250px;
       height: 250px;
       text-align: center;
@@ -86,7 +87,6 @@ header {
 /*--------------Filtering ducks-----------------*/
 .filtering__section {
   $slider-height: 3px;
-
   display: flex;
   flex-direction: column;
   align-content: center;
