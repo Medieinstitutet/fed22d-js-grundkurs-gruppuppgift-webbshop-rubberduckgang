@@ -276,12 +276,6 @@ header {
     }
   }
 
-  input {
-    background-color: rgba(79, 79, 79, 0.432);
-    width: 2.5rem;
-    border: 2px solid gray;
-  }
-
   .add_btn,
   .subtract_btn {
     background-color: $secondary-color;
@@ -333,7 +327,7 @@ header {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
   }
 }
