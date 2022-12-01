@@ -237,12 +237,7 @@ const ducksDatabase = [
 
 const weekendPrice = new Date();
 
-if (
-  (weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) ||
-  weekendPrice.getDay() === 6 ||
-  weekendPrice.getDay() === 0 ||
-  (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3)
-) {
+if ((weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) || weekendPrice.getDay() === 6 || weekendPrice.getDay() === 0 || (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3)) {
   ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
 }
 
@@ -468,13 +463,26 @@ function applyListeners() {
   const addBtn = document.querySelectorAll('button[data-operator="add"]');
   const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
 
+  // loopar för att sätta event på knapparna till slideshow
+  const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]');
+  const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
+
   // loop för att sätta eventlistener till funktionerna på knapparna
   for (let i = 0; i < addBtn.length; i++) {
     subtractBtn[i].addEventListener('click', subtractDuck);
     addBtn[i].addEventListener('click', addDuck);
     addToCartBtn[i].addEventListener('click', addItemToCart);
   }
+
+  prevBtn.forEach(btn => {
+    btn.addEventListener('click', switchImage);
+  });
+
+  nextBtn.forEach(btn => {
+    btn.addEventListener('click', switchImage);
+  });
 }
+
 // Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '');
@@ -967,15 +975,3 @@ function switchImage(e) {
     img2.classList.remove('hidden');
   }
 }
-
-// loopar för att sätta event på knapparna till slideshow
-const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]');
-const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
-
-prevBtn.forEach(btn => {
-  btn.addEventListener('click', switchImage);
-});
-
-nextBtn.forEach(btn => {
-  btn.addEventListener('click', switchImage);
-});
