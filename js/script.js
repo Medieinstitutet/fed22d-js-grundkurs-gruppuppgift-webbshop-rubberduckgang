@@ -553,8 +553,6 @@ function updateTotalPrice() {
 
   let shippingPrice = 25 + total * 0.1;
 
-  console.log(totalQuantity);
-
   if (totalQuantity > 15) {
     shippingPrice = 0;
   }
@@ -832,8 +830,9 @@ clearOrderBtn.addEventListener('click', clearOrder);
 
 function clearOrder() {
   document.querySelector('.checkoutForm').reset();
-
-  cart = [];
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    ducksDatabase[i].amount = 0;
+  }
   renderCart();
 }
 
