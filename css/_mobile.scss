@@ -97,7 +97,7 @@ header {
     text-align: center;
   }
 
-  .sliders_control {
+  .sliders__control {
     position: relative;
     min-height: 50px;
 
@@ -364,7 +364,7 @@ header {
 }
 
 /*--------------Checkout Form, by Hanna-----------------*/
-.checkoutContainer {
+.checkout__container {
   min-height: 100vh;
   display: grid;
   place-content: center;
@@ -376,7 +376,7 @@ header {
     margin-bottom: -10px;
   }
 
-  .checkoutForm {
+  .checkout__form {
     width: 90vw;
     max-width: 768px;
     border: 1px solid #ddd;
@@ -417,7 +417,7 @@ header {
       }
     }
 
-    .checkBoxes {
+    .check__boxes {
       border-bottom: none;
     }
 
@@ -476,21 +476,4 @@ input::-webkit-inner-spin-button {
 #clearOrder:hover {
   background-color: rgba(196, 63, 65, 70%);
   transition: all 0.4s ease;
-}
-
-/*--------------Christmas theme-----------------*/
-
-.body__christmas__theme {
-  background-image: url(../assets/img/christmas_theme_bg/christmas_theme_bg.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.duck__pricing__christmas {
-  color: red;
-  font-size: 1.25rem;
-  font-weight: bold;
-  padding-top: 5px;
-  padding-bottom: 10px;
 }
