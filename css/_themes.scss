@@ -41,6 +41,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color: black;
 }
 
 .duck__pricing__christmas {
@@ -49,4 +50,8 @@
   font-weight: bold;
   padding-top: 5px;
   padding-bottom: 10px;
+}
+
+.checkout__container .checkout__form label .span__christmas__theme {
+  color: black;
 }
