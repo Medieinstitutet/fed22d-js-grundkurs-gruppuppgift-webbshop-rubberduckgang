@@ -26,11 +26,11 @@ const ducksDatabase = [
     name: 'Simpel gummianka',
     image: [
       {
-        src: 'assets/img/product_1/product_1_a.webp',
+        src: 'assets/img/product_1/product_1_a_yellow_rubberduck.webp',
         alt: 'Simpel gummianka',
       },
       {
-        src: 'assets/img/product_1/product_1_b.webp',
+        src: 'assets/img/product_1/product_1_b_yellow_rubberduck.webp',
         alt: 'Simpel gummianka',
       },
     ],
@@ -46,11 +46,11 @@ const ducksDatabase = [
     name: 'Blå gummianka',
     image: [
       {
-        src: 'assets/img/product_2/product_2_a.webp',
+        src: 'assets/img/product_2/product_2_a_blue_rubberduck.webp',
         alt: 'Blå gummianka',
       },
       {
-        src: 'assets/img/product_2/product_2_b.webp',
+        src: 'assets/img/product_2/product_2_b_blue_rubberduck.webp',
         alt: 'Blå gummianka',
       },
     ],
@@ -66,11 +66,11 @@ const ducksDatabase = [
     name: 'Grön gummianka',
     image: [
       {
-        src: 'assets/img/product_3/product_3_a.webp',
+        src: 'assets/img/product_3/product_3_a_green_rubberduck.webp',
         alt: 'Grön gummianka',
       },
       {
-        src: 'assets/img/product_3/product_3_b.webp',
+        src: 'assets/img/product_3/product_3_b_green_rubberduck.webp',
         alt: 'Grön gummianka',
       },
     ],
@@ -86,11 +86,11 @@ const ducksDatabase = [
     name: 'Rosa gummianka',
     image: [
       {
-        src: 'assets/img/product_4/product_4_a.webp',
+        src: 'assets/img/product_4/product_4_a_pink_rubberduck.webp',
         alt: 'Rosa gummianka',
       },
       {
-        src: 'assets/img/product_4/product_4_b.webp',
+        src: 'assets/img/product_4/product_4_b_pink_rubberduck.webp',
         alt: 'Rosa gummianka',
       },
     ],
@@ -106,11 +106,11 @@ const ducksDatabase = [
     name: 'Evel Knievel-ankan',
     image: [
       {
-        src: 'assets/img/product_5/product_5_a.webp',
+        src: 'assets/img/product_5/product_5_a_blue_rubberduck_with_stars.webp',
         alt: 'Evel Knievel-ankan',
       },
       {
-        src: 'assets/img/product_5/product_5_b.webp',
+        src: 'assets/img/product_5/product_5_b_blue_rubberduck_with_stars.webp',
         alt: 'Evel Knievel-ankan',
       },
     ],
@@ -126,11 +126,11 @@ const ducksDatabase = [
     name: 'Svart gummianka',
     image: [
       {
-        src: 'assets/img/product_6/product_6_b.webp',
+        src: 'assets/img/product_6/product_6_b_black_rubberduck.webp',
         alt: 'Svart gummianka',
       },
       {
-        src: 'assets/img/product_6/product_6_a.webp',
+        src: 'assets/img/product_6/product_6_a_black_rubberduck.webp',
         alt: 'Svart gummianka',
       },
     ],
@@ -146,11 +146,11 @@ const ducksDatabase = [
     name: 'Regnbågsankan',
     image: [
       {
-        src: 'assets/img/product_7/product_7_a.webp',
+        src: 'assets/img/product_7/product_7_a_rainbow_colored_rubberduck.webp',
         alt: 'Regnbågsankan',
       },
       {
-        src: 'assets/img/product_7/product_7_b.webp',
+        src: 'assets/img/product_7/product_7_b_rainbow_colored_rubberduck.webp',
         alt: 'Regnbågsankan',
       },
     ],
@@ -166,11 +166,11 @@ const ducksDatabase = [
     name: 'Ankornas armé',
     image: [
       {
-        src: 'assets/img/product_8/product_8_a.webp',
+        src: 'assets/img/product_8/product_8_a_several_yellow_rubberducks.webp',
         alt: 'Ankornas armé',
       },
       {
-        src: 'assets/img/product_8/product_8_b.webp',
+        src: 'assets/img/product_8/product_8_b_pile_of_yellow_rubberducks.webp',
         alt: 'Ankornas armé',
       },
     ],
@@ -186,11 +186,11 @@ const ducksDatabase = [
     name: 'Giganten',
     image: [
       {
-        src: 'assets/img/product_9/product_9_b.webp',
+        src: 'assets/img/product_9/product_9_b_giant_inflated_yellow_duck.webp',
         alt: 'Giganten',
       },
       {
-        src: 'assets/img/product_9/product_9_a.webp',
+        src: 'assets/img/product_9/product_9_a_giant_inflated_yellow_duck.webp',
         alt: 'Giganten',
       },
     ],
@@ -206,11 +206,11 @@ const ducksDatabase = [
     name: 'Den ENDA guldankan',
     image: [
       {
-        src: 'assets/img/product_10/product_10_a.webp',
+        src: 'assets/img/product_10/product_10_a_golden_colored_rubberduck.webp',
         alt: 'Den ENDA guldankan',
       },
       {
-        src: 'assets/img/product_10/product_10_b.webp',
+        src: 'assets/img/product_10/product_10_b_golden_colored_rubberduck.webp',
         alt: 'Den ENDA guldankan',
       },
     ],
