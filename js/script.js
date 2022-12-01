@@ -486,6 +486,7 @@ function renderCart() {
   updateTotalPrice();
   giveMondayDiscount();
   giveDiscount();
+  visualCartUpdate()
 }
 
 function isLucia() {
