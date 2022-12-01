@@ -548,7 +548,7 @@ function renderCart() {
     checkoutCart.innerHTML += `
     <div class="checkout__cart--row" id="${ducksDatabase[i].id}">
       <article class="checkout__cart__article--product">
-        <img src=${ducksDatabase[i].image} alt="" width="100">
+        <img src=${ducksDatabase[i].image[0].src} alt="" width="100">
         <p>${ducksDatabase[i].name}</p>
       </article>
 
@@ -737,8 +737,9 @@ function giveDiscount() {
   if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
     let newPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
     newPrice = Number(newPrice * 0);
-    document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
+    document.getElementById('cart__payment__price').innerHTML = newPrice + ':-';
   } else {
+    toDisplayPrice(0);
     updateTotalPrice();
     giveMondayDiscount();
   }
