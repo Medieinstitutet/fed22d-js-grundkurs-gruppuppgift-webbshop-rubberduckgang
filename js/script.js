@@ -21,11 +21,11 @@ const ducksDatabase = [
     name: 'Regular Rubber Duck',
     image: [
       {
-        src: 'assets/img/produkt_1/produkt_1_a.webp',
+        src: 'assets/img/product_1/product_1_a.webp',
         alt: 'Regular Rubber Duck',
       },
       {
-        src: 'assets/img/produkt_1/produkt_1_b.webp',
+        src: 'assets/img/product_1/product_1_b.webp',
         alt: 'Regular Rubber Duck',
       },
     ],
@@ -39,11 +39,11 @@ const ducksDatabase = [
     name: 'Blue Rubber Duck',
     image: [
       {
-        src: 'assets/img/produkt_2/produkt_2_a.webp',
+        src: 'assets/img/product_2/product_2_a.webp',
         alt: 'Blue Rubber Duck',
       },
       {
-        src: 'assets/img/produkt_2/produkt_2_b.webp',
+        src: 'assets/img/product_2/product_2_b.webp',
         alt: 'Blue Rubber Duck',
       },
     ],
@@ -57,11 +57,11 @@ const ducksDatabase = [
     name: 'Green Rubber Duck',
     image: [
       {
-        src: 'assets/img/produkt_3/produkt_3_a.webp',
+        src: 'assets/img/product_3/product_3_a.webp',
         alt: 'Green Rubber Duck',
       },
       {
-        src: 'assets/img/produkt_3/produkt_3_b.webp',
+        src: 'assets/img/product_3/product_3_b.webp',
         alt: 'Green Rubber Duck',
       },
     ],
@@ -75,11 +75,11 @@ const ducksDatabase = [
     name: 'Pink Rubber Duck',
     image: [
       {
-        src: 'assets/img/produkt_4/produkt_4_a.webp',
+        src: 'assets/img/product_4/product_4_a.webp',
         alt: 'Pink Rubber Duck',
       },
       {
-        src: 'assets/img/produkt_4/produkt_4_b.webp',
+        src: 'assets/img/product_4/product_4_b.webp',
         alt: 'Pink Rubber Duck',
       },
     ],
@@ -93,11 +93,11 @@ const ducksDatabase = [
     name: 'Evel Knievel Duck',
     image: [
       {
-        src: 'assets/img/produkt_5/produkt_5_a.webp',
+        src: 'assets/img/product_5/product_5_a.webp',
         alt: 'Evel Knievel Duck',
       },
       {
-        src: 'assets/img/produkt_5/produkt_5_b.webp',
+        src: 'assets/img/product_5/product_5_b.webp',
         alt: 'Evel Knievel Duck',
       },
     ],
@@ -111,11 +111,11 @@ const ducksDatabase = [
     name: 'Black Rubber Duck',
     image: [
       {
-        src: 'assets/img/produkt_6/produkt_6_b.webp',
+        src: 'assets/img/product_6/product_6_b.webp',
         alt: 'Black Rubber Duck',
       },
       {
-        src: 'assets/img/produkt_6/produkt_6_a.webp',
+        src: 'assets/img/product_6/product_6_a.webp',
         alt: 'Black Rubber Duck',
       },
     ],
@@ -129,11 +129,11 @@ const ducksDatabase = [
     name: 'Rainbow Duck',
     image: [
       {
-        src: 'assets/img/produkt_7/produkt_7_a.webp',
+        src: 'assets/img/product_7/product_7_a.webp',
         alt: 'Rainbow Duck',
       },
       {
-        src: 'assets/img/produkt_7/produkt_7_b.webp',
+        src: 'assets/img/product_7/product_7_b.webp',
         alt: 'Rainbow Duck',
       },
     ],
@@ -147,11 +147,11 @@ const ducksDatabase = [
     name: 'Army of Ducks',
     image: [
       {
-        src: 'assets/img/produkt_8/produkt_8_a.webp',
+        src: 'assets/img/product_8/product_8_a.webp',
         alt: 'Army of Ducks',
       },
       {
-        src: 'assets/img/produkt_8/produkt_8_b.webp',
+        src: 'assets/img/product_8/product_8_b.webp',
         alt: 'Army of Ducks',
       },
     ],
@@ -165,11 +165,11 @@ const ducksDatabase = [
     name: 'Giant Duck',
     image: [
       {
-        src: 'assets/img/produkt_9/produkt_9_b.webp',
+        src: 'assets/img/product_9/product_9_b.webp',
         alt: 'Giant Duck',
       },
       {
-        src: 'assets/img/produkt_9/produkt_9_a.webp',
+        src: 'assets/img/product_9/product_9_a.webp',
         alt: 'Giant Duck',
       },
     ],
@@ -183,11 +183,11 @@ const ducksDatabase = [
     name: 'THE Golden Duck',
     image: [
       {
-        src: 'assets/img/produkt_10/produkt_10_a.webp',
+        src: 'assets/img/product_10/product_10_a.webp',
         alt: 'THE Golden Duck',
       },
       {
-        src: 'assets/img/produkt_10/produkt_10_b.webp',
+        src: 'assets/img/product_10/product_10_b.webp',
         alt: 'THE Golden Duck',
       },
     ],
