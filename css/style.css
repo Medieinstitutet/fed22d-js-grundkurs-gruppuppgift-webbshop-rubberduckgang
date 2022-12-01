@@ -218,25 +218,25 @@ header .intro h2 {
 .filtering__section .filter__price__text {
   text-align: center;
 }
-.filtering__section .sliders_control {
+.filtering__section .sliders__control {
   position: relative;
   min-height: 50px;
 }
-.filtering__section .sliders_control #sliderMinValue {
+.filtering__section .sliders__control #sliderMinValue {
   position: absolute;
   left: -60px;
   bottom: 40px;
 }
-.filtering__section .sliders_control #sliderMaxValue {
+.filtering__section .sliders__control #sliderMaxValue {
   position: absolute;
   right: -60px;
   bottom: 40px;
 }
-.filtering__section .sliders_control #sliderMinValue::after,
-.filtering__section .sliders_control #sliderMaxValue::after {
+.filtering__section .sliders__control #sliderMinValue::after,
+.filtering__section .sliders__control #sliderMaxValue::after {
   content: ' kr';
 }
-.filtering__section .sliders_control input[type='range'] {
+.filtering__section .sliders__control input[type='range'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -245,7 +245,7 @@ header .intro h2 {
   position: absolute;
   pointer-events: none;
 }
-.filtering__section .sliders_control input[type='range']::-webkit-slider-thumb {
+.filtering__section .sliders__control input[type='range']::-webkit-slider-thumb {
   width: 30px;
   height: 30px;
   background-color: #fff;
@@ -254,7 +254,7 @@ header .intro h2 {
   cursor: pointer;
   pointer-events: auto;
 }
-.filtering__section .sliders_control input[type='range']::-moz-range-thumb {
+.filtering__section .sliders__control input[type='range']::-moz-range-thumb {
   width: 30px;
   height: 30px;
   background-color: #fff;
@@ -263,7 +263,7 @@ header .intro h2 {
   cursor: pointer;
   pointer-events: auto;
 }
-.filtering__section .sliders_control input[type='range']::-ms-thumb {
+.filtering__section .sliders__control input[type='range']::-ms-thumb {
   width: 30px;
   height: 30px;
   background-color: #fff;
@@ -272,17 +272,17 @@ header .intro h2 {
   cursor: pointer;
   pointer-events: auto;
 }
-.filtering__section .sliders_control #fromSlider {
+.filtering__section .sliders__control #fromSlider {
   height: 0;
   z-index: 2;
 }
-.filtering__section .sliders_control #fromSlider::-webkit-slider-thumb {
+.filtering__section .sliders__control #fromSlider::-webkit-slider-thumb {
   transform: translateY(1.5px);
 }
-.filtering__section .sliders_control #fromSlider::-moz-range-thumb {
+.filtering__section .sliders__control #fromSlider::-moz-range-thumb {
   transform: translateY(1.5px);
 }
-.filtering__section .sliders_control #fromSlider::-ms-thumb {
+.filtering__section .sliders__control #fromSlider::-ms-thumb {
   transform: translateY(1.5px);
 }
 .duck__wrapper {
@@ -444,18 +444,18 @@ header .intro h2 {
 .duck__10 {
   grid-area: duck__10;
 }
-.checkoutContainer {
+.checkout__container {
   min-height: 100vh;
   display: grid;
   place-content: center;
   margin: 5px;
   font-family: sans-serif;
 }
-.checkoutContainer h3 {
+.checkout__container h3 {
   margin-left: 20px;
   margin-bottom: -10px;
 }
-.checkoutContainer .checkoutForm {
+.checkout__container .checkout__form {
   width: 90vw;
   max-width: 768px;
   border: 1px solid #ddd;
@@ -465,36 +465,36 @@ header .intro h2 {
   border-radius: 5px;
   margin: 20px;
 }
-.checkoutContainer .checkoutForm .paymentMethodLabel {
+.checkout__container .checkout__form .paymentMethodLabel {
   border-bottom: none;
   width: 80px;
 }
-.checkoutContainer .checkoutForm .hiddenPaymentCard,
-.checkoutContainer .checkoutForm .hiddenPaymentInvoice {
+.checkout__container .checkout__form .hiddenPaymentCard,
+.checkout__container .checkout__form .hiddenPaymentInvoice {
   display: none;
 }
-.checkoutContainer .checkoutForm .showPaymentCard,
-.checkoutContainer .checkoutForm .showPaymentInvoice {
+.checkout__container .checkout__form .showPaymentCard,
+.checkout__container .checkout__form .showPaymentInvoice {
   display: flex;
 }
-.checkoutContainer .checkoutForm label {
+.checkout__container .checkout__form label {
   margin-bottom: 15px;
   position: relative;
   border-bottom: 1px solid #ddd;
 }
-.checkoutContainer .checkoutForm label input[type='text'],
-.checkoutContainer .checkoutForm label input[type='number'],
-.checkoutContainer .checkoutForm label input[type='email'] {
+.checkout__container .checkout__form label input[type='text'],
+.checkout__container .checkout__form label input[type='number'],
+.checkout__container .checkout__form label input[type='email'] {
   width: 100%;
   padding: 10px 0px;
   margin-top: 20px;
   border: none;
   outline: none;
 }
-.checkoutContainer .checkoutForm .checkBoxes {
+.checkout__container .checkout__form .check__boxes {
   border-bottom: none;
 }
-.checkoutContainer .checkoutForm span {
+.checkout__container .checkout__form span {
   position: absolute;
   top: 0;
   left: 0;
@@ -541,19 +541,6 @@ input::-webkit-inner-spin-button {
 #clearOrder:hover {
   background-color: rgba(196, 63, 65, 0.7);
   transition: all 0.4s ease;
-}
-.body__christmas__theme {
-  background-image: url(../assets/img/christmas_theme_bg/christmas_theme_bg.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.duck__pricing__christmas {
-  color: red;
-  font-size: 1.25rem;
-  font-weight: bold;
-  padding-top: 5px;
-  padding-bottom: 10px;
 }
 .checkout {
   width: 90vw;
@@ -671,9 +658,22 @@ input::-webkit-inner-spin-button {
   .checkout__cart--row article input {
     color: #fff;
   }
-  .checkoutContainer .checkoutForm label span {
+  .checkout__container .checkout__form label span {
     color: #fff;
   }
+}
+.body__christmas__theme {
+  background-image: url(../assets/img/christmas_theme_bg/christmas_theme_bg.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.duck__pricing__christmas {
+  color: red;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 body {
   font-family: 'Open Sans', sans-serif;

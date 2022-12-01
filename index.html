@@ -23,12 +23,12 @@
 
   <body id="body" class="dark__theme">
     <!--Header, first part, by Hanna-->
-    <header id="headerID">
+    <header id="headerId">
       <nav>
-        <a href="#headerID" aria-label="Navigera till startsida">
+        <a href="#headerId" aria-label="Navigera till startsida">
           <h1>Gottfrids ankor</h1>
         </a>
-        <a href="#checkoutID" aria-label="Navigera till kundkorg">
+        <a href="#checkoutId" aria-label="Navigera till kundkorg">
           <span class="material-symbols-outlined">shopping_cart</span>
         </a>
       </nav>
@@ -36,7 +36,6 @@
       <section class="intro">
         <h2><br /><br />Välkommen till Gottfrids! Här finner du alla ankor du någonsin drömt om.. plus fler!</h2>
         <img
-          class="intro-img-rubberduck"
           src="assets/img/header-purple-duck.png"
           alt="En stor lila målad anka"
           width="300"
@@ -50,7 +49,7 @@
     <main>
       <section class="filtering__section">
         <p class="filter__price__text">Filtrera på pris:</p>
-        <div class="sliders_control">
+        <div class="sliders__control">
           <div id="sliderMinValue"></div>
           <input id="fromSlider" type="range" value="0" min="0" max="100" />
           <input id="toSlider" type="range" value="100" min="0" max="100" />
@@ -81,7 +80,7 @@
       <div class="duck__wrapper"></div>
 
       <!------ Shopping cart, by Joel-------->
-      <section class="checkout" id="checkoutID">
+      <section class="checkout" id="checkoutId">
         <h2>Varukorg</h2>
 
         <header class="checkout__header">
@@ -116,27 +115,27 @@
       </section>
 
       <!--Form, last page, by Hanna-->
-      <section class="checkoutContainer">
+      <section class="checkout__container">
         <h3>Dina uppgifter:</h3>
-        <form class="checkoutForm">
+        <form class="checkout__form">
           <label for="firstName">
-            <input type="text" id="firstName" class="validatedText lock" />
+            <input type="text" id="firstName" class="checkout__validated__form lock" />
             <span>Förnamn</span>
           </label>
           <label for="surName">
-            <input type="text" id="surName" class="validatedText lock" />
+            <input type="text" id="surName" class="checkout__validated__form lock" />
             <span>Efternamn</span>
           </label>
           <label for="address">
-            <input type="text" id="address" class="validatedText lock" />
+            <input type="text" id="address" class="checkout__validated__form lock" />
             <span>Adress (gata)</span>
           </label>
           <label for="zipCode">
-            <input type="text" id="zipCode" class="validatedText lock" />
+            <input type="text" id="zipCode" class="checkout__validated__form lock" />
             <span id="zipCodeSpan">Postnummer</span>
           </label>
           <label for="cityName">
-            <input type="text" id="cityName" class="validatedText lock" />
+            <input type="text" id="cityName" class="checkout__validated__form lock" />
             <span>Postort</span>
           </label>
           <label for="buzzCode">
@@ -144,11 +143,11 @@
             <span>Eventuell portkod</span>
           </label>
           <label for="phoneNumber">
-            <input type="text" id="phoneNumber" class="validatedText lock" />
+            <input type="text" id="phoneNumber" class="checkout__validated__form lock" />
             <span id="phoneNumberSpan">Telefonnummer</span>
           </label>
           <label for="email">
-            <input type="email" id="email" class="validatedText lock" />
+            <input type="email" id="email" class="checkout__validated__form lock" />
             <span>E-postadress</span>
           </label>
 
@@ -165,30 +164,30 @@
 
           <div class="hiddenPaymentCard">
             <label for="cardNumber">
-              <input type="number" id="cardNumber" class="validatedText lock" />
+              <input type="number" id="cardNumber" class="checkout__validated__form lock" />
               <span>Kortnummer</span>
             </label>
             <label for="expiryDate">
-              <input type="number" id="expiryDate" class="validatedText lock" />
+              <input type="number" id="expiryDate" class="checkout__validated__form lock" />
               <span>Utgångsdatum</span>
             </label>
             <label for="cvc">
-              <input type="number" id="cvc" class="validatedText lock" />
+              <input type="number" id="cvc" class="checkout__validated__form lock" />
               <span>CVC-kod</span>
             </label>
           </div>
           <div class="hiddenPaymentInvoice">
             <label for="socialSecurityNumber">
-              <input type="text" id="socialSecurityNumber" class="validatedText lock" />
+              <input type="text" id="socialSecurityNumber" class="checkout__validated__form lock" />
               <span id="socialSecurityNumberSpan">Personnummer</span>
             </label>
           </div>
 
-          <label for="storageData" class="checkBoxes">
-            <input type="checkbox" id="storageData" class="validatedCheckbox lock" />
+          <label for="storageData" class="check__boxes">
+            <input type="checkbox" id="storageData" class="checkout__validated__checkbox lock" />
             Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
           </label>
-          <label for="newsLetter" class="checkBoxes">
+          <label for="newsLetter" class="check__boxes">
             <input type="checkbox" id="newsLetter" class="lock" checked />
             Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
           </label>
