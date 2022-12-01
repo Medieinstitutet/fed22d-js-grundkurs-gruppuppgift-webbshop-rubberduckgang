@@ -556,6 +556,9 @@ function renderCart() {
     if (ducksDatabase[i].amount == 0) {
       continue;
     }
+
+    console.log(ducksDatabase[i].amount);
+
     let price;
     if (ducksDatabase[i].amount >= 10) {
       price = ducksDatabase[i].price * 0.9;
@@ -578,7 +581,7 @@ function renderCart() {
         <!--- Denna label ska göras visually-hidden i css/sass -->
         <label class="visually-hidden" for="amount">antal</label>
 
-        <input type="number" class="cart__product--amount lock" id="amount__cart${ducksDatabase[i].id}" name="antal" min="1" value="${ducksDatabase[i].amount}">
+        <input type="number" class="cart__product--amount lock" id="${ducksDatabase[i].id}" name="antal" min="1" value="${ducksDatabase[i].amount}">
 
         <button role="button" class="btn-danger" id="${ducksDatabase[i].id}" >Rensa</button>
       </article>
@@ -634,10 +637,12 @@ function quantityInputChanged(event) {
     input.value = 1;
   }
 
-  updateTotalPrice();
-  giveDiscount();
-  giveMondayDiscount();
-  visualCartUpdate();
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    if (input.id == ducksDatabase[i].id) {
+      ducksDatabase[i].amount = input.value;
+    }
+  }
+  renderCart();
 }
 
 //*****************************************************************************************
@@ -867,7 +872,7 @@ function order(e) {
     errors.push('Fyll i ett giltligt telefonnummer!');
   }
 
-  if (!regexSSN.test(socialSecurityNumber.value)) {
+  if (window.getComputedStyle(socialSecurityNumber.parentElement.parentElement, null).display !== 'none' && !regexSSN.test(socialSecurityNumber.value)) {
     socialSecurityNumberSpan.innerHTML = 'Personnummer *';
     socialSecurityNumberSpan.classList.add('errorMessage');
 
