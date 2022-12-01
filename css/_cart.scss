@@ -1,101 +1,99 @@
-/*--------------------------- Styling för varu/kundkorg ---------------------------*/
+/*--------------------------- Styling for cart ---------------------------*/
 
 .checkout {
-	width: 90vw;
-	max-width: 50rem;
-	margin-inline: auto;
-	margin-block-end: 4rem;
-	padding-top: 60px;
+  width: 90vw;
+  max-width: 50rem;
+  margin-inline: auto;
+  margin-block-end: 4rem;
+  padding-top: 60px;
 }
 
 .checkout__header {
-	display: flex;
-	justify-content: space-between;
-	background-color: $primary-color;
-	color: hsl(0, 71%, 97%);
-	padding-inline: 0.5rem;
-	margin-block-end: 1rem;
-	border-radius: 0.625rem;
-	box-shadow: 4px 4px 8px #3b4d9ce3;
+  display: flex;
+  justify-content: space-between;
+  background-color: $primary-color;
+  color: hsl(0, 71%, 97%);
+  padding-inline: 0.5rem;
+  margin-block-end: 1rem;
+  border-radius: 0.625rem;
+  box-shadow: 4px 4px 8px #3b4d9ce3;
 }
 
 .checkout__cart--row {
-	display: grid;
-	grid-template-columns: 3fr 1fr 2fr;
+  display: grid;
+  grid-template-columns: 3fr 1fr 2fr;
 
-	// &:last-child {
-	align-items: center;
+  align-items: center;
 
-	& .checkout__cart__article--product {
-		// display: flex;
-		text-align: left;
-	}
+  .checkout__cart__article--product {
+    text-align: left;
+  }
 
-	& .checkout__cart__article--price {
-		text-align: left;
-	}
+  .checkout__cart__article--price {
+    text-align: left;
+  }
 
-	& .checkout__cart__article--quantity {
-		text-align: right;
-	}
+  .checkout__cart__article--quantity {
+    text-align: right;
+  }
 
-	& article > input {
-		width: 2.5rem;
-		margin-inline-end: 0.1rem;
-		height: 1.55rem;
-		background-color: hsla(0, 0%, 31%, 0.432);
-		border: 2px solid grey;
-	}
+  & article > input {
+    width: 2.5rem;
+    margin-inline-end: 0.1rem;
+    height: 1.55rem;
+    background-color: hsla(0, 0%, 31%, 0.432);
+    border: 2px solid grey;
+  }
 }
 
 .checkout__cart--sum {
-	text-align: right;
-	margin-block-end: 2rem;
+  text-align: right;
+  margin-block-end: 2rem;
 }
 
 .checkout__cart--confirm {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 
-	& button:first-child {
-		background-color: hsl(117, 35%, 50%, 1);
-		font-weight: 700;
-		color: hsla(0, 71%, 97%, 1);
-		transition: all 0.2s ease-in-out;
-	}
+  & button:first-child {
+    background-color: hsl(117, 35%, 50%, 1);
+    font-weight: 700;
+    color: hsla(0, 71%, 97%, 1);
+    transition: all 0.2s ease-in-out;
+  }
 
-	& button:first-child:hover {
-		background-color: hsla(117, 35%, 50%, 0.7);
-		transition: all 0.4s ease-in-out;
-		cursor: pointer;
-	}
+  & button:first-child:hover {
+    background-color: hsla(117, 35%, 50%, 0.7);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+  }
 }
 
 .btn {
-	border: none;
-	padding-inline: 3rem;
-	padding-block: 1rem;
-	border-radius: 0.625rem;
+  border: none;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+  border-radius: 0.625rem;
 }
 
 .btn-danger {
-	border: none;
-	color: hsla(0, 71%, 97%, 1);
-	background-color: hsla(359, 53%, 51%, 1);
-	cursor: pointer;
-	padding-inline: 0.4rem;
-	padding-block: 0.3rem;
-	font-size: 0.8rem;
+  border: none;
+  color: hsla(0, 71%, 97%, 1);
+  background-color: hsla(359, 53%, 51%, 1);
+  cursor: pointer;
+  padding-inline: 0.4rem;
+  padding-block: 0.3rem;
+  font-size: 0.8rem;
 }
 
 .btn-danger:hover {
-	background-color: hsla(359, 53%, 51%, 0.7);
+  background-color: hsla(359, 53%, 51%, 0.7);
 }
 
 .red__frame {
-	background-color: hsla(9, 93%, 39%, 0.37);
-	box-shadow: 0px 2px 10px 8px hsla(9, 93%, 39%, 0.384);
+  background-color: hsla(9, 93%, 39%, 0.37);
+  box-shadow: 0px 2px 10px 8px hsla(9, 93%, 39%, 0.384);
 }
