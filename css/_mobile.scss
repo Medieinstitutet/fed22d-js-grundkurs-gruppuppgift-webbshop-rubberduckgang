@@ -161,13 +161,13 @@ header {
     }
 
     #fromSlider::-webkit-slider-thumb {
-      transform: translateY($slider-height/2);
+      transform: translateY(math.div($slider-height, 2));
     }
     #fromSlider::-moz-range-thumb {
-      transform: translateY($slider-height/2);
+      transform: translateY(math.div($slider-height, 2));
     }
     #fromSlider::-ms-thumb {
-      transform: translateY($slider-height/2);
+      transform: translateY(math.div($slider-height, 2));
     }
   }
 }

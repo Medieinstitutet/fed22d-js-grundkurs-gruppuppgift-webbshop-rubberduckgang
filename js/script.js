@@ -1,12 +1,29 @@
 'use strict';
 
+// const { check } = require("prettier");
+
 //*****************************************************************************************
-//------------------------------ Initialize HTML references -------------------------------
+//------------------------------- Initialize dates & times --------------------------------
 //*****************************************************************************************
 
 const now = new Date();
 
-const isChristmasEve = now.getDate() === 2 && now.getMonth() === 11;
+const isChristmasEve = now.getDate() === 24 && now.getMonth() === 11;
+const useWeekendPrices = (now.getDay() === 5 && now.getHours() > 15) || now.getDay() === 6 || now.getDay() === 0 || (now.getDay() === 1 && now.getHours() < 3);
+const isLucia = now.getMonth() === 11 && now.getDate() === 13;
+const isEvenTuesday = now.getDay() == 2 && getWeeks(now) % 2 == 0;
+const useMondayDiscount = now.getDay() === 1 && now.getHours() < 10;
+
+function getWeeks(date) {
+  let startDate = new Date(date.getFullYear(), 0, 1);
+  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+  var weekNumber = Math.ceil(days / 7);
+  return weekNumber;
+}
+
+//*****************************************************************************************
+//------------------------------ Initialize HTML references -------------------------------
+//*****************************************************************************************
 
 const paymentCardInput = document.querySelector('#paymentCard');
 const paymentCardBox = document.querySelector('.hiddenPaymentCard');
@@ -18,10 +35,10 @@ giveMondayDiscount();
 
 //*****************************************************************************************
 //-------------------------------- Initialize ducksDatabase ------------------------------- By David
-//........Weekend price, 15% more friday after 15:00 to monday 03.00 (WeekEndPrice)........By J. del Pilar
+//........Weekend price, 15% more friday after 15:00 to monday 03.00 (now)........By J. del Pilar
 //*****************************************************************************************
 
-const ducksDatabase = [
+let ducksDatabase = [
   {
     name: 'Simpel gummianka',
     image: [
@@ -235,10 +252,11 @@ const ducksDatabase = [
   },
 ];
 
-const weekendPrice = new Date();
-
-if ((weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) || weekendPrice.getDay() === 6 || weekendPrice.getDay() === 0 || (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3)) {
-  ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
+if (useWeekendPrices) {
+  ducksDatabase = ducksDatabase.map(duck => {
+    duck.price = Math.round(duck.price * 1.15);
+    return duck;
+  });
 }
 
 //*****************************************************************************************
@@ -523,7 +541,7 @@ function addItemToCart(event) {
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
   duckToAdd.amount = amountToAdd;
 
-  if (isLucia() && !hasLuciaDuck()) {
+  if (isLucia && !hasLuciaDuck()) {
     const luciaDuck = ducksDatabase.find(duck => duck.id == 11);
     luciaDuck.amount = 1;
   }
@@ -586,11 +604,6 @@ function renderCart() {
   giveMondayDiscount();
   giveDiscount();
   visualCartUpdate();
-}
-
-function isLucia() {
-  const now = new Date();
-  return now.getMonth() === 11 && now.getDate() === 13;
 }
 
 function hasLuciaDuck() {
@@ -668,8 +681,7 @@ function updateTotalPrice() {
 
   document.querySelector('#cart__shipping__price').innerHTML = toDisplayPrice(shippingPrice);
 
-  let now = new Date();
-  if (now.getDay() == 2 && getWeeks(now) % 2 == 0 && total >= 25) {
+  if (isEvenTuesday && total >= 25) {
     total -= 25;
   }
   document.getElementById('cart__total__price').innerText = toDisplayPrice(total);
@@ -679,16 +691,6 @@ function updateTotalPrice() {
 
 function toDisplayPrice(num) {
   return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(2) + ':-';
-}
-
-function getWeeks(date) {
-  let startDate = new Date(date.getFullYear(), 0, 1);
-  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
-
-  var weekNumber = Math.ceil(days / 7);
-
-  // Display the calculated result
-  return weekNumber;
 }
 
 //*****************************************************************************************
@@ -711,9 +713,7 @@ function clearRedFrame() {
 //*****************************************************************************************
 
 function giveMondayDiscount() {
-  const mondayDiscount = new Date();
-  if (mondayDiscount.getDay() === 1 && mondayDiscount.getHours() < 10) {
-    // söndag = 0, måndag = 1 osv
+  if (useMondayDiscount) {
     const messageToUser = 'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
     document.getElementById('msg__to__user').innerText = messageToUser;
 
@@ -721,8 +721,6 @@ function giveMondayDiscount() {
 
     reducedPrice = Number(reducedPrice * 0.9);
     document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-';
-  } else {
-    // document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt';
   }
 }
 //*****************************************************************************************
@@ -903,8 +901,6 @@ function order(e) {
 //*****************************************************************************************
 
 function getDeliveryTime() {
-  const now = new Date();
-
   if (now.getDay() === 5 || now.getDay() === 6) {
     return 'om 90 min.'; //if customer orders on a saturday or sunday
   }
@@ -952,10 +948,19 @@ function clearOrder() {
 //*****************************************************************************************
 
 if (isChristmasEve) {
-  let ducksArray = [...ducksDatabase];
   const body = document.querySelector('#body');
-
   body.classList.add('body__christmas__theme');
+
+  const checkoutForm = document.querySelector('.checkout__form');
+  const allLabels = checkoutForm.querySelectorAll('label');
+
+  for (let label of allLabels) {
+    const spans = label.querySelectorAll('span');
+
+    for (let span of spans) {
+      span.classList.add('span__christmas__theme');
+    }
+  }
 }
 
 //*****************************************************************************************
