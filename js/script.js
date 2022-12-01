@@ -4,6 +4,10 @@
 //------------------------------ Initialize HTML references -------------------------------
 //*****************************************************************************************
 
+const now = new Date();
+
+const isChristmasEve = now.getDate() === 2 && now.getMonth() === 11;
+
 const paymentCardInput = document.querySelector('#paymentCard');
 const paymentCardBox = document.querySelector('.hiddenPaymentCard');
 const paymentInvoiceInput = document.querySelector('#paymentInvoice');
@@ -175,7 +179,6 @@ function renderDucks() {
     }
 
     let stars = '';
-
     for (let j = 0; j < 5; j++) {
       if (j - ducksArray[i].rating < -0.5) {
         stars += '&#xf005';
@@ -184,6 +187,12 @@ function renderDucks() {
       } else {
         stars += '&#xf006;';
       }
+    }
+
+    let christmasClass = '';
+
+    if (isChristmasEve) {
+      christmasClass = 'duck__pricing__christmas';
     }
 
     duckContainer.innerHTML += `
@@ -196,7 +205,7 @@ function renderDucks() {
             <h3 class="duck__title">${ducksArray[i].name}</h3>
             <span class="duck__rating fa">${stars}</span>
             <div class="duck__info">${ducksArray[i].info}</div>
-            <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+            <span class="duck__pricing ${christmasClass}">Pris ${ducksArray[i].price}:-</span>
             <div class="duck__amount">
                 <button id="subtract${rendered + 1}" class="subtract_btn" data-operator="subtract">-</button>
                 <span class="amount_text">Antal:</span>
@@ -671,8 +680,8 @@ function switchPayment(paymentType) {
 const orderBtn = document.querySelector('#orderButton');
 orderBtn.disabled = true;
 
-const validatedTexts = document.querySelectorAll('.validatedText');
-const validatedCheckboxes = document.querySelectorAll('.validatedCheckbox');
+const validatedTexts = document.querySelectorAll('.checkout__validated__text');
+const validatedCheckboxes = document.querySelectorAll('.checkout__validated__checkbox');
 const paymentCardRadio = document.querySelector('#paymentCard');
 const paymentInvoiceRadio = document.querySelector('#paymentInvoice');
 const socialSecurityNumber = document.querySelector('#socialSecurityNumber');
@@ -710,7 +719,7 @@ function validate() {
   orderBtn.disabled = !shouldEnable;
 }
 
-const checkoutForm = document.querySelector('.checkoutForm');
+const checkoutForm = document.querySelector('.checkout__form');
 checkoutForm.addEventListener('submit', order);
 
 //*****************************************************************************************
@@ -816,7 +825,7 @@ function getDeliveryTime() {
 //*****************************************************************************************
 
 function resetForm() {
-  document.querySelector('.checkoutForm').reset();
+  document.querySelector('.checkout__form').reset();
   alert('Nu tog det lite lång tid... Om du vill beställa får du fylla i formuläret igen.');
 }
 
@@ -830,27 +839,21 @@ const clearOrderBtn = document.querySelector('#clearOrder');
 clearOrderBtn.addEventListener('click', clearOrder);
 
 function clearOrder() {
-  document.querySelector('.checkoutForm').reset();
+  document.querySelector('.checkout__form').reset();
   for (let i = 0; i < ducksDatabase.length; i++) {
     ducksDatabase[i].amount = 0;
   }
   renderCart();
+  renderDucks();
 }
 
 //*****************************************************************************************
 //--------------------------- Christmas theme on Christmas eve ---------------------------- By David
 //*****************************************************************************************
 
-let christmasEve = new Date();
-
-if (christmasEve.getDate() === 24 && christmasEve.getMonth() === 11) {
+if (isChristmasEve) {
   let ducksArray = [...ducksDatabase];
   const body = document.querySelector('#body');
 
   body.classList.add('body__christmas__theme');
-
-  for (let i = 0; i < ducksArray.length; i++) {
-    const duckPrice = document.querySelector(`#duck__pricing__theme${i + 1}`);
-    duckPrice.classList.add('duck__pricing__christmas');
-  }
 }
