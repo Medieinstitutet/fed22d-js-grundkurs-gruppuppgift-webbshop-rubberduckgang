@@ -557,8 +557,6 @@ function renderCart() {
       continue;
     }
 
-    console.log(ducksDatabase[i].amount);
-
     let price;
     if (ducksDatabase[i].amount >= 10) {
       price = ducksDatabase[i].price * 0.9;
@@ -612,6 +610,18 @@ function renderCart() {
 function hasLuciaDuck() {
   return ducksDatabase.find(duck => duck.id == 11).amount > 0;
 }
+
+//*****************************************************************************************
+//--------------------- Function for Order, "Beställ" button ------------------------------ By J. del Pilar
+//*****************************************************************************************
+
+  // Lyssnare för att scrolla till formulär
+  document.querySelector('#go_to_form').addEventListener('click', goToForm);
+
+  function goToForm() {
+    let scroll = document.getElementById('scroll')
+    scroll.scrollIntoView();
+  }
 
 //*****************************************************************************************
 //--------------------- Remove article from cart, btn-danger ------------------------------ By J. del Pilar
