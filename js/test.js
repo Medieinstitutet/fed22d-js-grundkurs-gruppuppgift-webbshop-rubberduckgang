@@ -52,10 +52,8 @@ function addDuckToCart() {
   updateTotalPrice();
 }
 
-
-
 let currentImageIndex = 0;
-console.log(currentImageIndex)
+console.log(currentImageIndex);
 
 //Variabler för knapparna Nästa och Föregående bild
 const nextImgBtn = document.querySelectorAll('button[data-operator="nextImg"]');
@@ -79,15 +77,15 @@ function nextImage(e) {
 
   console.log(currentImageIndex);
 }
-  console.log(img)
-  console.log(index)
+console.log(img);
+console.log(index);
 
 function prevImage(e) {
   const index = e.currentTarget.id;
-  console.log(index)
-} 
+  console.log(index);
+}
 
-function nextImage(){
+function nextImage() {
   if (currentImageIndex + 1 > images.length - 1) {
     //restart from beginning
     currentImageIndex = 0;
@@ -98,7 +96,6 @@ function nextImage(){
   }
 
   console.log('nextImage', currentImageIndex);
-
 }
 
 function prevImage() {
@@ -112,5 +109,4 @@ function prevImage() {
   }
 
   console.log('prevImage', currentImageIndex);
-
 }

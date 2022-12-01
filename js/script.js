@@ -577,7 +577,7 @@ function renderCart() {
   updateTotalPrice();
   giveMondayDiscount();
   giveDiscount();
-  visualCartUpdate()
+  visualCartUpdate();
 }
 
 function isLucia() {
@@ -953,7 +953,7 @@ if (isChristmasEve) {
 //------------------------------------ Slideshow ------------------------------------------ By David
 //*****************************************************************************************
 
-// funktion för att sätta eller ta bort class hidden 
+// funktion för att sätta eller ta bort class hidden
 function switchImage(e) {
   const index = e.currentTarget.id.replace('prevImg', '').replace('nextImg', '');
   const img1 = document.querySelector(`#img__1-${index}`);
@@ -969,13 +969,13 @@ function switchImage(e) {
 }
 
 // loopar för att sätta event på knapparna till slideshow
-const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]')
+const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]');
 const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
 
 prevBtn.forEach(btn => {
   btn.addEventListener('click', switchImage);
 });
 
-nextBtn.forEach((btn) => {
+nextBtn.forEach(btn => {
   btn.addEventListener('click', switchImage);
 });
