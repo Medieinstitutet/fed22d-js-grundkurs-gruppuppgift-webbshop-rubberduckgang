@@ -15,8 +15,5 @@ module.exports = {
     quotes: ["error", "double"]
   },
   linebreak: ['error', 'windows'],
-  extends: [
-    "some-other-config-you-use",
-    "prettier"
-  ]
+  extends: ["prettier"]
 };
