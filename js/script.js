@@ -974,7 +974,6 @@ if (isChristmasEve) {
 //------------------------------------ Slideshow ------------------------------------------ By David
 //*****************************************************************************************
 
-// funktion för att sätta eller ta bort class hidden
 function switchImage(e) {
   const index = e.currentTarget.id.replace('prevImg', '').replace('nextImg', '');
   const img1 = document.querySelector(`#img__1-${index}`);
