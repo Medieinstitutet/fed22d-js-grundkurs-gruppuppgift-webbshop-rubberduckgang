@@ -1,6 +1,13 @@
 # Välkommen till [Gottfrids ankor](https://medieinstitutet.github.io/fed22d-js-grundkurs-gruppuppgift-webbshop-rubberduckgang/)!
 ### Skapad av: Hanna Forssell, Joel Del Pilar och David Stålgren.
 
+### Index
+* 1 Beskrivning
+* 2 Teknikstack
+* 3 Skärmdumpar
+* 4 Valideringsrapporter
+* 5 Lighthouse
+
 #### Beskrivning:
 Vi har skapat en realistisk webbshop som innehåller:
 > * En **produktssida** med ett brett utbud av gummiankor i alla dess former, baserad i en "single source of truth"-array.
@@ -9,10 +16,20 @@ Vi har skapat en realistisk webbshop som innehåller:
 
 #### Teknikstack:
 > * Vi har använt oss utav **HTML, CSS & Javascript**
-> * Vi har även implementerat **SASS, Prettier & ESLint**.
+> * Vi har även implementerat **SASS**, där vi har skapat variabler, vi har nästlat kod och skapat partials.
+> * Vi har använt oss utav **Prettier & ESLint** för att organisera och strukturera koden.
+> * Vi har arbetat agilt med **versionshantering**.
 
-Skärmdumpar
+#### Skärmdumpar
+Bilderna är tagna med dark mode valt i webbläsaren. Light mode finns att tillgå.
+<img src="screenshots/Screenshot_desktop_fullpage_1440.jpeg" width="800">
+<img src="screenshots/Screenshot_ full_page_android_chrome.jpg" width="300">
 
-Valideringsrapporter
+#### Valideringsrapporter
+<img src="validation/validation_outer_html.jpg">
+<img src="validation/validation_css.jpg">
 
-Lighthouse
+#### Lighthouse
+<img src="validation/lighthouse_desktop.png">
+<img src="validation/lighthouse_mobile.png">
+
