@@ -1,7 +1,5 @@
 'use strict';
 
-// const { check } = require("prettier");
-
 //*****************************************************************************************
 //------------------------------- Initialize dates & times --------------------------------
 //*****************************************************************************************
@@ -476,16 +474,13 @@ renderDucks();
 //*****************************************************************************************
 
 function applyListeners() {
-  //Variabler för knapparna Plus, minus och lägg till
   const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
   const addBtn = document.querySelectorAll('button[data-operator="add"]');
   const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
 
-  // loopar för att sätta event på knapparna till slideshow
   const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]');
   const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
 
-  // loop för att sätta eventlistener till funktionerna på knapparna
   for (let i = 0; i < addBtn.length; i++) {
     subtractBtn[i].addEventListener('click', subtractDuck);
     addBtn[i].addEventListener('click', addDuck);
@@ -501,7 +496,6 @@ function applyListeners() {
   });
 }
 
-// Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '');
   const amountValue = document.querySelector(`#amount${index}`);
@@ -509,7 +503,6 @@ function addDuck(e) {
   amountValue.innerHTML = amount + 1;
 }
 
-// Minus knappen subtraherar -1 vid klick, om värdet redan är mindre än 0 och större än -1 avbryt
 function subtractDuck(e) {
   const index = e.currentTarget.id.replace('subtract', '');
   const amountValue = document.querySelector(`#amount${index}`);
@@ -587,12 +580,12 @@ function renderCart() {
     `;
   }
 
-  const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
+  const removeProductBtn = document.getElementsByClassName('btn-danger');
   for (let i = 0; i < removeProductBtn.length; i++) {
     let removeBtn = removeProductBtn[i];
     removeBtn.addEventListener('click', removeCartRow);
   }
-  const quantityInput = document.getElementsByClassName('cart__product--amount'); // Variabel för att välja ut fältet med antal.
+  const quantityInput = document.getElementsByClassName('cart__product--amount');
   for (let i = 0; i < quantityInput.length; i++) {
     const input = quantityInput[i];
     input.addEventListener('change', quantityInputChanged);
@@ -612,10 +605,9 @@ function hasLuciaDuck() {
 }
 
 //*****************************************************************************************
-//--------------------- Function for Order, "Beställ" button ------------------------------ By J. del Pilar
+//--------------------- Function for Order, order button ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-// Lyssnare för att scrolla till formulär
 document.querySelector('#go_to_form').addEventListener('click', goToForm);
 
 function goToForm() {
