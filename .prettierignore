@@ -1,0 +1,11 @@
+# Ignore artifacts:
+build
+coverage
+node_modules/
+.vscode/
+package.json
+.eslintrc.js
+commitments.md
+README.md
+prettierrc.json
+*.css

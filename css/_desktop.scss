@@ -1,0 +1,16 @@
+@media screen and (min-width: 1024px) {
+  /*-------------- Main duck page -----------------*/
+  .duck__wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 16% 16% 16% 16% 16%;
+    grid-template-rows: auto;
+    gap: 10px;
+    max-width: 95vw;
+    padding: 10px;
+    margin: 10px;
+    grid-template-areas:
+      'duck__1 duck__2 duck__3 duck__4 duck__5'
+      'duck__6 duck__7 duck__8 duck__9 duck__10';
+  }
+}

@@ -1,0 +1,57 @@
+/*--------------Dark theme-----------------*/
+
+@media (prefers-color-scheme: dark) {
+  $secondary-color: #426d7a;
+
+  .dark__theme {
+    background: #333;
+    color: white;
+  }
+
+  header {
+    nav a {
+      color: white;
+    }
+    .intro .intro__text h2 {
+      background-color: $secondary-color;
+    }
+  }
+
+  .duck__wrapper {
+    article {
+      background-color: $secondary-color;
+    }
+  }
+
+  .checkout__cart--row {
+    article input {
+      color: white;
+    }
+  }
+
+  .checkout__container .checkout__form label span {
+    color: white;
+  }
+}
+
+/*--------------Christmas theme-----------------*/
+
+.body__christmas__theme {
+  background-image: url(../assets/img/christmas_theme_bg/christmas_theme_bg.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: black;
+}
+
+.duck__pricing__christmas {
+  color: red;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.checkout__container .checkout__form label .span__christmas__theme {
+  color: black;
+}
