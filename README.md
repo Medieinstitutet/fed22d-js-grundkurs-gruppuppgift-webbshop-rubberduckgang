@@ -30,6 +30,6 @@ Bilderna är tagna med dark mode valt i webbläsaren. Light mode finns att tillg
 <img src="validation/validation_css.jpg">
 
 #### Lighthouse
-<img src="lighthouse_desktop.jpg">
-<img src="lighthouse_mobile.jpg">
+<img src="validation/lighthouse_desktop.jpg">
+<img src="validation/lighthouse_mobile.jpg">
 
