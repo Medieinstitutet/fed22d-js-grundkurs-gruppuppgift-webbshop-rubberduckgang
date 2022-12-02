@@ -1,5 +1,26 @@
 'use strict';
 
+// const { check } = require("prettier");
+
+//*****************************************************************************************
+//------------------------------- Initialize dates & times --------------------------------
+//*****************************************************************************************
+
+const now = new Date();
+
+const isChristmasEve = now.getDate() === 24 && now.getMonth() === 11;
+const useWeekendPrices = (now.getDay() === 5 && now.getHours() > 15) || now.getDay() === 6 || now.getDay() === 0 || (now.getDay() === 1 && now.getHours() < 3);
+const isLucia = now.getMonth() === 11 && now.getDate() === 13;
+const isEvenTuesday = now.getDay() == 2 && getWeeks(now) % 2 == 0;
+const useMondayDiscount = now.getDay() === 1 && now.getHours() < 10;
+
+function getWeeks(date) {
+  let startDate = new Date(date.getFullYear(), 0, 1);
+  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+  var weekNumber = Math.ceil(days / 7);
+  return weekNumber;
+}
+
 //*****************************************************************************************
 //------------------------------ Initialize HTML references -------------------------------
 //*****************************************************************************************
@@ -14,13 +35,22 @@ giveMondayDiscount();
 
 //*****************************************************************************************
 //-------------------------------- Initialize ducksDatabase ------------------------------- By David
-//........Weekend price, 15% more friday after 15:00 to monday 03.00 (WeekEndPrice)........By J. del Pilar
+//........Weekend price, 15% more friday after 15:00 to monday 03.00 (now)........By J. del Pilar
 //*****************************************************************************************
 
-const ducksDatabase = [
+let ducksDatabase = [
   {
     name: 'Simpel gummianka',
-    image: 'assets/img/product_1/product_1_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_1/product_1_a_yellow_rubberduck.webp',
+        alt: 'Simpel gummianka',
+      },
+      {
+        src: 'assets/img/product_1/product_1_b_yellow_rubberduck.webp',
+        alt: 'Simpel gummianka',
+      },
+    ],
     info: 'Vår mest populära anka i klassisk gul färg.',
     price: 150,
     rating: 4.5,
@@ -31,7 +61,16 @@ const ducksDatabase = [
   },
   {
     name: 'Blå gummianka',
-    image: 'assets/img/product_2/product_2_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_2/product_2_a_blue_rubberduck.webp',
+        alt: 'Blå gummianka',
+      },
+      {
+        src: 'assets/img/product_2/product_2_b_blue_rubberduck.webp',
+        alt: 'Blå gummianka',
+      },
+    ],
     info: 'Nykomling med hög potential. Det är Blue Da-ba-dee!',
     price: 185,
     rating: 4,
@@ -42,7 +81,16 @@ const ducksDatabase = [
   },
   {
     name: 'Grön gummianka',
-    image: 'assets/img/product_3/product_3_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_3/product_3_a_green_rubberduck.webp',
+        alt: 'Grön gummianka',
+      },
+      {
+        src: 'assets/img/product_3/product_3_b_green_rubberduck.webp',
+        alt: 'Grön gummianka',
+      },
+    ],
     info: 'Gröngölingen! Ge han lite tid, han kommer ta sig.',
     price: 100,
     rating: 2,
@@ -53,7 +101,16 @@ const ducksDatabase = [
   },
   {
     name: 'Rosa gummianka',
-    image: 'assets/img/product_4/product_4_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_4/product_4_a_pink_rubberduck.webp',
+        alt: 'Rosa gummianka',
+      },
+      {
+        src: 'assets/img/product_4/product_4_b_pink_rubberduck.webp',
+        alt: 'Rosa gummianka',
+      },
+    ],
     info: 'Vad ska man säga. Rosa är rosa!',
     price: 125,
     rating: 3.5,
@@ -64,9 +121,18 @@ const ducksDatabase = [
   },
   {
     name: 'Evel Knievel-ankan',
-    image: 'assets/img/product_5/product_5_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_5/product_5_a_blue_rubberduck_with_stars.webp',
+        alt: 'Evel Knievel-ankan',
+      },
+      {
+        src: 'assets/img/product_5/product_5_b_blue_rubberduck_with_stars.webp',
+        alt: 'Evel Knievel-ankan',
+      },
+    ],
     info: 'Kommer bjuda på en show du inte visste en anka kan!',
-    price: 235,
+    price: 235.45,
     rating: 4,
     category: 'special',
     id: 5,
@@ -75,7 +141,16 @@ const ducksDatabase = [
   },
   {
     name: 'Svart gummianka',
-    image: 'assets/img/product_6/product_6_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_6/product_6_b_black_rubberduck.webp',
+        alt: 'Svart gummianka',
+      },
+      {
+        src: 'assets/img/product_6/product_6_a_black_rubberduck.webp',
+        alt: 'Svart gummianka',
+      },
+    ],
     info: 'Räds den mörka ankan, oanade krafter ligger bakom skapandet utav denna artefakt!',
     price: 666,
     rating: 0.5,
@@ -86,7 +161,16 @@ const ducksDatabase = [
   },
   {
     name: 'Regnbågsankan',
-    image: 'assets/img/product_7/product_7_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_7/product_7_a_rainbow_colored_rubberduck.webp',
+        alt: 'Regnbågsankan',
+      },
+      {
+        src: 'assets/img/product_7/product_7_b_rainbow_colored_rubberduck.webp',
+        alt: 'Regnbågsankan',
+      },
+    ],
     info: 'Regnbågar och enhörningar! NEJ! Men i alla fall en regnbågsfärgad badanka.',
     price: 250,
     rating: 5,
@@ -97,7 +181,16 @@ const ducksDatabase = [
   },
   {
     name: 'Ankornas armé',
-    image: 'assets/img/product_8/product_8_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_8/product_8_a_several_yellow_rubberducks.webp',
+        alt: 'Ankornas armé',
+      },
+      {
+        src: 'assets/img/product_8/product_8_b_pile_of_yellow_rubberducks.webp',
+        alt: 'Ankornas armé',
+      },
+    ],
     info: 'Fler, Fler, FLEEEEEER ANKOR!',
     price: 1750,
     rating: 5,
@@ -108,9 +201,18 @@ const ducksDatabase = [
   },
   {
     name: 'Giganten',
-    image: 'assets/img/product_9/product_9_a.webp',
+    image: [
+      {
+        src: 'assets/img/product_9/product_9_b_giant_inflated_yellow_duck.webp',
+        alt: 'Giganten',
+      },
+      {
+        src: 'assets/img/product_9/product_9_a_giant_inflated_yellow_duck.webp',
+        alt: 'Giganten',
+      },
+    ],
     info: 'När det gäller ankor så har i alla fall storleken betydelse.',
-    price: 2499,
+    price: 2499.99,
     rating: 5,
     category: 'special',
     id: 9,
@@ -118,15 +220,24 @@ const ducksDatabase = [
     visible: true,
   },
   {
-    name: 'Den enda guldankan',
-    image: 'assets/img/product_10/product_10_a.webp',
+    name: 'Den ENDA guldankan',
+    image: [
+      {
+        src: 'assets/img/product_10/product_10_a_golden_colored_rubberduck.webp',
+        alt: 'Den ENDA guldankan',
+      },
+      {
+        src: 'assets/img/product_10/product_10_b_golden_colored_rubberduck.webp',
+        alt: 'Den ENDA guldankan',
+      },
+    ],
     info: 'Ingen har någonsinn sett den, men här kan den beställas.',
     price: 3000,
     rating: 0,
     category: 'unique',
     id: 10,
     amount: 0,
-    visible: true, 
+    visible: true,
   },
   {
     name: 'Stjärngåsen',
@@ -141,15 +252,11 @@ const ducksDatabase = [
   },
 ];
 
-const weekendPrice = new Date();
-
-if (
-  (weekendPrice.getDay() === 5 && weekendPrice.getHours() > 15) ||
-  weekendPrice.getDay() === 6 ||
-  weekendPrice.getDay() === 0 ||
-  (weekendPrice.getDay() === 1 && weekendPrice.getHours() < 3)
-) {
-  ducksDatabase = ducksDatabase.map(prod => Math.round(prod.price * 1.15));
+if (useWeekendPrices) {
+  ducksDatabase = ducksDatabase.map(duck => {
+    duck.price = Math.round(duck.price * 1.15);
+    return duck;
+  });
 }
 
 //*****************************************************************************************
@@ -167,13 +274,14 @@ function renderDucks() {
 
   duckContainer.innerHTML = '';
 
+  let rendered = 0;
+
   for (let i = 0; i < ducksArray.length; i++) {
     if (!ducksArray[i].visible) {
       continue;
     }
 
     let stars = '';
-
     for (let j = 0; j < 5; j++) {
       if (j - ducksArray[i].rating < -0.5) {
         stars += '&#xf005';
@@ -184,26 +292,34 @@ function renderDucks() {
       }
     }
 
+    let christmasClass = '';
+
+    if (isChristmasEve) {
+      christmasClass = 'duck__pricing__christmas';
+    }
+
     duckContainer.innerHTML += `
-        <article class="duck__${i + 1}" id="${ducksArray[i].id}">
+        <article class="duck__${rendered + 1}" id="${ducksArray[i].id}">
             <div class="slideshow">
-                <button class="slideshow_btn_left">&lt;</button>
-                <img class="duck__img" src="${ducksArray[i].image}" alt="${ducksArray[i].name}" width="130">
-                <button class="slideshow_btn_right">&gt;</button>
+                <button id="prevImg${i + 1}" class="slideshow_btn_left" data-operator="prevImg">&lt;</button>
+                <img id="img__1-${i + 1}" src="${ducksArray[i].image[0].src}" alt="${ducksArray[i].image[0].alt}" width="130">
+                <img id="img__2-${i + 1}" class="hidden" src="${ducksArray[i].image[1].src}" alt="${ducksArray[i].image[1].alt}" width="130">
+                <button id="nextImg${i + 1}" class="slideshow_btn_right" data-operator="nextImg">&gt;</button>
             </div>
             <h3 class="duck__title">${ducksArray[i].name}</h3>
             <span class="duck__rating fa">${stars}</span>
             <div class="duck__info">${ducksArray[i].info}</div>
-            <span class="duck__pricing">Pris ${ducksArray[i].price}:-</span>
+            <span class="duck__pricing ${christmasClass}">Pris ${ducksArray[i].price}:-</span>
             <div class="duck__amount">
-                <button id="subtract${i + 1}" class="subtract_btn" data-operator="subtract">-</button>
+                <button id="subtract${rendered + 1}" class="subtract_btn" data-operator="subtract">-</button>
                 <span class="amount_text">Antal:</span>
-                <span id="amount${i + 1}" class="amount_value">0</span>
-                <button id="add${i + 1}" class="add_btn" data-operator="add">+</button><br>
+                <span id="amount${rendered + 1}" class="amount_value">0</span>
+                <button id="add${rendered + 1}" class="add_btn" data-operator="add">+</button><br>
             </div>
-            <button id="addToCart${i + 1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
+            <button id="addToCart${rendered + 1}" class="add_to_cart_btn" data-operator="addToCart">Lägg till</button>
         </article>
     `;
+    rendered++;
   }
   applyListeners();
 }
@@ -359,12 +475,15 @@ renderDucks();
 //------------------------------- Add & subtract amount ----------------------------------- By David
 //*****************************************************************************************
 
-function applyListeners() { 
-
+function applyListeners() {
   //Variabler för knapparna Plus, minus och lägg till
   const subtractBtn = document.querySelectorAll('button[data-operator="subtract"]');
   const addBtn = document.querySelectorAll('button[data-operator="add"]');
   const addToCartBtn = document.querySelectorAll('button[data-operator="addToCart"]');
+
+  // loopar för att sätta event på knapparna till slideshow
+  const prevBtn = document.querySelectorAll('button[data-operator="prevImg"]');
+  const nextBtn = document.querySelectorAll('button[data-operator="nextImg"]');
 
   // loop för att sätta eventlistener till funktionerna på knapparna
   for (let i = 0; i < addBtn.length; i++) {
@@ -372,7 +491,16 @@ function applyListeners() {
     addBtn[i].addEventListener('click', addDuck);
     addToCartBtn[i].addEventListener('click', addItemToCart);
   }
+
+  prevBtn.forEach(btn => {
+    btn.addEventListener('click', switchImage);
+  });
+
+  nextBtn.forEach(btn => {
+    btn.addEventListener('click', switchImage);
+  });
 }
+
 // Plus knappen lägger till +1 vid klick
 function addDuck(e) {
   const index = e.currentTarget.id.replace('add', '');
@@ -389,7 +517,7 @@ function subtractDuck(e) {
 
   if (amount <= 0) {
     return;
-  } 
+  }
   amountValue.innerHTML = amount - 1;
 }
 
@@ -408,12 +536,12 @@ function addItemToCart(event) {
   const amountToAdd = parseInt(amountDom.innerHTML);
   if (amountToAdd <= 0) {
     return;
-  } 
+  }
 
   const duckToAdd = ducksDatabase.find(duck => duck.id == clickedItem.id);
   duckToAdd.amount = amountToAdd;
 
-  if (isLucia() && !hasLuciaDuck()) {
+  if (isLucia && !hasLuciaDuck()) {
     const luciaDuck = ducksDatabase.find(duck => duck.id == 11);
     luciaDuck.amount = 1;
   }
@@ -427,7 +555,8 @@ function renderCart() {
   for (let i = 0; i < ducksDatabase.length; i++) {
     if (ducksDatabase[i].amount == 0) {
       continue;
-    } 
+    }
+
     let price;
     if (ducksDatabase[i].amount >= 10) {
       price = ducksDatabase[i].price * 0.9;
@@ -438,7 +567,7 @@ function renderCart() {
     checkoutCart.innerHTML += `
     <div class="checkout__cart--row" id="${ducksDatabase[i].id}">
       <article class="checkout__cart__article--product">
-        <img src=${ducksDatabase[i].image} alt="" width="100">
+        <img src=${ducksDatabase[i].image[0].src} alt="" width="100">
         <p>${ducksDatabase[i].name}</p>
       </article>
 
@@ -450,14 +579,14 @@ function renderCart() {
         <!--- Denna label ska göras visually-hidden i css/sass -->
         <label class="visually-hidden" for="amount">antal</label>
 
-        <input type="number" class="cart__product--amount lock" id="amount__cart${ducksDatabase[i].id}" name="antal" min="1" value="${ducksDatabase[i].amount}">
+        <input type="number" class="cart__product--amount lock" id="${ducksDatabase[i].id}" name="antal" min="1" value="${ducksDatabase[i].amount}">
 
         <button role="button" class="btn-danger" id="${ducksDatabase[i].id}" >Rensa</button>
       </article>
     </div>
     `;
   }
-  
+
   const removeProductBtn = document.getElementsByClassName('btn-danger'); // Variabel för att komma åt varje knapp med klassen "btn-danger" (Rensa)
   for (let i = 0; i < removeProductBtn.length; i++) {
     let removeBtn = removeProductBtn[i];
@@ -475,18 +604,24 @@ function renderCart() {
   updateTotalPrice();
   giveMondayDiscount();
   giveDiscount();
-  
-}
-
-function isLucia() {
-  const now = new Date();
-  return now.getMonth() === 11 && now.getDate() === 13;
+  visualCartUpdate();
 }
 
 function hasLuciaDuck() {
   return ducksDatabase.find(duck => duck.id == 11).amount > 0;
 }
 
+//*****************************************************************************************
+//--------------------- Function for Order, "Beställ" button ------------------------------ By J. del Pilar
+//*****************************************************************************************
+
+  // Lyssnare för att scrolla till formulär
+  document.querySelector('#go_to_form').addEventListener('click', goToForm);
+
+  function goToForm() {
+    let scroll = document.getElementById('scroll')
+    scroll.scrollIntoView();
+  }
 
 //*****************************************************************************************
 //--------------------- Remove article from cart, btn-danger ------------------------------ By J. del Pilar
@@ -512,10 +647,12 @@ function quantityInputChanged(event) {
     input.value = 1;
   }
 
-  updateTotalPrice();
-  giveDiscount();
-  giveMondayDiscount();
-  visualCartUpdate();
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    if (input.id == ducksDatabase[i].id) {
+      ducksDatabase[i].amount = input.value;
+    }
+  }
+  renderCart();
 }
 
 //*****************************************************************************************
@@ -526,6 +663,7 @@ function updateTotalPrice() {
   const checkoutCart = document.getElementsByClassName('checkout__cart')[0];
   const cartRows = checkoutCart.getElementsByClassName('checkout__cart--row');
   let total = 0;
+  let totalQuantity = 0;
 
   for (let i = 0; i < cartRows.length; i++) {
     const row = cartRows[i];
@@ -533,9 +671,11 @@ function updateTotalPrice() {
     const productQuantity = row.getElementsByClassName('cart__product--amount')[0];
 
     const price = Number(productPrice.innerText);
-    const quantity = productQuantity.value;
+    const quantity = Number(productQuantity.value);
 
     total = total + price * quantity;
+
+    totalQuantity += quantity;
   }
 
   const paymentInvoice = document.querySelector('#paymentInvoice');
@@ -548,22 +688,24 @@ function updateTotalPrice() {
     paymentInvoice.disabled = false;
   }
 
-  let now = new Date();
-  if (now.getDay() == 2 && getWeeks(now) % 2 == 0 && total >= 25 ) {
+  let shippingPrice = 25 + total * 0.1;
+
+  if (totalQuantity > 15) {
+    shippingPrice = 0;
+  }
+
+  document.querySelector('#cart__shipping__price').innerHTML = toDisplayPrice(shippingPrice);
+
+  if (isEvenTuesday && total >= 25) {
     total -= 25;
   }
-  document.getElementById('cart__total__price').innerText = total + ':-';
+  document.getElementById('cart__total__price').innerText = toDisplayPrice(total);
+
+  document.querySelector('#cart__payment__price').innerHTML = toDisplayPrice(total + shippingPrice);
 }
 
-function getWeeks(date) {
-    let startDate = new Date(date.getFullYear(), 0, 1);
-    let days = Math.floor((date - startDate) /
-        (24 * 60 * 60 * 1000));
-
-    var weekNumber = Math.ceil(days / 7);
-
-    // Display the calculated result
-    return weekNumber;
+function toDisplayPrice(num) {
+  return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(2) + ':-';
 }
 
 //*****************************************************************************************
@@ -586,9 +728,7 @@ function clearRedFrame() {
 //*****************************************************************************************
 
 function giveMondayDiscount() {
-  const mondayDiscount = new Date();
-  if (mondayDiscount.getDay() === 1 && mondayDiscount.getHours() < 10) {
-    // söndag = 0, måndag = 1 osv
+  if (useMondayDiscount) {
     const messageToUser = 'Måndag morgon, varsågod du får 10 % rabatt på din beställning';
     document.getElementById('msg__to__user').innerText = messageToUser;
 
@@ -596,8 +736,6 @@ function giveMondayDiscount() {
 
     reducedPrice = Number(reducedPrice * 0.9);
     document.getElementById('cart__total__price').innerHTML = reducedPrice + ':-';
-  } else {
-    // document.getElementById('msg__to__user').innerText = 'Måndagar före kl 10.00 gäller 10% rabatt';
   }
 }
 //*****************************************************************************************
@@ -612,8 +750,9 @@ function giveDiscount() {
   if (discountInput.value == 'a_damn_fine-cup_of_coffee') {
     let newPrice = document.getElementById('cart__total__price').innerHTML.replace(':-', '');
     newPrice = Number(newPrice * 0);
-    document.getElementById('cart__total__price').innerHTML = newPrice + ':-';
+    document.getElementById('cart__payment__price').innerHTML = newPrice + ':-';
   } else {
+    toDisplayPrice(0);
     updateTotalPrice();
     giveMondayDiscount();
   }
@@ -654,8 +793,8 @@ function switchPayment(paymentType) {
 const orderBtn = document.querySelector('#orderButton');
 orderBtn.disabled = true;
 
-const validatedTexts = document.querySelectorAll('.validatedText');
-const validatedCheckboxes = document.querySelectorAll('.validatedCheckbox');
+const validatedTexts = document.querySelectorAll('.checkout__validated__text');
+const validatedCheckboxes = document.querySelectorAll('.checkout__validated__checkbox');
 const paymentCardRadio = document.querySelector('#paymentCard');
 const paymentInvoiceRadio = document.querySelector('#paymentInvoice');
 const socialSecurityNumber = document.querySelector('#socialSecurityNumber');
@@ -693,7 +832,7 @@ function validate() {
   orderBtn.disabled = !shouldEnable;
 }
 
-const checkoutForm = document.querySelector('.checkoutForm');
+const checkoutForm = document.querySelector('.checkout__form');
 checkoutForm.addEventListener('submit', order);
 
 //*****************************************************************************************
@@ -743,7 +882,7 @@ function order(e) {
     errors.push('Fyll i ett giltligt telefonnummer!');
   }
 
-  if (!regexSSN.test(socialSecurityNumber.value)) {
+  if (window.getComputedStyle(socialSecurityNumber.parentElement.parentElement, null).display !== 'none' && !regexSSN.test(socialSecurityNumber.value)) {
     socialSecurityNumberSpan.innerHTML = 'Personnummer *';
     socialSecurityNumberSpan.classList.add('errorMessage');
 
@@ -777,8 +916,6 @@ function order(e) {
 //*****************************************************************************************
 
 function getDeliveryTime() {
-  const now = new Date();
-
   if (now.getDay() === 5 || now.getDay() === 6) {
     return 'om 90 min.'; //if customer orders on a saturday or sunday
   }
@@ -799,7 +936,7 @@ function getDeliveryTime() {
 //*****************************************************************************************
 
 function resetForm() {
-  document.querySelector('.checkoutForm').reset();
+  document.querySelector('.checkout__form').reset();
   alert('Nu tog det lite lång tid... Om du vill beställa får du fylla i formuläret igen.');
 }
 
@@ -813,26 +950,49 @@ const clearOrderBtn = document.querySelector('#clearOrder');
 clearOrderBtn.addEventListener('click', clearOrder);
 
 function clearOrder() {
-  document.querySelector('.checkoutForm').reset();
-
-  cart = [];
+  document.querySelector('.checkout__form').reset();
+  for (let i = 0; i < ducksDatabase.length; i++) {
+    ducksDatabase[i].amount = 0;
+  }
   renderCart();
+  renderDucks();
 }
 
 //*****************************************************************************************
 //--------------------------- Christmas theme on Christmas eve ---------------------------- By David
 //*****************************************************************************************
 
-let christmasEve = new Date();
-
-if (christmasEve.getDate() === 24 && christmasEve.getMonth() === 11) {
-  let ducksArray = [...ducksDatabase];
+if (isChristmasEve) {
   const body = document.querySelector('#body');
-
   body.classList.add('body__christmas__theme');
 
-  for (let i = 0; i < ducksArray.length; i++) {
-    const duckPrice = document.querySelector(`#duck__pricing__theme${i + 1}`);
-    duckPrice.classList.add('duck__pricing__christmas');
+  const checkoutForm = document.querySelector('.checkout__form');
+  const allLabels = checkoutForm.querySelectorAll('label');
+
+  for (let label of allLabels) {
+    const spans = label.querySelectorAll('span');
+
+    for (let span of spans) {
+      span.classList.add('span__christmas__theme');
+    }
+  }
+}
+
+//*****************************************************************************************
+//------------------------------------ Slideshow ------------------------------------------ By David
+//*****************************************************************************************
+
+// funktion för att sätta eller ta bort class hidden
+function switchImage(e) {
+  const index = e.currentTarget.id.replace('prevImg', '').replace('nextImg', '');
+  const img1 = document.querySelector(`#img__1-${index}`);
+  const img2 = document.querySelector(`#img__2-${index}`);
+
+  if (img1.classList.contains('hidden')) {
+    img1.classList.remove('hidden');
+    img2.classList.add('hidden');
+  } else {
+    img1.classList.add('hidden');
+    img2.classList.remove('hidden');
   }
 }

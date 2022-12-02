@@ -1,1 +1,18 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9234689&assignment_repo_type=AssignmentRepo)
+# Välkommen till [Gottfrids ankor](https://medieinstitutet.github.io/fed22d-js-grundkurs-gruppuppgift-webbshop-rubberduckgang/)!
+### Skapad av: Hanna Forssell, Joel Del Pilar och David Stålgren.
+
+#### Beskrivning:
+Vi har skapat en realistisk webbshop som innehåller:
+> * En **produktssida** med ett brett utbud av gummiankor i alla dess former, baserad i en "single source of truth"-array.
+> * En **varukorgssammanställning** där artiklarna uppdateras i realtid, och där regler appliceras beroende på förhållanden i korgen.
+> * Ett **formulär** som valideras, bland annat med regex. Beställ-knappen aktiveras ej förrän fälten är ifyllda, och varnar på ett tydligt sätt när fälten ej är korrekyt ifyllda.
+
+#### Teknikstack:
+> * Vi har använt oss utav **HTML, CSS & Javascript**
+> * Vi har även implementerat **SASS, Prettier & ESLint**.
+
+Skärmdumpar
+
+Valideringsrapporter
+
+Lighthouse
