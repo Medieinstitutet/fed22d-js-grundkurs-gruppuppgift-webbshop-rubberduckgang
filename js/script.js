@@ -615,13 +615,13 @@ function hasLuciaDuck() {
 //--------------------- Function for Order, "Beställ" button ------------------------------ By J. del Pilar
 //*****************************************************************************************
 
-  // Lyssnare för att scrolla till formulär
-  document.querySelector('#go_to_form').addEventListener('click', goToForm);
+// Lyssnare för att scrolla till formulär
+document.querySelector('#go_to_form').addEventListener('click', goToForm);
 
-  function goToForm() {
-    let scroll = document.getElementById('scroll')
-    scroll.scrollIntoView();
-  }
+function goToForm() {
+  let scroll = document.getElementById('scroll');
+  scroll.scrollIntoView();
+}
 
 //*****************************************************************************************
 //--------------------- Remove article from cart, btn-danger ------------------------------ By J. del Pilar
@@ -916,7 +916,7 @@ function order(e) {
 //*****************************************************************************************
 
 function getDeliveryTime() {
-  if (now.getDay() === 5 || now.getDay() === 6) {
+  if (now.getDay() === 6 || now.getDay() === 7) {
     return 'om 90 min.'; //if customer orders on a saturday or sunday
   }
 

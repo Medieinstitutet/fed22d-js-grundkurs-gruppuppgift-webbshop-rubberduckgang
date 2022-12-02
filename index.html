@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gottfrids ankor</title>
 
-    <meta property="og:title" content="Gottfrids ankor">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://medieinstitutet.github.io/fed22d-js-grundkurs-gruppuppgift-webbshop-rubberduckgang/">
-    <meta property="og:image" content="https://github.com/Medieinstitutet/fed22d-js-grundkurs-gruppuppgift-webbshop-rubberduckgang/blob/d9f58d750f4d4c1a991d55c0b72677c8f09468cb/assets/img/opengraph_image_gottfrids.png?raw=true">
+    <meta property="og:title" content="Gottfrids ankor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://medieinstitutet.github.io/fed22d-js-grundkurs-gruppuppgift-webbshop-rubberduckgang/" />
+    <meta property="og:image" content="https://github.com/Medieinstitutet/fed22d-js-grundkurs-gruppuppgift-webbshop-rubberduckgang/blob/d9f58d750f4d4c1a991d55c0b72677c8f09468cb/assets/img/opengraph_image_gottfrids.png?raw=true" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,162 +38,161 @@
         <img src="assets/img/header-purple-duck.webp" alt="En stor lila målad anka" width="300" height="300" loading="lazy" />
       </section>
     </header>
-    
-  <!--Main duck page-->
-  <main>
-    <section class="filtering__section">
-      <p class="filter__price__text">Filtrera på pris:</p>
-      <div class="sliders__control">
-        <div id="sliderMinValue"></div>
-        <input id="fromSlider" type="range" value="0" min="0" max="100" />
-        <input id="toSlider" type="range" value="100" min="0" max="100" />
-        <div id="sliderMaxValue"></div>
-      </div>
-    </section>
 
-    <section class="sorting__section">
-      <label>
-        <select id="sort__options">
-          <option selected disabled>Sortera på:</option>
-          <option id="sortRating">Betyg</option>
-          <option id="sortPriceLow">Pris: Lågt till högt</option>
-          <option id="sortPriceHigh">Pris: Högt till lågt</option>
-        </select>
-      </label>
-      <label>
-        <select id="sort__categories">
-          <option selected disabled>Välj kategori:</option>
-          <option id="categoryAll">Alla</option>
-          <option id="categoryUnique">Unik</option>
-          <option id="categorySpecial">Speciell</option>
-          <option id="categoryStandard">Standard</option>
-        </select>
-      </label>
-    </section>
-
-    <div class="duck__wrapper"></div>
-
-    <!------ Shopping cart, by Joel-------->
-    <section class="checkout" id="checkoutId">
-      <h2>Varukorg</h2>
-      
-      <header class="checkout__header">
-        <h3>Produkt</h3>
-        <h3>Pris</h3>
-        <h3>Antal</h3>
-      </header>
-
-      <section class="checkout__cart"></section>
-
-      <label for="discount" title="Discount">
-        Rabattkod
-        <input type="text" id="discount" class="lock" name="discount" />
-      </label>
-
-      <p id="msg__to__user"></p>
-
-      <div class="checkout__cart--sum">
-        <span>Totalt: </span>
-        <span id="cart__total__price"></span>
-        <br />
-        <span>Frakt: </span>
-        <span id="cart__shipping__price"></span>
-        <br /><br />
-        <span>Att betala: </span>
-        <span id="cart__payment__price"></span>
-      </div>
-
-      <div class="checkout__cart--confirm">
-        <button role="button" class="btn btn-order" id="go_to_form">Beställ</button>
-      </div>
-    </section>
-
-    <!--Form, last page, by Hanna-->
-    <section class="checkout__container" id="scroll">
-      <h3>Dina uppgifter:</h3>
-      <form class="checkout__form">
-        <label for="firstName">
-          <input type="text" id="firstName" class="checkout__validated__form lock" />
-          <span>Förnamn</span>
-        </label>
-        <label for="surName">
-          <input type="text" id="surName" class="checkout__validated__form lock" />
-          <span>Efternamn</span>
-        </label>
-        <label for="address">
-          <input type="text" id="address" class="checkout__validated__form lock" />
-          <span>Adress (gata)</span>
-        </label>
-        <label for="zipCode">
-          <input type="text" id="zipCode" class="checkout__validated__form lock" />
-          <span id="zipCodeSpan">Postnummer</span>
-        </label>
-        <label for="cityName">
-          <input type="text" id="cityName" class="checkout__validated__form lock" />
-          <span>Postort</span>
-        </label>
-        <label for="buzzCode">
-          <input type="text" id="buzzCode" class="lock" />
-          <span>Eventuell portkod</span>
-        </label>
-        <label for="phoneNumber">
-          <input type="text" id="phoneNumber" class="checkout__validated__form lock" />
-          <span id="phoneNumberSpan">Telefonnummer</span>
-        </label>
-        <label for="email">
-          <input type="email" id="email" class="checkout__validated__form lock" />
-          <span>E-postadress</span>
-        </label>
-
-        <p>Välj betalsätt:</p>
-        <label class="paymentMethodLabel" for="paymentCard">
-          <input id="paymentCard" class="lock" type="radio" name="radio" />
-          Kort
-        </label>
-
-        <label class="paymentMethodLabel" for="paymentInvoice">
-          <input id="paymentInvoice" class="lock" type="radio" name="radio" />
-          Faktura
-        </label>
-
-        <div class="hiddenPaymentCard">
-          <label for="cardNumber">
-            <input type="number" id="cardNumber" class="checkout__validated__form lock" />
-            <span>Kortnummer</span>
-          </label>
-          <label for="expiryDate">
-            <input type="number" id="expiryDate" class="checkout__validated__form lock" />
-            <span>Utgångsdatum</span>
-          </label>
-          <label for="cvc">
-            <input type="number" id="cvc" class="checkout__validated__form lock" />
-            <span>CVC-kod</span>
-          </label>
+    <!--Main duck page-->
+    <main>
+      <section class="filtering__section">
+        <p class="filter__price__text">Filtrera på pris:</p>
+        <div class="sliders__control">
+          <div id="sliderMinValue"></div>
+          <input id="fromSlider" type="range" value="0" min="0" max="100" />
+          <input id="toSlider" type="range" value="100" min="0" max="100" />
+          <div id="sliderMaxValue"></div>
         </div>
-        <div class="hiddenPaymentInvoice">
-          <label for="socialSecurityNumber">
-            <input type="text" id="socialSecurityNumber" class="checkout__validated__form lock" />
-            <span id="socialSecurityNumberSpan">Personnummer</span>
-          </label>
+      </section>
+
+      <section class="sorting__section">
+        <label>
+          <select id="sort__options">
+            <option selected disabled>Sortera på:</option>
+            <option id="sortRating">Betyg</option>
+            <option id="sortPriceLow">Pris: Lågt till högt</option>
+            <option id="sortPriceHigh">Pris: Högt till lågt</option>
+          </select>
+        </label>
+        <label>
+          <select id="sort__categories">
+            <option selected disabled>Välj kategori:</option>
+            <option id="categoryAll">Alla</option>
+            <option id="categoryUnique">Unik</option>
+            <option id="categorySpecial">Speciell</option>
+            <option id="categoryStandard">Standard</option>
+          </select>
+        </label>
+      </section>
+
+      <div class="duck__wrapper"></div>
+
+      <!------ Shopping cart, by Joel-------->
+      <section class="checkout" id="checkoutId">
+        <h2>Varukorg</h2>
+
+        <header class="checkout__header">
+          <h3>Produkt</h3>
+          <h3>Pris</h3>
+          <h3>Antal</h3>
+        </header>
+
+        <section class="checkout__cart"></section>
+
+        <label for="discount" title="Discount">
+          Rabattkod
+          <input type="text" id="discount" class="lock" name="discount" />
+        </label>
+
+        <p id="msg__to__user"></p>
+
+        <div class="checkout__cart--sum">
+          <span>Totalt: </span>
+          <span id="cart__total__price"></span>
+          <br />
+          <span>Frakt: </span>
+          <span id="cart__shipping__price"></span>
+          <br /><br />
+          <span>Att betala: </span>
+          <span id="cart__payment__price"></span>
         </div>
 
-        <label for="storageData" class="check__boxes">
-          <input type="checkbox" id="storageData" class="checkout__validated__checkbox lock" />
-          Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
-        </label>
-        <label for="newsLetter" class="check__boxes">
-          <input type="checkbox" id="newsLetter" class="lock" checked />
-          Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
-        </label>
+        <div class="checkout__cart--confirm">
+          <button role="button" class="btn btn-order" id="go_to_form">Beställ</button>
+        </div>
+      </section>
 
-        <button type="submit" id="orderButton" class="lock">Skicka beställning</button>
-        <p id="orderMessage"></p>
-      </form>
-      <button id="clearOrder">Rensa beställning</button>
-    </section>
-  </main>
+      <!--Form, last page, by Hanna-->
+      <section class="checkout__container" id="scroll">
+        <h3>Dina uppgifter:</h3>
+        <form class="checkout__form">
+          <label for="firstName">
+            <input type="text" id="firstName" class="checkout__validated__form lock" />
+            <span>Förnamn</span>
+          </label>
+          <label for="surName">
+            <input type="text" id="surName" class="checkout__validated__form lock" />
+            <span>Efternamn</span>
+          </label>
+          <label for="address">
+            <input type="text" id="address" class="checkout__validated__form lock" />
+            <span>Adress (gata)</span>
+          </label>
+          <label for="zipCode">
+            <input type="text" id="zipCode" class="checkout__validated__form lock" />
+            <span id="zipCodeSpan">Postnummer</span>
+          </label>
+          <label for="cityName">
+            <input type="text" id="cityName" class="checkout__validated__form lock" />
+            <span>Postort</span>
+          </label>
+          <label for="buzzCode">
+            <input type="text" id="buzzCode" class="lock" />
+            <span>Eventuell portkod</span>
+          </label>
+          <label for="phoneNumber">
+            <input type="text" id="phoneNumber" class="checkout__validated__form lock" />
+            <span id="phoneNumberSpan">Telefonnummer</span>
+          </label>
+          <label for="email">
+            <input type="email" id="email" class="checkout__validated__form lock" />
+            <span>E-postadress</span>
+          </label>
 
-  <script src="js/script.js"></script>
-</body>
+          <p>Välj betalsätt:</p>
+          <label class="paymentMethodLabel" for="paymentCard">
+            <input id="paymentCard" class="lock" type="radio" name="radio" />
+            Kort
+          </label>
 
+          <label class="paymentMethodLabel" for="paymentInvoice">
+            <input id="paymentInvoice" class="lock" type="radio" name="radio" />
+            Faktura
+          </label>
+
+          <div class="hiddenPaymentCard">
+            <label for="cardNumber">
+              <input type="number" id="cardNumber" class="checkout__validated__form lock" />
+              <span>Kortnummer</span>
+            </label>
+            <label for="expiryDate">
+              <input type="number" id="expiryDate" class="checkout__validated__form lock" />
+              <span>Utgångsdatum</span>
+            </label>
+            <label for="cvc">
+              <input type="number" id="cvc" class="checkout__validated__form lock" />
+              <span>CVC-kod</span>
+            </label>
+          </div>
+          <div class="hiddenPaymentInvoice">
+            <label for="socialSecurityNumber">
+              <input type="text" id="socialSecurityNumber" class="checkout__validated__form lock" />
+              <span id="socialSecurityNumberSpan">Personnummer</span>
+            </label>
+          </div>
+
+          <label for="storageData" class="check__boxes">
+            <input type="checkbox" id="storageData" class="checkout__validated__checkbox lock" />
+            Jag godkänner Gottfrids Ankor:s behandling av mina personuppgifter
+          </label>
+          <label for="newsLetter" class="check__boxes">
+            <input type="checkbox" id="newsLetter" class="lock" checked />
+            Jag vill prenumerera på Gottfrids Ankor:s nyhetsbrev!
+          </label>
+
+          <button type="submit" id="orderButton" class="lock">Skicka beställning</button>
+          <p id="orderMessage"></p>
+        </form>
+        <button id="clearOrder">Rensa beställning</button>
+      </section>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
